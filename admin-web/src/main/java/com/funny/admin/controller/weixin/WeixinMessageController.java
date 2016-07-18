@@ -1,20 +1,15 @@
-package com.funny.web.controller.weixin;
+package com.funny.admin.controller.weixin;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.funny.admin.domain.wx.WeixinMessage;
-import com.funny.admin.domain.wx.WeixinToken;
-import com.funny.admin.domain.wx.WeixinUser;
-import com.funny.admin.service.wx.WeixinService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +20,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.funny.WeixinUtil;
+import com.funny.admin.domain.wx.WeixinMessage;
+import com.funny.admin.domain.wx.WeixinToken;
+import com.funny.admin.domain.wx.WeixinUser;
+import com.funny.admin.service.wx.WeixinService;
 import com.funny.result.JsonResult;
-import com.funny.utils.HttpUtils;
+import com.funny.utils.RequestHelper;
 import com.funny.utils.dfa.DFAWordFilter;
 
 /**
@@ -150,7 +149,7 @@ public class WeixinMessageController {
         String url = WeixinUtil.ACCESS_TOKEN_URL.replace("APPID", WeixinUtil.APPID).replace("APPSECRET",
                 WeixinUtil.APPSECRET);
         logger.info("获取token的url:" + url);
-        String jsonObject = HttpUtils.httpGetData(url, null, "UTF-8");
+        String jsonObject = RequestHelper.doGet(url, null, RequestHelper.CHARSET);
         logger.info("获取token的结果:" + jsonObject);
         Map<String, Object> res = JSON.parseObject(jsonObject,Map.class);
         if (res.get("errcode") == null) {
@@ -172,7 +171,7 @@ public class WeixinMessageController {
     private WeixinUser getUserInfo(String openid) throws  IOException {
         WeixinToken token = getAccessToken();
         String url = WeixinUtil.USER_DETAIL_URL.replace("ACCESS_TOKEN", token.getToken()).replace("OPENID", openid);
-        String result = HttpUtils.httpGetData(url, null, "UTF-8");
+        String result =  RequestHelper.doGet(url, null, RequestHelper.CHARSET);
         WeixinUser user =  JSON.parseObject(result, WeixinUser.class);
         return user;
     }
@@ -207,12 +206,12 @@ public class WeixinMessageController {
      */
     public static boolean isContansEmoji(String source) {
         if (source != null) {
-            Pattern emoji = Pattern.compile("[\ud83c\udc00-\ud83c\udfff]|[\ud83d\udc00-\ud83d\udfff]|[\u2600-\u27ff]",
-                    Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE);
-            Matcher emojiMatcher = emoji.matcher(source);
-            if (emojiMatcher.find()) {
-                return true;
-            }
+            //Pattern emoji = Pattern.compile("[\ud83c\udc00-\ud83c\udfff]|[\ud83d\udc00-\ud83d\udfff]|[\u2600-\u27ff]",
+             //       Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE);
+           // Matcher emojiMatcher = emoji.matcher(source);
+//            if (emojiMatcher.find()) {
+//                return true;
+//            }
             return false;
         }
         return false;

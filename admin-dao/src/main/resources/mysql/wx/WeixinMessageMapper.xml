@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.funny.wall.dao.wx.WeixinMessageMapper">
+<mapper namespace="com.funny.admin.dao.wx.WeixinMessageMapper">
 	<resultMap id="BaseResultMap"
-		type="com.funny.wall.domain.wx.WeixinMessage">
+		type="com.funny.admin.domain.wx.WeixinMessage">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="nick_name" property="nickName" jdbcType="VARCHAR" />
 		<result column="head_img_url" property="headImgUrl" jdbcType="VARCHAR" />
@@ -11,7 +11,7 @@
 	</resultMap>
 
 	<insert id="insert"
-		parameterType="com.funny.wall.domain.wx.WeixinMessage">
+		parameterType="com.funny.admin.domain.wx.WeixinMessage">
 		insert into weixin_message (id, nick_name, head_img_url,
 		create_time,content)
 		values (#{id,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR},
@@ -28,14 +28,14 @@
 	</select>
 
 	<resultMap id="TokenResultMap"
-		type="com.funny.wall.domain.wx.WeixinToken">
+		type="com.funny.admin.domain.wx.WeixinToken">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="token" property="token" jdbcType="VARCHAR" />
 		<result column="expires_in" property="expiresIn" jdbcType="INTEGER" />
 		<result column="token_time" property="tokenTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 
-	<insert id="insertToken" parameterType="com.funny.wall.domain.wx.WeixinToken">
+	<insert id="insertToken" parameterType="com.funny.admin.domain.wx.WeixinToken">
 		insert into weixin_token (token, expires_in, token_time )
 		values (#{token,jdbcType=VARCHAR}, #{expiresIn,jdbcType=INTEGER},
 		#{tokenTime,jdbcType=TIMESTAMP})
@@ -45,7 +45,7 @@
 		SELECT * FROM weixin_token
 	</select>
 
-	<update id="updateToken" parameterType="com.funny.wall.domain.wx.WeixinToken">
+	<update id="updateToken" parameterType="com.funny.admin.domain.wx.WeixinToken">
 		update weixin_token set token = #{token,jdbcType=VARCHAR},
 		expires_in = #{expiresIn,jdbcType=INTEGER},token_time = #{tokenTime,jdbcType=TIMESTAMP}
 	</update>

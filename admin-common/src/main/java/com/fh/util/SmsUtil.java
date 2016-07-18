@@ -6,21 +6,13 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.methods.PostMethod;
+import com.funny.utils.RequestHelper;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-/**
- * 说明：短信接口类
- * 创建人：FH Q313596790
- * 修改时间：2013年2月22日
- * @version
- */
+
 public class SmsUtil {
 
 	public static void main(String [] args) {
@@ -125,61 +117,64 @@ public class SmsUtil {
 	 * @param code  短信内容
 	 */
 	public static void sendSms2(String mobile,String code){
-		HttpClient client = new HttpClient();
-		PostMethod method = new PostMethod(Url);
 
-		client.getParams().setContentCharset("UTF-8");
-		method.setRequestHeader("ContentType", "application/x-www-form-urlencoded;charset=UTF-8");
-	    String content = new String(code);
-
-	    String account = "", password = "";
-	    String strSMS2 = Tools.readTxtFile(Const.SMS2);			//读取短信2配置
-		if(null != strSMS2 && !"".equals(strSMS2)){
-			String strS2[] = strSMS2.split(",fh,");
-			if(strS2.length == 2){
-				account = strS2[0];
-				password = strS2[1];
-			}
-		}
-
-		NameValuePair[] data = {//提交短信
-		    new NameValuePair("account", account),
-		    new NameValuePair("password", password), 			//密码可以使用明文密码或使用32位MD5加密
-		    new NameValuePair("mobile", mobile),
-		    new NameValuePair("content", content),
-		};
-
-		method.setRequestBody(data);
-
-		try {
-			client.executeMethod(method);
-
-			String SubmitResult =method.getResponseBodyAsString();
-
-			Document doc = DocumentHelper.parseText(SubmitResult);
-			Element root = doc.getRootElement();
-
-
-			code = root.elementText("code");
-			String msg = root.elementText("msg");
-			String smsid = root.elementText("smsid");
-
-
-			System.out.println(code);
-			System.out.println(msg);
-			System.out.println(smsid);
-
-			if(code == "2"){
-				System.out.println("短信提交成功");
-			}
-
-		} catch (HttpException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (DocumentException e) {
-			e.printStackTrace();
-		}
+//		RequestHelper.doGet();
+//
+//		HttpClient client = new HttpClient();
+//		PostMethod method = new PostMethod(Url);
+//
+//		client.getParams().setContentCharset("UTF-8");
+//		method.setRequestHeader("ContentType", "application/x-www-form-urlencoded;charset=UTF-8");
+//	    String content = new String(code);
+//
+//	    String account = "", password = "";
+//	    String strSMS2 = Tools.readTxtFile(Const.SMS2);			//读取短信2配置
+//		if(null != strSMS2 && !"".equals(strSMS2)){
+//			String strS2[] = strSMS2.split(",fh,");
+//			if(strS2.length == 2){
+//				account = strS2[0];
+//				password = strS2[1];
+//			}
+//		}
+//
+//		NameValuePair[] data = {//提交短信
+//		    new NameValuePair("account", account),
+//		    new NameValuePair("password", password), 			//密码可以使用明文密码或使用32位MD5加密
+//		    new NameValuePair("mobile", mobile),
+//		    new NameValuePair("content", content),
+//		};
+//
+//		method.setRequestBody(data);
+//
+//		try {
+//			client.executeMethod(method);
+//
+//			String SubmitResult =method.getResponseBodyAsString();
+//
+//			Document doc = DocumentHelper.parseText(SubmitResult);
+//			Element root = doc.getRootElement();
+//
+//
+//			code = root.elementText("code");
+//			String msg = root.elementText("msg");
+//			String smsid = root.elementText("smsid");
+//
+//
+//			System.out.println(code);
+//			System.out.println(msg);
+//			System.out.println(smsid);
+//
+//			if(code == "2"){
+//				System.out.println("短信提交成功");
+//			}
+//
+//		} catch (HttpException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		} catch (DocumentException e) {
+//			e.printStackTrace();
+//		}
 
 	}
 

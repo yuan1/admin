@@ -8,6 +8,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.code.kaptcha.Producer;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CodeController {
     @Resource
-   // private Producer captchaProducer;
+   private Producer captchaProducer;
 
     /**
      * 生成登陆验证码
@@ -40,11 +41,10 @@ public class CodeController {
         response.addHeader("Cache-Control", "post-check=0, pre-check=0");
         response.setHeader("Pragma", "no-cache");
         response.setContentType("image/jpeg");
-        //String capText = captchaProducer.createText();
-        //request.getSession().setAttribute(mark, capText);
+        String capText = captchaProducer.createText();
+        request.getSession().setAttribute(mark, capText);
         request.getSession().setAttribute("kaptchatime", System.currentTimeMillis());
-        //BufferedImage bi = captchaProducer.createImage(capText);
-        BufferedImage bi=null;
+        BufferedImage bi = captchaProducer.createImage(capText);
         ServletOutputStream out = response.getOutputStream();
         ImageIO.write(bi, "jpg", out);
         try {
