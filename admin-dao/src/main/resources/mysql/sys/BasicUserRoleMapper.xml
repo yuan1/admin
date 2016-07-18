@@ -15,7 +15,7 @@
     id, user_id, role_id, create_time, create_by, update_time, update_by, yn
   </sql>
     <insert id="insert" parameterType="com.funny.admin.domain.sys.UserRole">
-    insert into sys_user_role (id, user_id, role_id, 
+    insert into admin_user_role (id, user_id, role_id,
       create_time, create_by, update_time, 
       update_by, yn)
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, 
@@ -23,7 +23,7 @@
       #{updateBy,jdbcType=BIGINT}, #{yn,jdbcType=INTEGER})
   </insert>
     <update id="updateByIdSelected" parameterType="com.funny.admin.domain.sys.UserRole">
-        update sys_user_role
+        update admin_user_role
         <set>
             <if test="userId != null">
                 user_id = #{userId,jdbcType=BIGINT},
@@ -50,22 +50,22 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
     <delete id="deleteById" parameterType="java.lang.Long">
-    update sys_user_role
+    update admin_user_role
     set yn = 0
     where id = #{id,jdbcType=BIGINT}
   </delete>
     <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>
-        from sys_user_role
+        from admin_user_role
         where id = #{id,jdbcType=BIGINT}
     </select>
     <select id="count" resultType="java.lang.Long">
-    select count(*) from sys_user_role where yn=1
+    select count(*) from admin_user_role where yn=1
   </select>
     <select id="findAll" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from sys_user_role where yn=1
+        from admin_user_role where yn=1
     </select>
 </mapper>

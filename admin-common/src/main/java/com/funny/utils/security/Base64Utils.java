@@ -1,4 +1,4 @@
-package com.funny.common.utils.security;
+package com.funny.utils.security;
 
 import java.io.IOException;
 

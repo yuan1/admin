@@ -14,7 +14,7 @@
     id, role_name, create_time, create_by, update_time, update_by, yn
   </sql>
   <insert id="insert" parameterType="com.funny.admin.domain.sys.Role" >
-    insert into sys_role (id, role_name, create_time, 
+    insert into admin_role (id, role_name, create_time,
       create_by, update_time, update_by, 
       yn)
     values (#{id,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
@@ -22,7 +22,7 @@
       #{yn,jdbcType=INTEGER})
   </insert>
   <update id="updateByIdSelected" parameterType="com.funny.admin.domain.sys.Role" >
-    update sys_role
+    update admin_role
     <set >
       <if test="roleName != null" >
         role_name = #{roleName,jdbcType=VARCHAR},
@@ -53,15 +53,15 @@
   <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from sys_role
+    from admin_role
     where id = #{id,jdbcType=BIGINT}
   </select>
   <select id="count" resultType="java.lang.Long" >
-    select count(*) from sys_role where yn=1
+    select count(*) from admin_role where yn=1
   </select>
   <select id="findAll" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from sys_role where yn=1
+    from admin_role where yn=1
   </select>
 </mapper>

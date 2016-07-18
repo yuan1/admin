@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 
-import com.funny.common.utils.RedisUtils;
+import com.funny.utils.RedisUtils;
 import com.google.common.collect.Maps;
 
 @Service

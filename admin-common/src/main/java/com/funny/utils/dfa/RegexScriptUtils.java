@@ -1,4 +1,4 @@
-package com.funny.common.utils.dfa;
+package com.funny.utils.dfa;
 
 /**
  * 对于内容中存在正则表达式语法处理

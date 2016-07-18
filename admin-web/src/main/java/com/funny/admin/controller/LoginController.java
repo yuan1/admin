@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fh.util.Const;
 import com.fh.util.PageData;
 import com.fh.util.Tools;
-import com.funny.common.result.JsonResult;
+import com.funny.result.JsonResult;
 import com.funny.admin.domain.sys.Menu;
 
 

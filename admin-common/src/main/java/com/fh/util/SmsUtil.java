@@ -6,7 +6,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
 
-import com.funny.common.utils.HttpUtils;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.NameValuePair;

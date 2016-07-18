@@ -1,4 +1,4 @@
-package com.funny.common.utils.dfa;
+package com.funny.utils.dfa;
 
 import java.util.List;
 

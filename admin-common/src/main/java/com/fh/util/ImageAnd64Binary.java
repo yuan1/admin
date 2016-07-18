@@ -4,7 +4,7 @@ import java.io.*;
 
 import org.apache.commons.codec.binary.Base64;
 
-import com.funny.common.utils.security.Base64Utils;
+import com.funny.utils.security.Base64Utils;
 
 /**
  * 说明：BASE64处理 创建人：FH Q313596790 修改时间：2015年11月24日

@@ -1,4 +1,4 @@
-package com.funny.common.utils;
+package com.funny.utils;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;

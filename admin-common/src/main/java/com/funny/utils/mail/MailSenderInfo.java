@@ -1,4 +1,4 @@
-package com.funny.util.mail;   
+package com.funny.utils.mail;
 /**
  * 发送邮件需要使用的基本信息 
 * @author FH QQ 313596790[青苔]

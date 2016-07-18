@@ -24,10 +24,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.funny.common.WeixinUtil;
-import com.funny.common.result.JsonResult;
-import com.funny.common.utils.HttpUtils;
-import com.funny.common.utils.dfa.DFAWordFilter;
+import com.funny.WeixinUtil;
+import com.funny.result.JsonResult;
+import com.funny.utils.HttpUtils;
+import com.funny.utils.dfa.DFAWordFilter;
 
 /**
  * 接收微信公众好推送过来的消息

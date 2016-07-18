@@ -18,7 +18,7 @@
     update_time, yn
   </sql>
   <insert id="insert" parameterType="com.funny.admin.domain.sys.Parameter" >
-    insert into sys_parameter (id, param_name, param_value, 
+    insert into admin_parameter (id, param_name, param_value,
       param_type, note, create_by, 
       create_time, update_by, update_time, 
       yn)
@@ -28,7 +28,7 @@
       #{yn,jdbcType=INTEGER})
   </insert>
   <update id="updateByIdSelected" parameterType="com.funny.admin.domain.sys.Parameter" >
-    update sys_parameter
+    update admin_parameter
     <set >
       <if test="paramName != null" >
         param_name = #{paramName,jdbcType=VARCHAR},
@@ -61,22 +61,22 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   <delete id="deleteById" parameterType="java.lang.Long" >
-    update sys_parameter
+    update admin_parameter
     set yn = 0
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from sys_parameter
+    from admin_parameter
     where id = #{id,jdbcType=BIGINT}
   </select>
   <select id="count" resultType="java.lang.Long" >
-    select count(*) from sys_parameter where yn=1
+    select count(*) from admin_parameter where yn=1
   </select>
   <select id="findAll" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from sys_parameter where yn=1
+    from admin_parameter where yn=1
   </select>
 </mapper>

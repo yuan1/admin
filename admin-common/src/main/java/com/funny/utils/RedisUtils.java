@@ -1,4 +1,4 @@
-package com.funny.common.utils;
+package com.funny.utils;
 
 import java.util.List;
 import java.util.Map;

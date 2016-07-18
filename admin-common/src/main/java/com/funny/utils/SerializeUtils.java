@@ -1,4 +1,4 @@
-package com.funny.common.utils;
+package com.funny.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

@@ -1,4 +1,4 @@
-package com.funny.common.result;
+package com.funny.result;
 
 /**
  * 对外提供接口返回的json结果类

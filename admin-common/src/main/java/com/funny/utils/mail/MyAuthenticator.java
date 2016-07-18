@@ -1,4 +1,4 @@
-package com.funny.common.utils.mail;
+package com.funny.utils.mail;
 
 
 import javax.mail.Authenticator;

@@ -1,4 +1,4 @@
-package com.funny.common;
+package com.funny;
 
 
 import org.dom4j.Document;

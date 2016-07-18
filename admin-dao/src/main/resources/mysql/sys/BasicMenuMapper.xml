@@ -20,7 +20,7 @@
     create_time, update_by, update_time
   </sql>
   <insert id="insert" parameterType="com.funny.admin.domain.sys.Menu" >
-    insert into sys_menu (id, menu_name, menu_url, 
+    insert into admin_menu (id, menu_name, menu_url,
       parent_id, menu_order, menu_icon, 
       menu_type, yn, create_by,
       create_time, update_by, update_time
@@ -32,7 +32,7 @@
       )
   </insert>
   <update id="updateByIdSelected" parameterType="com.funny.admin.domain.sys.Menu" >
-    update sys_menu
+    update admin_menu
     <set >
       <if test="menuName != null" >
         menu_name = #{menuName,jdbcType=VARCHAR},
@@ -71,22 +71,22 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   <delete id="deleteById" parameterType="java.lang.Long" >
-    update sys_menu
+    update admin_menu
     set yn = 0
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from sys_menu
+    from admin_menu
     where id = #{id,jdbcType=BIGINT}
   </select>
   <select id="count" resultType="java.lang.Long" >
-    select count(*) from sys_menu
+    select count(*) from admin_menu where yn=1
   </select>
   <select id="findAll" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from sys_menu
+    from admin_menu where yn=1
   </select>
 </mapper>

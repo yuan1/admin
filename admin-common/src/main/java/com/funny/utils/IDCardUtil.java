@@ -1,4 +1,4 @@
-package com.funny.util;
+package com.funny.utils;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
