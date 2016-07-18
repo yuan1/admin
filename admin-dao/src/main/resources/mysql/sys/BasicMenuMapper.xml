@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.funny.wall.dao.admin.MenuMapper" >
+<mapper namespace="com.funny.admin.dao.sys.MenuMapper" >
   <resultMap id="BaseResultMap" type="com.funny.admin.domain.sys.Menu" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
@@ -19,7 +19,7 @@
     id, menu_name, menu_url, parent_id, menu_order, menu_icon, menu_type, yn, create_by,
     create_time, update_by, update_time
   </sql>
-  <insert id="insert" parameterType="com.funny.wall.domain.admin.BasicMenu" >
+  <insert id="insert" parameterType="com.funny.admin.domain.sys.Menu" >
     insert into sys_menu (id, menu_name, menu_url, 
       parent_id, menu_order, menu_icon, 
       menu_type, yn, create_by,

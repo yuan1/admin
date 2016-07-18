@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.funny.wall.dao.admin.ParameterMapper" >
+<mapper namespace="com.funny.admin.dao.sys.ParameterMapper" >
   <resultMap id="BaseResultMap" type="com.funny.admin.domain.sys.Parameter" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="param_name" property="paramName" jdbcType="VARCHAR" />
@@ -17,7 +17,7 @@
     id, param_name, param_value, param_type, note, create_by, create_time, update_by, 
     update_time, yn
   </sql>
-  <insert id="insert" parameterType="com.funny.admin.domain.sys.BasicParameter" >
+  <insert id="insert" parameterType="com.funny.admin.domain.sys.Parameter" >
     insert into sys_parameter (id, param_name, param_value, 
       param_type, note, create_by, 
       create_time, update_by, update_time, 
