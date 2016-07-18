@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh" style="overflow: hidden;">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></script>
+<title>2016汽车之家 车商城·年会</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9">
+<link rel="stylesheet" href="./css/wx.css">
+<script src="js/jquery.1.9.0.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+</head>
+<body style="zoom: 1.13875; background-image: url(images/wx/bg_n.jpg);">
+<div id="chromeTip">
+	<a id="chromeTipCloseBtn" class="btntips-close" href="javascript:void(0);">×</a>
+	<p class="chrm-word1">由于您正在使用非谷歌内核的浏览器，技术将无法为您提供最佳体验，建议您更换浏览器，以获得最佳体验。</p>
+	<p class="chrm-word2">
+		我们推荐您使用：谷歌浏览器
+		<a target="_blank" style="width:auto;" class="" href="http://rj.baidu.com/soft/detail/14744.html?ald">点击下载</a>
+		
+	</p>
+</div>
+<script>
+/*浏览器判断---对非chrome浏览器给予提示*/
+ $(function(){
+	var tipObj = $('#chromeTip');
+	if(navigator.userAgent.indexOf('Chrome') == -1 ) {
+		$('.chromeTip').slideDown();
+		setTimeout(function(){
+			$('.chromeTip').slideUp();
+		}, 10000);
+	}
+	
+	$('#chromeTipCloseBtn').click(function(){
+		$('.chromeTip').slideUp();
+	})
+	
+}) 
+	
+var tipObj = document.getElementById('chromeTip');
+if(tipObj){
+	if( navigator.userAgent.indexOf('Chrome') == -1 ){
+		tipObj.style.display = 'block';
+		setTimeout(function(){
+			tipObj.style.display = 'none';
+		},10000);
+	}
+	
+	document.getElementById('chromeTipCloseBtn').onclick = function(){
+		tipObj.style.display = 'none';	
+	}
+}
+
+</script>
+<div id="wall" data-modle="wall-html-body">
+	<div id="wallHd" data-modle="wall-modle-header" style="color: rgb(50, 19, 20);">
+
+		<!-- 墙头部内容 -->
+		<div class="wrap990 clearfix">
+			<div id="tomLive">
+				<div id="tomLive-msg"></div>
+			</div>
+			
+
+			<div class="wall_tit">
+				<div id="msgCount" class="cur-wall-count fr none" style="display: block;visibility:hidden;">
+					<span>245</span>
+					条信息
+				</div>
+				<div id="signinUserCount" class="cur-wall-count fr none">
+					<span>0</span>
+					人签到
+				</div>
+				<div class="titcont">
+					<!-- <h1></h1>
+				-->
+				<table>
+					<tbody>
+						<tr>
+							<td class="wall-title-cont">
+								<div class="wall-title-box">
+									<p style="text-align: center;">
+										<span style="font-family: 华文琥珀;">
+											<span style="color: rgb(255, 255, 255); font-size: 50px;">2016汽车之家 车商城·年会</span>
+										</span>
+									</p>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="wallCont" class="wrap990" data-modle="wall-modle-cont">
+	<div id="wlk-wall-block" class="wall-box msg-opacity8 0" style="display: block; color: rgb(50, 19, 20);">
+		<div class="wall-welcome"></div>
+		<div class="wall-multiple-info" style="color: rgb(50, 19, 20);">
+			<div class="grid-box">
+				<div class=" fr grid-right">
+					<div class="qrcode">
+						<img id="qrCode" src="images/wx/qrcode.jpg" alt=""></div>
+					<div id="wallNote" class="">
+						<p style="text-align: left;">
+							<span style="font-family: 微软雅黑, &#39;Microsoft YaHei&#39;;">扫描二维码,</span>
+							<span style="font-family: 微软雅黑, &#39;Microsoft YaHei&#39;;">”即可参与互动大屏幕</span>
+						</p>
+					</div>
+				</div>
+				<div class="grid-ovhd">
+					<div class="wall-multiple-info" style="color: rgb(50, 19, 20);">
+						<ul id="list" class="wall-list simplified msg-3" style="display: block; margin-top: 0px;zoom:0.5">
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wall-single-info" style="color: rgb(50, 19, 20);">
+			<ul class="wall-single-list">
+				<li>
+					<div class="custom-bg"></div>
+					<div class="sing-info-close">×</div>
+					<div class="single-hd">
+						<div class="single-img">
+							<img src="images/wx/placeholder.png" width="100" height="100"></div>
+						<div class="single-nickname"></div>
+						<div class="single-time"></div>
+					</div>
+					<div class="single-content"></div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- 图片墙 -->
+	<div id="picture-wall-block" class="wall-box none">
+		<div id="slider" class="slider">
+			<table width="100%" height="100%">
+				<tbody>
+					<tr>
+						<td>
+							<img src=""></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+</div>
+
+</div>
+<!-- start 展示二维码 -->
+<div id="qcord-win">
+<div class="win-shadow"></div>
+<div class="win-cont">
+	<span class="close-qcord-block">
+		<i class="fa fa-close"></i>
+	</span>
+	<div class="win-q">
+		<img id="win-qcord-img" src="images/wx/placeholder.png"></div>
+	<div class="win-hed">
+		<div class="win-hed-box">
+			<table>
+				<tbody>
+					<tr>
+						<td class="win-hed-bound" style="display: none;"></td>
+						<td class="win-hed-ovhd win-hed-cont">
+							<p>
+								扫描二维码关注“ <strong>汽车人</strong>
+								”公众号，参与互动大屏幕
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</div>
+<!-- end 展示二维码 -->
+
+<script type="text/javascript">var wallJson = {};</script>
+<script src="js/wx.js"></script>
+
+<div id="custom-style">
+<style>.custom-bg{background-color:#fff7bf;}</style>
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <!-- 属性文件读入 -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:*.properties</value>
+            </list>
+        </property>
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"></property>
+    </bean>
+
+
+    <import resource="classpath:conf/spring-config-*.xml"/>
+    <!-- ================ Shiro start ================
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="ShiroRealm" />
+    </bean>
+    <bean id="ShiroRealm" class="ShiroRealm" ></bean>-->
+
+
+    <!-- 項目自定义的Realm -->
+
+    <!-- Shiro Filter
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager" />
+
+        <property name="loginUrl" value="/" />
+
+        <property name="successUrl" value="/main/index" />
+
+        <property name="unauthorizedUrl" value="toLogin" />
+
+        <property name="filterChainDefinitions">
+            <value>
+                /static/login/** 			= anon
+                /static/js/myjs/** 			= authc
+                /static/js/** 				= anon
+                /static/css/** 				= anon
+                /uploadFiles/uploadImgs/** 	= anon
+                /code.do 					= anon
+                /login       	 			= anon
+                /app**/** 					= anon
+                /weixin/** 					= anon
+                /**							= authc
+            </value>
+        </property>-->
+    <!-- ================ Shiro end ================ -->
+</beans>
+
+
+
