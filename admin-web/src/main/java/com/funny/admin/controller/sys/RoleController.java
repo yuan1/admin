@@ -1,9 +1,9 @@
-package com.funny.web.controller.system.role;
+package com.funny.admin.controller.sys;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.funny.web.controller.BaseController;
+import com.funny.admin.controller.BaseController;
 
 
 @Controller

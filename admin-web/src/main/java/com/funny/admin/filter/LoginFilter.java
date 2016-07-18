@@ -1,17 +1,14 @@
 package com.funny.web.filter;
 
+import com.funny.admin.controller.BaseController;
+
 import java.io.IOException;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.funny.web.controller.BaseController;
 
-/**登录验证过滤器(废弃  com.fh.interceptor替代)
- * @author FH QQ 313596790[青苔]
- *
- */
 public class LoginFilter extends BaseController implements Filter {
 
 	/**
