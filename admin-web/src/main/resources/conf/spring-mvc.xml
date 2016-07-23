@@ -30,17 +30,7 @@
     <mvc:default-servlet-handler/>
 
     <!-- 静态资源转化-->
-    <mvc:resources mapping="/static/**" location="/static/"/>
-
-    <!-- Resolves view names to protected .jsp resources within the /WEB-INF/views
-        directory -->
-    <bean id="jspViewResolver"
-          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="viewClass"
-                  value="org.springframework.web.servlet.view.JstlView"/>
-        <property name="prefix" value="/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
+    <mvc:resources mapping="/assets/**" location="/assets/"/>
 
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

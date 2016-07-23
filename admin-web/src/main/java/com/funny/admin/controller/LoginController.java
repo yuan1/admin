@@ -41,12 +41,14 @@ public class LoginController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/login")
-	@ResponseBody
-	public JsonResult login() throws Exception{
-        JsonResult jsonResult = new JsonResult();
-        jsonResult.setSuccess();
-		return  jsonResult;
+	@RequestMapping("/index")
+	public ModelAndView login() {
+		return new ModelAndView("index");
+	}
+
+	@RequestMapping("/test")
+	public ModelAndView test() {
+		return new ModelAndView("test");
 	}
 
 	/**请求登录，验证用户

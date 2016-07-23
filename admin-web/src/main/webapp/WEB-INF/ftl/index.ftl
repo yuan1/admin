@@ -1,130 +1,140 @@
 <!DOCTYPE html>
 <html lang="zh_CN">
 <head>
-    <title></title>
-    <#include "head/common.ftl">
-    <link rel="stylesheet" href="static/ace/css/font-awesome.css"/>
-    <!-- text fonts -->
-    <link rel="stylesheet" href="static/ace/css/ace-fonts.css"/>
-    <!-- ace styles -->
-    <link rel="stylesheet" href="static/ace/css/ace.css" class="ace-main-stylesheet" id="main-ace-style"/>
-    <!--[if lte IE 9]>
-    <link rel="stylesheet" href="static/ace/css/ace-part2.css" class="ace-main-stylesheet"/>
-    <![endif]-->
-    <!--[if lte IE 9]>
-    <link rel="stylesheet" href="static/ace/css/ace-ie.css"/>
-    <![endif]-->
-    <!-- ace settings handler -->
-    <script src="static/ace/js/ace-extra.js"></script>
-    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
-    <!--[if lte IE 8]>
-    <script src="static/ace/js/html5shiv.js"></script>
-    <script src="static/ace/js/respond.js"></script>
-    <![endif]-->
+    <title>欢迎登录</title>
+<#include "layout/common.ftl">
+    <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+    <link href="assets/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
+    <!-- END PAGE LEVEL PLUGIN STYLES -->
+    <!-- BEGIN PAGE STYLES -->
+    <link href="assets/css/tasks.css" rel="stylesheet" type="text/css"/>
+    <!-- END PAGE STYLES -->
+    <!-- BEGIN THEME STYLES -->
+    <link href="assets/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/plugins.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
+    <link href="assets/css/custom.css" rel="stylesheet" type="text/css"/>
+    <!-- END THEME STYLES -->
+    <link rel="shortcut icon" href="favicon.ico"/>
 </head>
-<body class="no-skin">
-
-<#include "head/header.ftl">
-<div class="main-container" id="main-container">
-    <script type="text/javascript">
-        try {
-            ace.settings.check('main-container', 'fixed')
-        } catch (e) {
-        }
-    </script>
-    <!-- 左侧菜单 -->
-<#include "head/left.ftl">
-    <div class="main-content">
-        <div class="main-content-inner">
-            <!-- /section:basics/content.breadcrumbs -->
-            <div class="page-content">
-                <div id="jzts" style="display:none; width:100%; position:fixed; z-index:99999999;">
-                    <div class="commitopacity" id="bkbgjz"></div>
-                    <div style="padding-left: 70%;padding-top: 1px;">
-                        <div style="float: left;margin-top: 3px;"><img src="static/images/loadingi.gif" /> </div>
-                        <div style="margin-top: 6px;"><h4 class="lighter block red">&nbsp;加载中 ...</h4></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div>
-                        <iframe name="mainFrame" id="mainFrame" frameborder="0" src="/main"
-                                style="margin:0 auto;width:100%;height:100%;"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<body class="page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo page-container-bg-solid">
+<#include "layout/header.ftl">
+<div class="clearfix">
 </div>
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar-wrapper">
+        <#include "layout/left.ftl">
+    </div>
+    <!-- END SIDEBAR -->
 
-<!-- ace scripts -->
-<script src="static/ace/js/ace/elements.scroller.js"></script>
-<script src="static/ace/js/ace/elements.colorpicker.js"></script>
-<script src="static/ace/js/ace/elements.fileinput.js"></script>
-<script src="static/ace/js/ace/elements.typeahead.js"></script>
-<script src="static/ace/js/ace/elements.wysiwyg.js"></script>
-<script src="static/ace/js/ace/elements.spinner.js"></script>
-<script src="static/ace/js/ace/elements.treeview.js"></script>
-<script src="static/ace/js/ace/elements.wizard.js"></script>
-<script src="static/ace/js/ace/elements.aside.js"></script>
-<script src="static/ace/js/ace/ace.js"></script>
-<script src="static/ace/js/ace/ace.ajax-content.js"></script>
-<script src="static/ace/js/ace/ace.touch-drag.js"></script>
-<script src="static/ace/js/ace/ace.sidebar.js"></script>
-<script src="static/ace/js/ace/ace.sidebar-scroll-1.js"></script>
-<script src="static/ace/js/ace/ace.submenu-hover.js"></script>
-<script src="static/ace/js/ace/ace.widget-box.js"></script>
-<script src="static/ace/js/ace/ace.settings.js"></script>
-<script src="static/ace/js/ace/ace.settings-rtl.js"></script>
-<script src="static/ace/js/ace/ace.settings-skin.js"></script>
-<script src="static/ace/js/ace/ace.widget-on-reload.js"></script>
-<script src="static/ace/js/ace/ace.searchbox-autocomplete.js"></script>
-<!-- inline scripts related to this page -->
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <#include "layout/main.ftl">
+    </div>
+    <!-- END CONTENT -->
+    <!-- BEGIN QUICK SIDEBAR -->
+    <a href="javascript:;" class="page-quick-sidebar-toggler"><i class="icon-close"></i></a>
 
-<!-- the following scripts are used in demo only for onpage help and you don't need them -->
-<link rel="stylesheet" href="static/ace/css/ace.onpage-help.css"/>
-
-<script type="text/javascript"> ace.vars['base'] = '..'; </script>
-<script src="static/ace/js/ace/elements.onpage-help.js"></script>
-<script src="static/ace/js/ace/ace.onpage-help.js"></script>
-
-
-<!--引入弹窗组件start-->
-<script type="text/javascript" src="plugins/attention/zDialog/zDrag.js"></script>
-<script type="text/javascript" src="plugins/attention/zDialog/zDialog.js"></script>
-<!--引入弹窗组件end-->
-<!--提示框-->
-<script type="text/javascript" src="static/js/jquery.tips.js"></script>
+    <div class="page-quick-sidebar-wrapper">
+        <#include "layout/right.ftl">
+    </div>
+    <!-- END QUICK SIDEBAR -->
+</div>
+<!-- END CONTAINER -->
+<#include "layout/footer.ftl">
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="assets/plugins/respond.min.js"></script>
+<script src="assets/plugins/excanvas.min.js"></script>
+<![endif]-->
+<script src="assets/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="assets/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="assets/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+<script src="assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
+<script src="assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+<script src="assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
+<script src="assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
+<script src="assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
+<script src="assets/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
+<script src="assets/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+<script src="assets/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
+<script src="assets/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
+<!-- IMPORTANT! fullcalendar depends on jquery-ui.min.js for drag & drop support -->
+<script src="assets/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="assets/js/metronic.js" type="text/javascript"></script>
+<script src="assets/js/layout.js" type="text/javascript"></script>
+<script src="assets/js/quick-sidebar.js" type="text/javascript"></script>
+<script src="assets/js/demo.js" type="text/javascript"></script>
+<script src="assets/js/index.js" type="text/javascript"></script>
+<script src="assets/js/tasks.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 
-    $(function(){
-        createMenu();
+    $(function () {
+        //createMenu();
+        Metronic.init(); // init metronic core componets
+        Layout.init(); // init layout
+        QuickSidebar.init(); // init quick sidebar
+        Demo.init(); // init demo features
+        Index.init();
+        Index.initDashboardDaterange();
+        Index.initJQVMAP(); // init index page's custom scripts
+        Index.initCalendar(); // init index page's custom scripts
+        Index.initCharts(); // init index page's custom scripts
+        Index.initChat();
+        Index.initMiniCharts();
+        Tasks.initDashboardWidget();
     });
 
-    function createMenu(){
+    function createMenu() {
         $.ajax({
             type: "get",
             url: '/createMenuTree',
-            dataType:'json',
+            dataType: 'json',
             cache: false,
-            success: function(data){
-                if(data.returncode==0){
+            success: function (data) {
+                if (data.returncode == 0) {
                     var mentstr = "";
-                    $.each(data.result,function(index,item){
-                        if(index==0){
-                            mentstr+='<li class="active open" onclick="selectMenu(this);"><a href="'+ item.menuUrl +'"><i class="'+item.menuIcon+'"></i><span class="menu-text">'+item.menuName+'</span></a>';
-                        }else{
-                            mentstr+='<li onclick="selectMenu(this);"><a href="'+ item.menuUrl +'"><i class="'+item.menuIcon+'"></i><span class="menu-text">'+item.menuName+'</span></a>';
+                    $.each(data.result, function (index, item) {
+                        if (index == 0) {
+                            mentstr += '<li class="active open" onclick="selectMenu(this);"><a href="' + item.menuUrl + '"><i class="' + item.menuIcon + '"></i><span class="menu-text">' + item.menuName + '</span></a>';
+                        } else {
+                            mentstr += '<li onclick="selectMenu(this);"><a href="' + item.menuUrl + '"><i class="' + item.menuIcon + '"></i><span class="menu-text">' + item.menuName + '</span></a>';
                         }
 
-                        if(item.menuList.length>0){
-                            mentstr+='<ul class="submenu">';
-                            $.each(item.menuList,function(i,it){
-                                mentstr+='<li><a href="'+ it.menuUrl +'" target="mainFrame"><i class="'+it.menuIcon+'"></i><span class="menu-text">'+it.menuName+'</span></a></li>';
+                        if (item.menuList.length > 0) {
+                            mentstr += '<ul class="submenu">';
+                            $.each(item.menuList, function (i, it) {
+                                mentstr += '<li><a href="' + it.menuUrl + '" target="mainFrame"><i class="' + it.menuIcon + '"></i><span class="menu-text">' + it.menuName + '</span></a></li>';
                             });
-                            mentstr+='</ul>';
+                            mentstr += '</ul>';
                         }
-                        mentstr+='</li>';
+                        mentstr += '</li>';
                     });
                     $("#menu_tree").html(mentstr);
                 }
@@ -132,7 +142,7 @@
         });
     }
 
-    function selectMenu(menu){
+    function selectMenu(menu) {
         $(menu).siblings().removeClass();
         $(menu).addClass("active open");
     }
