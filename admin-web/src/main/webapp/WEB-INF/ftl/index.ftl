@@ -6,8 +6,6 @@
     <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
     <link href="assets/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
     <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
     <!-- END PAGE LEVEL PLUGIN STYLES -->
     <!-- BEGIN PAGE STYLES -->
     <link href="assets/css/tasks.css" rel="stylesheet" type="text/css"/>
@@ -28,21 +26,22 @@
 <!-- BEGIN CONTAINER -->
 <div class="page-container">
     <!-- BEGIN SIDEBAR -->
-    <div class="page-sidebar-wrapper">
-        <#include "layout/left.ftl">
-    </div>
+    <#include "layout/left.ftl">
     <!-- END SIDEBAR -->
 
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
-        <#include "layout/main.ftl">
+        <div class="page-content">
+            <iframe name="mainFrame" id="mainFrame" frameborder="0" scrolling="auto" src="/main.do"
+                    style="margin:0;width:100%;height:100%;" ></iframe>
+        </div>
     </div>
     <!-- END CONTENT -->
     <!-- BEGIN QUICK SIDEBAR -->
     <a href="javascript:;" class="page-quick-sidebar-toggler"><i class="icon-close"></i></a>
 
     <div class="page-quick-sidebar-wrapper">
-        <#include "layout/right.ftl">
+    <#include "layout/right.ftl">
     </div>
     <!-- END QUICK SIDEBAR -->
 </div>
@@ -67,13 +66,6 @@
 <script src="assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="assets/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-<script src="assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-<script src="assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-<script src="assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-<script src="assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-<script src="assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-<script src="assets/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
 <script src="assets/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
 <script src="assets/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
 <script src="assets/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
@@ -94,21 +86,12 @@
 <script src="assets/js/tasks.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-
     $(function () {
         //createMenu();
         Metronic.init(); // init metronic core componets
         Layout.init(); // init layout
         QuickSidebar.init(); // init quick sidebar
-        Demo.init(); // init demo features
-        Index.init();
-        Index.initDashboardDaterange();
-        Index.initJQVMAP(); // init index page's custom scripts
-        Index.initCalendar(); // init index page's custom scripts
-        Index.initCharts(); // init index page's custom scripts
-        Index.initChat();
-        Index.initMiniCharts();
-        Tasks.initDashboardWidget();
+        initFrame('mainFrame', 560);
     });
 
     function createMenu() {
@@ -147,6 +130,48 @@
         $(menu).addClass("active open");
     }
 
+
+    var browserVersion = window.navigator.userAgent.toUpperCase();
+    var isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
+    var isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;
+    var isChrome = browserVersion.indexOf("CHROME") > -1 ? true : false;
+    var isSafari = browserVersion.indexOf("SAFARI") > -1 ? true : false;
+    var isIE = (!!window.ActiveXObject || "ActiveXObject" in window);
+    var isIE9More = (!-[1,] == false);
+    function reinitIframe(iframeId, minHeight) {
+        try {
+            var iframe = document.getElementById(iframeId);
+            var bHeight = 0;
+            if (isChrome == false && isSafari == false)
+                bHeight = iframe.contentWindow.document.body.scrollHeight;
+
+            var dHeight = 0;
+            if (isFireFox == true)
+                dHeight = iframe.contentWindow.document.documentElement.offsetHeight + 2;
+            else if (isIE == false && isOpera == false)
+                dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+            else if (isIE == true && isIE9More) {//ie9+
+                var heightDeviation = bHeight - eval("window.IE9MoreRealHeight" + iframeId);
+                if (heightDeviation == 0) {
+                    bHeight += 3;
+                } else if (heightDeviation != 3) {
+                    eval("window.IE9MoreRealHeight" + iframeId + "=" + bHeight);
+                    bHeight += 3;
+                }
+            }
+            else//ie[6-8]、OPERA
+                bHeight += 3;
+
+            var height = Math.max(bHeight, dHeight);
+            if (height < minHeight) height = minHeight;
+            iframe.style.height = height + "px";
+        } catch (ex) {
+        }
+    }
+    function initFrame(iframeId, minHeight) {
+        eval("window.IE9MoreRealHeight" + iframeId + "=0");
+        window.setInterval("reinitIframe('" + iframeId + "'," + minHeight + ")", 100);
+    }
 </script>
 </body>
 </html>

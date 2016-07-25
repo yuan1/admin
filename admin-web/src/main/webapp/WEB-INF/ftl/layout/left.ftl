@@ -1,32 +1,5 @@
-<!DOCTYPE html>
-<html lang="zh_CN">
-<head>
-</head>
-<body>
 <div class="page-sidebar navbar-collapse collapse">
     <ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-        <li class="sidebar-toggler-wrapper">
-            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-            <div class="sidebar-toggler">
-            </div>
-            <!-- END SIDEBAR TOGGLER BUTTON -->
-        </li>
-        <li class="sidebar-search-wrapper">
-            <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-            <form class="sidebar-search " action="extra_search.html" method="POST">
-                <a href="javascript:;" class="remove">
-                    <i class="icon-close"></i>
-                </a>
-
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search...">
-							<span class="input-group-btn">
-							<a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
-							</span>
-                </div>
-            </form>
-            <!-- END RESPONSIVE QUICK SEARCH FORM -->
-        </li>
         <li class="start active open">
             <a href="javascript:;">
                 <i class="icon-home"></i>
@@ -55,34 +28,34 @@
         <li>
             <a href="javascript:;">
                 <i class="icon-basket"></i>
-                <span class="title">eCommerce</span>
+                <span class="title">系统管理</span>
                 <span class="arrow "></span>
             </a>
             <ul class="sub-menu">
                 <li>
                     <a href="ecommerce_index.html">
                         <i class="icon-home"></i>
-                        Dashboard</a>
+                        用户管理</a>
                 </li>
                 <li>
                     <a href="ecommerce_orders.html">
                         <i class="icon-basket"></i>
-                        Orders</a>
+                        角色管理</a>
                 </li>
                 <li>
                     <a href="ecommerce_orders_view.html">
                         <i class="icon-tag"></i>
-                        Order View</a>
+                        菜单管理</a>
                 </li>
                 <li>
                     <a href="ecommerce_products.html">
                         <i class="icon-handbag"></i>
-                        Products</a>
+                        参数管理</a>
                 </li>
                 <li>
                     <a href="ecommerce_products_edit.html">
                         <i class="icon-pencil"></i>
-                        Product Edit</a>
+                        组织机构管理</a>
                 </li>
             </ul>
         </li>
@@ -317,19 +290,11 @@
                 </li>
             </ul>
         </li>
-        <!-- BEGIN ANGULARJS LINK -->
-        <li class="tooltips" data-container="body" data-placement="right" data-html="true"
-            data-original-title="AngularJS version demo">
-            <a href="angularjs" target="_blank">
-                <i class="icon-paper-plane"></i>
-					<span class="title">
-					AngularJS Version </span>
-            </a>
-        </li>
-        <!-- END ANGULARJS LINK -->
+
         <li class="heading">
             <h3 class="uppercase">Features</h3>
         </li>
+
         <li>
             <a href="javascript:;">
                 <i class="icon-settings"></i>
@@ -687,56 +652,5 @@
                 </li>
             </ul>
         </li>
-        <li class="heading">
-            <h3 class="uppercase">More</h3>
-        </li>
-        <li>
-            <a href="javascript:;">
-                <i class="icon-logout"></i>
-                <span class="title">Quick Sidebar</span>
-                <span class="arrow "></span>
-            </a>
-            <ul class="sub-menu">
-                <li>
-                    <a href="quick_sidebar_push_content.html">
-                        Push Content</a>
-                </li>
-                <li>
-                    <a href="quick_sidebar_over_content.html">
-                        Over Content</a>
-                </li>
-                <li>
-                    <a href="quick_sidebar_over_content_transparent.html">
-                        Over Content & Transparent</a>
-                </li>
-                <li>
-                    <a href="quick_sidebar_on_boxed_layout.html">
-                        Boxed Layout</a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="last ">
-            <a href="javascript:;">
-                <i class="icon-pointer"></i>
-                <span class="title">Maps</span>
-                <span class="arrow "></span>
-            </a>
-            <ul class="sub-menu">
-                <li>
-                    <a href="maps_google.html">
-                        Google Maps</a>
-                </li>
-                <li>
-                    <a href="maps_vector.html">
-                        Vector Maps</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-    <!-- END SIDEBAR MENU -->
 </div>
 
-
-</body>
-</html>

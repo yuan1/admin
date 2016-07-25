@@ -46,9 +46,9 @@ public class LoginController {
 		return new ModelAndView("index");
 	}
 
-	@RequestMapping("/test")
+	@RequestMapping("/main")
 	public ModelAndView test() {
-		return new ModelAndView("test");
+		return new ModelAndView("main");
 	}
 
 	/**请求登录，验证用户
