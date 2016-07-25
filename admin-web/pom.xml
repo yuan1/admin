@@ -26,4 +26,23 @@
             <version>2.3.23</version>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <build>
+                <filters>
+                    <filter>src/main/resources/filters/dev.properties</filter>
+                </filters>
+            </build>
+        </profile>
+        <profile>
+            <id>test</id>
+            <build>
+                <filters>
+                    <filter>src/main/resources/filters/test.properties</filter>
+                </filters>
+            </build>
+        </profile>
+    </profiles>
 </project>
