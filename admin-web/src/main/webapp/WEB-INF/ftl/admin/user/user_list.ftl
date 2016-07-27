@@ -51,17 +51,18 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="portlet box green">
+            <div class="portlet light">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="icon-magnifier"></i>查询条件
+                        <i class="icon-magnifier font-green"></i>
+                        <span class="caption-subject font-green">查询条件</span>
                     </div>
                     <div class="tools">
                         <a href="javascript:;" class="collapse">
                         </a>
                     </div>
                 </div>
-                <div class="portlet-body">
+                <div class="portlet-body form">
                     <form class="form-horizontal">
                         <div class="row">
                             <div class="col-md-4">
@@ -69,7 +70,7 @@
                                     <label class="col-md-4 control-label">姓名</label>
 
                                     <div class="col-md-8">
-                                        <input type="text" id="user_name" name="user_name">
+                                        <input type="text" class="form-control input-inline input-sm" id="user_name" name="user_name">
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +79,7 @@
                                     <label class="col-md-4 control-label">电话</label>
 
                                     <div class="col-md-8">
-                                        <input type="text" id="mobile" name="mobile">
+                                        <input type="text" class="form-control input-inline input-sm" id="mobile" name="mobile">
                                     </div>
                                 </div>
                             </div>
@@ -133,14 +134,19 @@
     <!-- BEGIN PAGE CONTENT-->
     <div class="row">
         <div class="col-md-12">
-            <div class="portlet box green">
+            <div class="portlet light">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="icon-grid"></i>用户列表
+                        <i class="icon-grid font-green"></i>
+                        <span class="caption-subject font-green">用户列表</span>
                     </div>
                     <div class="actions">
                         <a href="javascript:;" class="btn btn-circle red">
                             <i class="fa fa-plus"></i>新增
+                        </a>
+                    </div>
+                    <div class="tools">
+                        <a href="" class="fullscreen">
                         </a>
                     </div>
                 </div>
@@ -148,7 +154,7 @@
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
                         <tr>
-                            <th width="20%">
+                            <th>
                                 Code
                             </th>
                             <th>
