@@ -2105,8 +2105,8 @@ Page content
 /* Page breadcrumb */
 .page-bar {
   padding: 0px;
-  background-color: #f7f7f7;
-  margin-bottom: 25px;
+  /*background-color: #f7f7f7;*/
+  margin-bottom: 5px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
