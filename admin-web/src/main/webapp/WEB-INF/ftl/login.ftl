@@ -3,18 +3,8 @@
 <head>
     <title>擎天柱登录</title>
     <!--公共页-->
-<#include "layout/common.ftl">
-    <!-- BEGIN PAGE LEVEL STYLES -->
-    <link href="${ctx}assets/css/login.css" rel="stylesheet" type="text/css"/>
-    <!-- END PAGE LEVEL SCRIPTS -->
-    <!-- BEGIN THEME STYLES -->
-    <link href="${ctx}assets/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
-    <link href="${ctx}assets/css/plugins.css" rel="stylesheet" type="text/css"/>
-    <link href="${ctx}assets/css/layout.css" rel="stylesheet" type="text/css"/>
-    <link href="${ctx}assets/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
-    <link href="${ctx}assets/css/custom.css" rel="stylesheet" type="text/css"/>
-    <!-- END THEME STYLES -->
-    <link rel="shortcut icon" href="favicon.ico"/>
+    <#include "layout/common.ftl">
+    <link href="${basePath}assets/css/login.css" rel="stylesheet" type="text/css"/>
 </head>
 <body class="login">
 <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -82,24 +72,24 @@
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
-<script src="${ctx}assets/plugins/respond.min.js"></script>
-<script src="${ctx}assets/plugins/excanvas.min.js"></script>
+<script src="${basePath}assets/plugins/respond.min.js"></script>
+<script src="${basePath}assets/plugins/excanvas.min.js"></script>
 <![endif]-->
-<script src="${ctx}assets/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="${ctx}assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
-<script src="${ctx}assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${ctx}assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="${ctx}assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
-<script src="${ctx}assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="${basePath}assets/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="${basePath}assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+<script src="${basePath}assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="${basePath}assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="${basePath}assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="${basePath}assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="${ctx}assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="${basePath}assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="${ctx}assets/js/metronic.js" type="text/javascript"></script>
-<script src="${ctx}assets/js/layout.js" type="text/javascript"></script>
-<script src="${ctx}assets/js/demo.js" type="text/javascript"></script>
-<script src="${ctx}assets/js/login.js" type="text/javascript"></script>
+<script src="${basePath}assets/js/metronic.js" type="text/javascript"></script>
+<script src="${basePath}assets/js/layout.js" type="text/javascript"></script>
+<script src="${basePath}assets/js/demo.js" type="text/javascript"></script>
+<script src="${basePath}assets/js/login.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
     jQuery(document).ready(function () {

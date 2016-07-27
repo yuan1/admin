@@ -27,35 +27,35 @@
         </li>
         <li>
             <a href="javascript:;">
-                <i class="icon-basket"></i>
-                <span class="title">系统管理</span>
+                <i class="icon-settings"></i>
+                <span class="title">绯荤粺绠＄悊</span>
                 <span class="arrow "></span>
             </a>
             <ul class="sub-menu">
                 <li>
                     <a href="ecommerce_index.html">
                         <i class="icon-home"></i>
-                        用户管理</a>
+                        鐢ㄦ埛绠＄悊</a>
                 </li>
                 <li>
                     <a href="ecommerce_orders.html">
                         <i class="icon-basket"></i>
-                        角色管理</a>
+                        鑿滃崟绠＄悊</a>
                 </li>
                 <li>
                     <a href="ecommerce_orders_view.html">
                         <i class="icon-tag"></i>
-                        菜单管理</a>
+                        瑙掕壊绠＄悊</a>
                 </li>
                 <li>
                     <a href="ecommerce_products.html">
                         <i class="icon-handbag"></i>
-                        参数管理</a>
+                        鍙傛暟绠＄悊</a>
                 </li>
                 <li>
                     <a href="ecommerce_products_edit.html">
                         <i class="icon-pencil"></i>
-                        组织机构管理</a>
+                        瀛楀吀绠＄悊</a>
                 </li>
             </ul>
         </li>
