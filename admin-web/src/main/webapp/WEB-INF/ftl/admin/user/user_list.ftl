@@ -1,20 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh_CN">
 <head>
-<#include "layout/common.ftl">
-    <link href="assets/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
-    <!-- BEGIN THEME STYLES -->
-    <link href="assets/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/plugins.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/layout.css" rel="stylesheet" type="text/css"/>
-    <link id="style_color" href="assets/css/themes/darkblue.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/custom.css" rel="stylesheet" type="text/css"/>
-    <!-- END THEME STYLES -->
-    <link rel="shortcut icon" href="favicon.ico"/>
+<#include "../../layout/common.ftl">
 </head>
 <body style="overflow: hidden">
 <!-- BEGIN CONTENT -->
-<div class="page-content" >
+<div class="page-content">
     <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
     <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
@@ -56,28 +47,106 @@
         </ul>
     </div>
     <!-- END PAGE HEADER-->
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet box green">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-magnifier"></i>查询条件
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse">
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <form class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">姓名</label>
+
+                                    <div class="col-md-8">
+                                        <input type="text" id="user_name" name="user_name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">电话</label>
+
+                                    <div class="col-md-8">
+                                        <input type="text" id="mobile" name="mobile">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">角色</label>
+
+                                    <div class="col-md-8">
+                                        <select class="bs-select form-control input-inline input-sm" name="userType"
+                                                data-live-search="true">
+                                            <option value=''>全部</option>
+                                            <option value="1">销售顾问</option>
+                                            <option value="2">销售经理</option>
+                                            <option value="3">总经理</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">角色</label>
+
+                                    <div class="col-md-8">
+                                        <select class="bs-select form-control input-inline input-sm" name="userType"
+                                                data-live-search="true">
+                                            <option value=''>全部</option>
+                                            <option value="1">销售顾问</option>
+                                            <option value="2">销售经理</option>
+                                            <option value="3">总经理</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <a class="btn btn-default">查询</a>
+                                <a class="btn btn-default">重置</a>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
     <!-- BEGIN PAGE CONTENT-->
     <div class="row">
         <div class="col-md-12">
             <div class="portlet box green">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="fa fa-cogs"></i>Responsive Flip Scroll Tables
+                        <i class="icon-grid"></i>用户列表
                     </div>
-                    <div class="tools">
-                        <a href="javascript:;" class="collapse">
-                        </a>
-                        <a href="#portlet-config" data-toggle="modal" class="config">
-                        </a>
-                        <a href="javascript:;" class="reload">
-                        </a>
-                        <a href="javascript:;" class="remove">
+                    <div class="actions">
+                        <a href="javascript:;" class="btn btn-circle red">
+                            <i class="fa fa-plus"></i>新增
                         </a>
                     </div>
                 </div>
-                <div class="portlet-body flip-scroll">
-                    <table class="table table-bordered table-striped table-condensed flip-content">
-                        <thead class="flip-content">
+                <div class="portlet-body">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
                         <tr>
                             <th width="20%">
                                 Code
@@ -436,28 +505,7 @@
     </div>
     <!-- END PAGE CONTENT-->
 </div>
-<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
-<!-- BEGIN CORE PLUGINS -->
-<!--[if lt IE 9]>
-<script src="assets/plugins/respond.min.js"></script>
-<script src="assets/plugins/excanvas.min.js"></script>
-<![endif]-->
-<script src="assets/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
-<!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-<script src="assets/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
-<script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="assets/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
-<script src="assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-<script src="assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-<!-- END CORE PLUGINS -->
-<script src="assets/js/metronic.js" type="text/javascript"></script>
-<script src="assets/js/layout.js" type="text/javascript"></script>
-<script src="assets/js/quick-sidebar.js" type="text/javascript"></script>
-<script src="assets/js/demo.js" type="text/javascript"></script>
+<#include "../../layout/bottom.ftl">
 <script>
     jQuery(document).ready(function () {
         // initiate layout and plugins
