@@ -55,27 +55,27 @@
 		</RollingFile>
 	</appenders>
 	<loggers>
-		<root level="debug">
+		<root level="${log.level}">
 			<appender-ref ref="Console"/>
 			<appender-ref ref="file"/>
 			<appender-ref ref="warnFile"/>
 			<appender-ref ref="errorFile"/>
 		</root>
 
-		<logger name="org.springframework" level="debug" additivity="false">
+		<logger name="org.springframework" level="${log.level}" additivity="false">
 			<appender-ref ref="Console"/>
 			<appender-ref ref="file"/>
 			<appender-ref ref="warnFile"/>
 			<appender-ref ref="errorFile"/>
 		</logger>
 	
-		<logger name="com.alibaba.druid" level="error" additivity="false">
+		<logger name="com.alibaba.druid" level="${log.level}" additivity="false">
 			<appender-ref ref="Console"/>
 			<appender-ref ref="dbFile" />
 		</logger>
 	
 
-		<logger name="com.funny" level="debug" additivity="false">
+		<logger name="com.funny" level="${log.level}" additivity="false">
 			<appender-ref ref="Console"/>
 			<appender-ref ref="file"/>
 			<appender-ref ref="warnFile"/>

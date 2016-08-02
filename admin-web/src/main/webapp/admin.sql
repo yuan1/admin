@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50520
 Source Host           : localhost:3306
-Source Database       : mymall
+Source Database       : admin
 
 Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2016-07-18 20:44:20
+Date: 2016-08-02 21:18:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -141,10 +141,10 @@ INSERT INTO `admin_menu` VALUES ('34', '六级菜单2', 'login_default.do', '31'
 INSERT INTO `admin_menu` VALUES ('35', '四级菜单2', 'login_default.do', '24', '2', 'menu-icon fa fa-leaf black', '1', '1', null, null, null, null);
 INSERT INTO `admin_menu` VALUES ('36', '角色(基础权限)', 'role.do', '2', '1', 'menu-icon fa fa-key orange', '1', '1', null, null, null, null);
 INSERT INTO `admin_menu` VALUES ('37', '按钮权限', 'buttonrights/list.do', '2', '2', 'menu-icon fa fa-key green', '1', '1', null, null, null, null);
-INSERT INTO `admin_menu` VALUES ('38', '菜单管理', 'system/menu/', '1', '3', 'menu-icon fa fa-folder-open-o brown', '1', '1', null, null, null, null);
+INSERT INTO `admin_menu` VALUES ('38', '菜单管理', '/admin/menu/list.do', '1', '3', 'menu-icon fa fa-folder-open-o brown', '1', '1', null, null, null, null);
 INSERT INTO `admin_menu` VALUES ('39', '按钮管理', 'system/button/', '1', '4', 'menu-icon fa fa-download orange', '1', '1', null, null, null, null);
 INSERT INTO `admin_menu` VALUES ('40', '其他管理', '#', '0', '2', 'menu-icon fa fa-users blue', '2', '1', null, null, null, null);
-INSERT INTO `admin_menu` VALUES ('41', '用户管理', 'system/user/', '1', '1', 'menu-icon fa fa-users green', '1', '1', null, null, null, null);
+INSERT INTO `admin_menu` VALUES ('41', '用户管理', '/admin/user/list.do', '1', '1', 'menu-icon fa fa-users green', '1', '1', null, null, null, null);
 INSERT INTO `admin_menu` VALUES ('42', '会员管理', 'happuser/listUsers.do', '40', '2', 'menu-icon fa fa-users orange', '1', '1', null, null, null, null);
 INSERT INTO `admin_menu` VALUES ('43', '数据字典', 'system/dictionary/', '1', '4', 'menu-icon fa fa-book purple', '1', '1', null, null, null, null);
 INSERT INTO `admin_menu` VALUES ('44', '代码生成', 'createCode/list.do', '9', '0', 'menu-icon fa fa-cogs brown', '1', '1', null, null, null, null);

@@ -19,7 +19,7 @@ public class BasicMenu extends BaseEntity {
     /**
     * 
     */
-    private String parentId;
+    private Long parentId;
 
     /**
     * 
@@ -52,11 +52,11 @@ public class BasicMenu extends BaseEntity {
         return menuUrl;
     }
 
-    public void setParentId(String parentId) {
-        this.parentId = parentId == null ? null : parentId.trim();
+    public void setParentId(Long parentId) {
+        this.parentId = parentId ;
     }
 
-    public String getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 

@@ -29,29 +29,9 @@
     </div>
     <!-- /.modal -->
     <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-
-    <div class="page-bar">
-        <ul class="page-breadcrumb">
-            <li>
-                <i class="fa fa-home"></i>
-                <a href="index.html">Home</a>
-                <i class="fa fa-angle-right"></i>
-            </li>
-            <li>
-                <a href="#">Data Tables</a>
-                <i class="fa fa-angle-right"></i>
-            </li>
-            <li>
-                <a href="#">Responsive Datatables</a>
-            </li>
-        </ul>
-    </div>
-    <!-- END PAGE HEADER-->
-
-
     <div class="row">
         <div class="col-md-12">
-            <div class="portlet light">
+            <div class="portlet box green">
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-magnifier font-green"></i>
@@ -134,7 +114,7 @@
     <!-- BEGIN PAGE CONTENT-->
     <div class="row">
         <div class="col-md-12">
-            <div class="portlet light">
+            <div class="portlet box green">
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-grid font-green"></i>

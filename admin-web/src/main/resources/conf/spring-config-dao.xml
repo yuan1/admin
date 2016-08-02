@@ -10,20 +10,20 @@
     <!-- 配置syw数据源 -->
     <bean name="readerWriteDataSource" class="com.alibaba.druid.pool.DruidDataSource"
           init-method="init" destroy-method="close">
-        <property name="url" value="${rw.db.url}"/>
-        <property name="username" value="${rw.db.user}"/>
-        <property name="password" value="${rw.db.pwd}"/>
+        <property name="url" value="${admin.mysql.url}"/>
+        <property name="username" value="${admin.mysql.user}"/>
+        <property name="password" value="${admin.mysql.password}"/>
         <!-- 初始化连接大小 -->
-        <property name="initialSize" value="5"/>
+        <property name="initialSize" value="${admin.mysql.initSize}"/>
         <!-- 连接池最大使用连接数量 -->
-        <property name="maxActive" value="20"/>
+        <property name="maxActive" value="${admin.mysql.maxSize}"/>
         <!-- 连接池最小空闲 -->
         <property name="minIdle" value="0"/>
         <!-- 获取连接最大等待时间 -->
         <property name="maxWait" value="60000"/>
         <!-- <property name="poolPreparedStatements" value="true" /> <property
             name="maxPoolPreparedStatementPerConnectionSize" value="33" /> -->
-        <property name="validationQuery" value="select 1 from dual"/>
+        <property name="validationQuery" value="select 1 "/>
         <property name="testOnBorrow" value="false"/>
         <property name="testOnReturn" value="false"/>
         <property name="testWhileIdle" value="true"/>
