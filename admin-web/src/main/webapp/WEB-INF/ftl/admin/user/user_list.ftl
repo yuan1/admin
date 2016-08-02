@@ -88,7 +88,7 @@
                                     <label class="col-md-4 control-label">角色</label>
 
                                     <div class="col-md-8">
-                                        <select class="bs-select form-control input-inline input-sm" name="userType"
+                                        <select class="bs-select form-control input-inline input-sm "  name="userType"
                                                 data-live-search="true">
                                             <option value=''>全部</option>
                                             <option value="1">销售顾问</option>

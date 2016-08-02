@@ -11,7 +11,10 @@
 <!-- BEGIN CONTAINER -->
 <div class="page-container">
     <!-- BEGIN SIDEBAR -->
-    <#include "layout/left.ftl">
+    <div class="page-sidebar navbar-collapse collapse">
+        <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+        </ul>
+    </div>
     <!-- END SIDEBAR -->
 
     <!-- BEGIN CONTENT -->
@@ -36,17 +39,17 @@
 
 <script type="text/javascript">
     $(function () {
-        //createMenu();
         Metronic.init(); // init metronic core componets
         Layout.init(); // init layout
         QuickSidebar.init(); // init quick sidebar
         initFrame('mainFrame', 560);
+        createMenu();
     });
 
     function createMenu() {
         $.ajax({
             type: "get",
-            url: '/createMenuTree',
+            url: '/createMenuTree.do',
             dataType: 'json',
             cache: false,
             success: function (data) {
@@ -54,21 +57,20 @@
                     var mentstr = "";
                     $.each(data.result, function (index, item) {
                         if (index == 0) {
-                            mentstr += '<li class="active open" onclick="selectMenu(this);"><a href="' + item.menuUrl + '"><i class="' + item.menuIcon + '"></i><span class="menu-text">' + item.menuName + '</span></a>';
+                            mentstr += '<li class="start active open" onclick="selectMenu(this);"> <a href="' + item.menuUrl + '"><i class="' + item.menuIcon + '"></i><span class="title">' + item.menuName + '</span></a>';
                         } else {
-                            mentstr += '<li onclick="selectMenu(this);"><a href="' + item.menuUrl + '"><i class="' + item.menuIcon + '"></i><span class="menu-text">' + item.menuName + '</span></a>';
+                            mentstr += '<li onclick="selectMenu(this);"><a href="' + item.menuUrl + '"><i class="' + item.menuIcon + '"></i><span class="title">' + item.menuName + '</span></a>';
                         }
-
                         if (item.menuList.length > 0) {
-                            mentstr += '<ul class="submenu">';
+                            mentstr += '<ul class="sub-menu">';
                             $.each(item.menuList, function (i, it) {
-                                mentstr += '<li><a href="' + it.menuUrl + '" target="mainFrame"><i class="' + it.menuIcon + '"></i><span class="menu-text">' + it.menuName + '</span></a></li>';
+                                mentstr += '<li><a href="' + it.menuUrl + '" target="mainFrame"><i class="' + it.menuIcon + '"></i><span class="title">' + it.menuName + '</span></a></li>';
                             });
                             mentstr += '</ul>';
                         }
                         mentstr += '</li>';
                     });
-                    $("#menu_tree").html(mentstr);
+                    $(".page-sidebar-menu").html(mentstr);
                 }
             }
         });
@@ -78,8 +80,6 @@
         $(menu).siblings().removeClass();
         $(menu).addClass("active open");
     }
-
-
     var browserVersion = window.navigator.userAgent.toUpperCase();
     var isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
     var isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;
