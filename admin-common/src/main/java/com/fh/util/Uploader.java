@@ -16,7 +16,6 @@ import org.apache.commons.io.IOUtils;
 
 /**
  * UEditor(百度编辑器)文件上传辅助类
- * 
  */
 public class Uploader {
 
