@@ -22,6 +22,19 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+
+    <!-- Xss攻击过滤器 start -->
+    <filter>
+        <filter-name>XssFilter</filter-name>
+        <filter-class>com.funny.admin.interceptor.XssFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>XssFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- Xss攻击过滤器  End -->
+
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
