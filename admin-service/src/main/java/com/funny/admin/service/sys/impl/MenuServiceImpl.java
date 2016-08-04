@@ -29,8 +29,6 @@ public class MenuServiceImpl implements MenuService {
 		 menuMapper.updateByIdSelected(menu);
 	}
 
-
-
 	@Override
 	public void deleteMenuById(String MENU_ID) throws Exception {
 

@@ -1,12 +1,14 @@
 package com.funny.admin.interceptor;
 
 
-import org.apache.commons.lang3.StringEscapeUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.util.HtmlUtils;
+import java.io.StringReader;
+import java.io.StringWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.util.HtmlUtils;
 
 /**
  * @author funny
@@ -45,6 +47,28 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
         return cleanXSS(value);
     }
 
+    /**
+     * 将容易引起xss漏洞的半角字符直接替换成全角字符
+     *
+     * @param s
+     * @return
+     */
+    private static String xssEncode(String s) {
+		if (s == null || s.isEmpty()) {
+			return s;
+		}
+//		StringReader reader = new StringReader(s);
+//		StringWriter writer = new StringWriter();
+//		try {
+//			HTMLParser.process(reader, writer, new XSSFilter(), true);
+//			return writer.toString();
+//		} catch (NullPointerException e) {
+//			return s;
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//		}
+        return s;
+    }
     private String cleanXSS(String value) {
         value = value.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
         value = value.replaceAll("\\(", "&#40;").replaceAll("\\)", "&#41;");

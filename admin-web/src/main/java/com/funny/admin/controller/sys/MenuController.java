@@ -26,7 +26,7 @@ public class MenuController extends BaseController {
         JsonResult<MenuVo> jsonResult = new JsonResult<MenuVo>();
         MenuVo menuVo = new MenuVo();
         try {
-            Menu menu = menuService.getMenuById(id);
+             Menu menu = menuService.getMenuById(id);
             BeanUtils.copyProperties(menu,menuVo);
             if(menu.getParentId()!=null && menu.getParentId() != 0L){
                 Menu parentMenu = menuService.getMenuById(menu.getParentId());

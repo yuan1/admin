@@ -17,8 +17,6 @@ public class UserController extends BaseController {
     public ModelAndView getUserList(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/admin/user/user_list");
-
-
         return  modelAndView;
     }
 
