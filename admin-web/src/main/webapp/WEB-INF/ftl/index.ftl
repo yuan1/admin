@@ -107,7 +107,6 @@
             cache: false,
             success: function (data) {
                 if (data.returncode == 0) {
-                    console.log(data.result);
                     $("#menu-1").attr('href',data.result.parentMenu.menuUrl);
                     $("#menu-1").html(data.result.parentMenu.menuName);
                     $("#menu-2").attr('href',data.result.menuUrl);

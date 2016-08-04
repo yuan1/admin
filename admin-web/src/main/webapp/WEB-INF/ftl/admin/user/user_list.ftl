@@ -29,17 +29,12 @@
     </div>
     <!-- /.modal -->
     <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="portlet box green">
-                <div class="portlet-title">
+    <div class="row col-md-12" >
+            <div class="portlet light">
+                <div class="portlet-light">
                     <div class="caption">
                         <i class="icon-magnifier font-green"></i>
                         <span class="caption-subject font-green">查询条件</span>
-                    </div>
-                    <div class="tools">
-                        <a href="javascript:;" class="collapse">
-                        </a>
                     </div>
                 </div>
                 <div class="portlet-body form">
@@ -96,37 +91,30 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <a class="btn btn-default">查询</a>
-                                <a class="btn btn-default">重置</a>
+                                <a class="btn btn-circle blue"><i class="fa fa-search"></i>查询</a>
+                                <a class="btn btn-circle grey-cascade"><i class="fa fa-times"></i>重置</a>
                             </div>
                         </div>
                     </form>
-
-
                 </div>
             </div>
-
-
-        </div>
     </div>
 
 
     <!-- BEGIN PAGE CONTENT-->
     <div class="row">
-        <div class="col-md-12">
-            <div class="portlet box green">
+            <div class="portlet light">
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-grid font-green"></i>
                         <span class="caption-subject font-green">用户列表</span>
                     </div>
                     <div class="actions">
-                        <a href="javascript:;" class="btn btn-circle red">
+                        <a href="javascript:;" class="btn btn-circle blue">
                             <i class="fa fa-plus"></i>新增
                         </a>
-                    </div>
-                    <div class="tools">
-                        <a href="" class="fullscreen">
+                        <a href="javascript:;" class="btn btn-circle red">
+                            <i class="fa fa-remove"></i>删除
                         </a>
                     </div>
                 </div>
@@ -486,7 +474,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
         </div>
     </div>
     <!-- END PAGE CONTENT-->
