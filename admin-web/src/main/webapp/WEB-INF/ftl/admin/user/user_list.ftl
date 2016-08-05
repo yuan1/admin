@@ -29,58 +29,66 @@
     </div>
     <!-- /.modal -->
     <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-    <div class="row col-md-12" >
+    <div class="row">
+        <div class="col-md-12">
             <div class="portlet light">
-                <div class="portlet-light">
+                <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-magnifier font-green"></i>
                         <span class="caption-subject font-green">查询条件</span>
                     </div>
                 </div>
                 <div class="portlet-body form">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="#">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">姓名</label>
+                                    <label class="col-sm-4 control-label">姓名</label>
 
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control input-inline input-sm" id="user_name" name="user_name">
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control input-inline" id="user_name"
+                                               name="user_name">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">电话</label>
+                                    <label class="col-sm-4 control-label">姓名</label>
 
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control input-inline input-sm" id="mobile" name="mobile">
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control input-inline" id="user_name"
+                                               name="user_name">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">角色</label>
+                                    <label class="col-sm-4 control-label">姓名</label>
 
-                                    <div class="col-md-8">
-                                        <select class="bs-select form-control input-inline input-sm "  name="userType"
-                                                data-live-search="true">
-                                            <option value=''>全部</option>
-                                            <option value="1">销售顾问</option>
-                                            <option value="2">销售经理</option>
-                                            <option value="3">总经理</option>
-                                        </select>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control input-inline" id="user_name"
+                                               name="user_name">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">角色</label>
+                                    <label class="col-sm-4 control-label">电话</label>
 
-                                    <div class="col-md-8">
-                                        <select class="bs-select form-control input-inline input-sm" name="userType"
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control input-inline" id="mobile"
+                                               name="mobile">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">角色</label>
+
+                                    <div class="col-sm-8">
+                                        <select class="bs-select select2 form-control input-inline" name="userType"
                                                 data-live-search="true">
                                             <option value=''>全部</option>
                                             <option value="1">销售顾问</option>
@@ -90,19 +98,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <a class="btn btn-circle blue"><i class="fa fa-search"></i>查询</a>
-                                <a class="btn btn-circle grey-cascade"><i class="fa fa-times"></i>重置</a>
+                            <div class="col-sm-4">
+                                <a class="btn btn-sm btn-circle blue"><i class="fa fa-search"></i>查询</a>
+                                <a class="btn btn-sm btn-circle grey-cascade"><i class="fa fa-times"></i>重置</a>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+        </div>
     </div>
-
-
     <!-- BEGIN PAGE CONTENT-->
     <div class="row">
+        <div class="col-md-12">
             <div class="portlet light">
                 <div class="portlet-title">
                     <div class="caption">
@@ -110,7 +118,7 @@
                         <span class="caption-subject font-green">用户列表</span>
                     </div>
                     <div class="actions">
-                        <a href="javascript:;" class="btn btn-circle blue">
+                        <a href="/admin/user/add.do" class="btn btn-circle blue">
                             <i class="fa fa-plus"></i>新增
                         </a>
                         <a href="javascript:;" class="btn btn-circle red">
@@ -119,7 +127,7 @@
                     </div>
                 </div>
                 <div class="portlet-body">
-                    <table class="table table-bordered table-striped table-hover">
+                    <table class="table table-bordered table-hover">
                         <thead>
                         <tr>
                             <th>
@@ -474,17 +482,42 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 pull-left">
+            <p style="margin-bottom: 0px;line-height: 55px;">总共120个记录&nbsp;每页10&nbsp;当前4</p>
+        </div>
+        <div class="col-md-6 pull-right" id="js-bootpag" style="text-align: right;"></div>
     </div>
     <!-- END PAGE CONTENT-->
 </div>
-<#include "../../layout/bottom.ftl">
 <script>
-    jQuery(document).ready(function () {
-        // initiate layout and plugins
-        Metronic.init(); // init metronic core components
-        Layout.init(); // init current layout
-    });
+
+
+//    var pageAjax = function(totalPage, pageNum){
+//        $('#js-bootpag').bootpag({
+//            total: totalPage,
+//            page: pageNum,
+//            maxVisible: 7,
+//            leaps: true,
+//            firstLastUse: true,
+//            first: '首页',
+//            last: '尾页',
+//            wrapClass: 'pagination',
+//            activeClass: 'active',
+//            disabledClass: 'disabled',
+//            nextClass: 'next',
+//            prevClass: 'prev',
+//            lastClass: 'last',
+//            firstClass: 'first'
+//        }).on("page", function(event, num){
+//            $("#js-bootpag-num").val(num);
+//            submitForm();
+//            $("#js-bootpag-num").val("1");
+//        });
+//    }
 </script>
 </body>
 <!-- END BODY -->

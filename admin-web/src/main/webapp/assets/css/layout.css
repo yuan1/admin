@@ -1242,7 +1242,7 @@ Page sidebar
 @media (min-width: 992px) {
   /* 992px */
   .page-sidebar {
-    width: 235px;
+    width: 200px;
     float: left;
     position: relative;
     margin-right: -100%;
@@ -2105,7 +2105,7 @@ Page content
 /* Page breadcrumb */
 .page-bar {
   padding: 0px;
-  /*background-color: #f7f7f7;*/
+  /*background-color: #f7f7f7;*/.page-container-bg-solid .page-bar
   margin-bottom: 5px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -2170,7 +2170,7 @@ Page content
 .page-container-bg-solid .page-bar {
   position: relative;
   padding: 0px 20px;
-  background-color: #ffffff;
+  /*background-color: #ffffff;*/
   margin: -25px -20px 0 -20px;
 }
 .page-container-bg-solid .page-bar .page-breadcrumb {
@@ -2204,7 +2204,7 @@ Page content
   background-color: #fff;
 }
 .page-container-bg-solid .page-content {
-  background: #F1F3FA;
+  background: #eef1f5;
 }
 .page-container-bg-solid.page-md .page-content .page-bar {
   border-radius: 0 !important;
@@ -2221,7 +2221,7 @@ Page content
     width: 100%;
   }
   .page-content-wrapper .page-content {
-    margin-left: 235px;
+    margin-left: 200px;
     margin-top: 0px;
     min-height: 600px;
     padding: 25px 20px 10px 20px;

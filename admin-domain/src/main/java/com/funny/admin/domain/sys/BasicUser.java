@@ -6,22 +6,26 @@ public class BasicUser extends BaseEntity {
     private static final long serialVersionUID = 1467208033489L;
 
     /**
-    * 
+    * 用户名
     */
     private String userName;
+    /**
+     * 真实姓名
+     */
+    private String realName;
 
     /**
-    * 
+    * 密码
     */
     private String userPwd;
 
     /**
-    * 
+    * 电话
     */
     private String mobile;
 
     /**
-    * 
+    * email
     */
     private String email;
 
@@ -64,5 +68,17 @@ public class BasicUser extends BaseEntity {
 
     public void setUserStatus(Integer userStatus) {
         this.userStatus = userStatus;
+    }
+
+    public Integer getUserStatus() {
+        return userStatus;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 }

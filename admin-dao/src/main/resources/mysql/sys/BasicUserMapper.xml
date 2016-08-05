@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.funny.admin.domain.sys.User" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
     <result column="user_pwd" property="userPwd" jdbcType="VARCHAR" />
     <result column="mobile" property="mobile" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
@@ -15,15 +16,15 @@
     <result column="yn" property="yn" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_name, user_pwd, mobile, email, user_status, create_time, create_by, update_time, 
+    id, user_name,real_name, user_pwd, mobile, email, user_status, create_time, create_by, update_time,
     update_by, yn
   </sql>
   <insert id="insert" parameterType="com.funny.admin.domain.sys.User" >
-    insert into admin_user (id, user_name, user_pwd,
+    insert into admin_user (id, user_name, real_name,user_pwd,
       mobile, email, user_status, 
       create_time, create_by, update_time, 
       update_by, yn)
-    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},#{userPwd,jdbcType=VARCHAR},
       #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{userStatus,jdbcType=BIT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{updateBy,jdbcType=BIGINT}, #{yn,jdbcType=INTEGER})
@@ -33,6 +34,9 @@
     <set >
       <if test="userName != null" >
         user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
       </if>
       <if test="userPwd != null" >
         user_pwd = #{userPwd,jdbcType=VARCHAR},

@@ -17,16 +17,9 @@
 <script src="${basePath}assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="${basePath}assets/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
-<!-- IMPORTANT! fullcalendar depends on jquery-ui.min.js for drag & drop support -->
-<script src="${basePath}assets/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="${basePath}assets/plugins/jquery-bootpag/jquery.bootpag.min.js"></script>
+<script type="text/javascript" src="${basePath}assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="${basePath}assets/plugins/select2/select2.min.js"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="${basePath}assets/js/metronic.js" type="text/javascript"></script>
