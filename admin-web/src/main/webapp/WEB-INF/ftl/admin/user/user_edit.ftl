@@ -78,8 +78,8 @@
                     <div class="form-actions">
                         <div class="row">
                             <div class="col-md-offset-3 col-md-9">
-                                <button type="button" class="btn default" onclick="window.history.go(-1);">取消</button>
-                                <button type="submit" class="btn green" onclick="submit();">确定</button>
+                                <a href="#"  class="btn btn-circle green-haze" onclick="submit();">确定</a>
+                                <a href="#"  class="btn btn-circle red" onclick="window.history.go("-1");">取消</a>
                             </div>
                         </div>
                     </div>
@@ -110,8 +110,9 @@
             cache: false,
             success: function (data) {
                 if (data.returncode == 0) {
-                    aler(data.message);
                     window.location.href = "/admin/user/list.do"
+                }else{
+                    alert(data.message);
                 }
             }
         });
