@@ -1,8 +1,10 @@
 package com.funny.admin.controller.sys;
 
 import com.funny.admin.domain.sys.User;
+import com.funny.admin.domain.sys.UserCondition;
 import com.funny.admin.service.sys.UserService;
 import com.funny.result.JsonResult;
+import com.github.pagehelper.PageInfo;
 import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import com.funny.admin.controller.BaseController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.concurrent.locks.Condition;
 
 @Controller
 public class UserController extends BaseController {
@@ -22,9 +25,15 @@ public class UserController extends BaseController {
     private UserService userService;
 
     @RequestMapping("/user/list")
-    public ModelAndView getUserList(HttpServletRequest request) {
+    public ModelAndView getUserList(HttpServletRequest request, UserCondition condition) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/admin/user/user_list");
+        condition.setPageSize(10);
+        PageInfo<User> pageInfo = userService.getPageUserList(condition);
+
+        modelAndView.addObject("pageInfo", pageInfo);
+        modelAndView.addObject("userList", pageInfo.getList());
+        modelAndView.addObject("condition", condition);
         return modelAndView;
     }
 

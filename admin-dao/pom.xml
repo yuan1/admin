@@ -18,5 +18,11 @@
             <artifactId>admin-domain</artifactId>
             <version>${admin.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>4.0.2</version>
+        </dependency>
     </dependencies>
 </project>

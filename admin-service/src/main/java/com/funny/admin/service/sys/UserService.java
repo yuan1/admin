@@ -1,6 +1,8 @@
 package com.funny.admin.service.sys;
 
 import com.funny.admin.domain.sys.User;
+import com.funny.admin.domain.sys.UserCondition;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -11,5 +13,5 @@ public interface UserService {
 
     User getUserById(Long id);
 
-    List<User> getUserList();
+    PageInfo<User> getPageUserList(UserCondition condition);
 }

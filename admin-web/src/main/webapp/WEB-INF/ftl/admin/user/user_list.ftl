@@ -39,15 +39,16 @@
                     </div>
                 </div>
                 <div class="portlet-body form">
-                    <form class="form-horizontal" action="#">
+                    <form class="form-horizontal" action="#" id="user-search-form">
+                        <input type="hidden"  name="pageNo"  value="${pageInfo.pageNum}" >
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label">姓名</label>
+                                    <label class="col-sm-4 control-label">用户名</label>
 
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control input-inline" id="user_name"
-                                               name="user_name">
+                                        <input type="text" class="form-control input-inline" id="userName"
+                                               name="userName" <#if condition.userName?exists> value="${condition.userName}" </#if> >
                                     </div>
                                 </div>
                             </div>
@@ -56,18 +57,18 @@
                                     <label class="col-sm-4 control-label">姓名</label>
 
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control input-inline" id="user_name"
-                                               name="user_name">
+                                        <input type="text" class="form-control input-inline" id="realName"
+                                               name="realName"<#if condition.realName?exists> value="${condition.realName}" </#if>>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label">姓名</label>
+                                    <label class="col-sm-4 control-label">手机号</label>
 
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control input-inline" id="user_name"
-                                               name="user_name">
+                                        <input type="text" class="form-control input-inline" id="mobile"
+                                               name="mobile" <#if condition.mobile?exists> value="${condition.mobile}" </#if>>
                                     </div>
                                 </div>
                             </div>
@@ -75,11 +76,11 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label">电话</label>
+                                    <label class="col-sm-4 control-label">邮箱</label>
 
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control input-inline" id="mobile"
-                                               name="mobile">
+                                        <input type="text" class="form-control input-inline" id="email"
+                                               name="email" <#if condition.email?exists> value="${condition.mobile}" </#if>>
                                     </div>
                                 </div>
                             </div>
@@ -131,354 +132,61 @@
                         <thead>
                         <tr>
                             <th>
-                                Code
+                                id
                             </th>
                             <th>
-                                Company
+                                用户名
                             </th>
-                            <th class="numeric">
-                                Price
+                            <th>
+                                姓名
                             </th>
-                            <th class="numeric">
-                                Change
+                            <th>
+                                手机号
                             </th>
-                            <th class="numeric">
-                                Change %
+                            <th>
+                                邮箱
                             </th>
-                            <th class="numeric">
-                                Open
+                            <th>
+                                状态
                             </th>
-                            <th class="numeric">
-                                High
+                            <th>
+                                创建时间
                             </th>
-                            <th class="numeric">
-                                Low
-                            </th>
-                            <th class="numeric">
-                                Volume
+                            <th>
+                                操作
                             </th>
                         </tr>
                         </thead>
                         <tbody>
+                        <#list userList as user>
                         <tr>
                             <td>
-                                AAC
+                            ${user.id}
                             </td>
                             <td>
-                                AUSTRALIAN AGRICULTURAL COMPANY LIMITED.
+                            ${user.userName}
                             </td>
-                            <td class="numeric">
-                                &nbsp;
+                            <td>
+                            ${user.realName}
                             </td>
-                            <td class="numeric">
-                                -0.01
+                            <td>
+                            ${user.mobile}
                             </td>
-                            <td class="numeric">
-                                -0.36%
+                            <td>
+                            ${user.email}
                             </td>
-                            <td class="numeric">
-                                $1.39
+                            <td>
+                            ${user.userStatus}
                             </td>
-                            <td class="numeric">
-                                $1.39
+                            <td>
+                            ${user.createTime?string('yyyy-MM-dd. HH:mm:ss')}
                             </td>
-                            <td class="numeric">
-                                &nbsp;
-                            </td>
-                            <td class="numeric">
-                                9,395
+                            <td>
+                                <a class="btn btn-circle btn-primary" href="#"><i class="icon-edit"></i>修改</a>
+                                <a class="btn btn-circle btn-danger" href="#"><i class="icon-remove"></i>删除</a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                AAD
-                            </td>
-                            <td>
-                                ARDENT LEISURE GROUP
-                            </td>
-                            <td class="numeric">
-                                $1.15
-                            </td>
-                            <td class="numeric">
-                                +0.02
-                            </td>
-                            <td class="numeric">
-                                1.32%
-                            </td>
-                            <td class="numeric">
-                                $1.14
-                            </td>
-                            <td class="numeric">
-                                $1.15
-                            </td>
-                            <td class="numeric">
-                                $1.13
-                            </td>
-                            <td class="numeric">
-                                56,431
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                AAX
-                            </td>
-                            <td>
-                                AUSENCO LIMITED
-                            </td>
-                            <td class="numeric">
-                                $4.00
-                            </td>
-                            <td class="numeric">
-                                -0.04
-                            </td>
-                            <td class="numeric">
-                                -0.99%
-                            </td>
-                            <td class="numeric">
-                                $4.01
-                            </td>
-                            <td class="numeric">
-                                $4.05
-                            </td>
-                            <td class="numeric">
-                                $4.00
-                            </td>
-                            <td class="numeric">
-                                90,641
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                ABC
-                            </td>
-                            <td>
-                                ADELAIDE BRIGHTON LIMITED
-                            </td>
-                            <td class="numeric">
-                                $3.00
-                            </td>
-                            <td class="numeric">
-                                +0.06
-                            </td>
-                            <td class="numeric">
-                                2.04%
-                            </td>
-                            <td class="numeric">
-                                $2.98
-                            </td>
-                            <td class="numeric">
-                                $3.00
-                            </td>
-                            <td class="numeric">
-                                $2.96
-                            </td>
-                            <td class="numeric">
-                                862,518
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                ABP
-                            </td>
-                            <td>
-                                ABACUS PROPERTY GROUP
-                            </td>
-                            <td class="numeric">
-                                $1.91
-                            </td>
-                            <td class="numeric">
-                                0.00
-                            </td>
-                            <td class="numeric">
-                                0.00%
-                            </td>
-                            <td class="numeric">
-                                $1.92
-                            </td>
-                            <td class="numeric">
-                                $1.93
-                            </td>
-                            <td class="numeric">
-                                $1.90
-                            </td>
-                            <td class="numeric">
-                                595,701
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                ABY
-                            </td>
-                            <td>
-                                ADITYA BIRLA MINERALS LIMITED
-                            </td>
-                            <td class="numeric">
-                                $0.77
-                            </td>
-                            <td class="numeric">
-                                +0.02
-                            </td>
-                            <td class="numeric">
-                                2.00%
-                            </td>
-                            <td class="numeric">
-                                $0.76
-                            </td>
-                            <td class="numeric">
-                                $0.77
-                            </td>
-                            <td class="numeric">
-                                $0.76
-                            </td>
-                            <td class="numeric">
-                                54,567
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                ACR
-                            </td>
-                            <td>
-                                ACRUX LIMITED
-                            </td>
-                            <td class="numeric">
-                                $3.71
-                            </td>
-                            <td class="numeric">
-                                +0.01
-                            </td>
-                            <td class="numeric">
-                                0.14%
-                            </td>
-                            <td class="numeric">
-                                $3.70
-                            </td>
-                            <td class="numeric">
-                                $3.72
-                            </td>
-                            <td class="numeric">
-                                $3.68
-                            </td>
-                            <td class="numeric">
-                                191,373
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                ADU
-                            </td>
-                            <td>
-                                ADAMUS RESOURCES LIMITED
-                            </td>
-                            <td class="numeric">
-                                $0.72
-                            </td>
-                            <td class="numeric">
-                                0.00
-                            </td>
-                            <td class="numeric">
-                                0.00%
-                            </td>
-                            <td class="numeric">
-                                $0.73
-                            </td>
-                            <td class="numeric">
-                                $0.74
-                            </td>
-                            <td class="numeric">
-                                $0.72
-                            </td>
-                            <td class="numeric">
-                                8,602,291
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                AGG
-                            </td>
-                            <td>
-                                ANGLOGOLD ASHANTI LIMITED
-                            </td>
-                            <td class="numeric">
-                                $7.81
-                            </td>
-                            <td class="numeric">
-                                -0.22
-                            </td>
-                            <td class="numeric">
-                                -2.74%
-                            </td>
-                            <td class="numeric">
-                                $7.82
-                            </td>
-                            <td class="numeric">
-                                $7.82
-                            </td>
-                            <td class="numeric">
-                                $7.81
-                            </td>
-                            <td class="numeric">
-                                148
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                AGK
-                            </td>
-                            <td>
-                                AGL ENERGY LIMITED
-                            </td>
-                            <td class="numeric">
-                                $13.82
-                            </td>
-                            <td class="numeric">
-                                +0.02
-                            </td>
-                            <td class="numeric">
-                                0.14%
-                            </td>
-                            <td class="numeric">
-                                $13.83
-                            </td>
-                            <td class="numeric">
-                                $13.83
-                            </td>
-                            <td class="numeric">
-                                $13.67
-                            </td>
-                            <td class="numeric">
-                                846,403
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                AGO
-                            </td>
-                            <td>
-                                ATLAS IRON LIMITED
-                            </td>
-                            <td class="numeric">
-                                $3.17
-                            </td>
-                            <td class="numeric">
-                                -0.02
-                            </td>
-                            <td class="numeric">
-                                -0.47%
-                            </td>
-                            <td class="numeric">
-                                $3.11
-                            </td>
-                            <td class="numeric">
-                                $3.22
-                            </td>
-                            <td class="numeric">
-                                $3.10
-                            </td>
-                            <td class="numeric">
-                                5,416,303
-                            </td>
-                        </tr>
+                        </#list>
                         </tbody>
                     </table>
                 </div>
@@ -487,37 +195,44 @@
     </div>
     <div class="row">
         <div class="col-md-6 pull-left">
-            <p style="margin-bottom: 0px;line-height: 55px;">总共120个记录&nbsp;每页10&nbsp;当前4</p>
+            <p style="margin-bottom: 0px;line-height: 55px;">总共${pageInfo.total}个记录&nbsp;每页${pageInfo.size}
+                &nbsp;当前${pageInfo.pageNum}</p>
         </div>
         <div class="col-md-6 pull-right" id="js-bootpag" style="text-align: right;"></div>
     </div>
     <!-- END PAGE CONTENT-->
 </div>
+<#include "../../layout/bottom.ftl">
 <script>
+        $(function(){
+            var totalPage = ${pageInfo.pages};
+            var pageNum = ${pageInfo.pageNum};
+            $('#js-bootpag').bootpag({
+                total: totalPage,
+                page: pageNum,
+                maxVisible: 7,
+                leaps: true,
+                firstLastUse: true,
+                first: '首页',
+                last: '尾页',
+                wrapClass: 'pagination',
+                activeClass: 'active',
+                disabledClass: 'disabled',
+                nextClass: 'next',
+                prevClass: 'prev',
+                lastClass: 'last',
+                firstClass: 'first'
+            }).on("page", function(event, num){
+                $("#js-bootpag-num").val(num);
+                submitForm();
+                $("#js-bootpag-num").val("1");
+            });
+        });
 
-
-//    var pageAjax = function(totalPage, pageNum){
-//        $('#js-bootpag').bootpag({
-//            total: totalPage,
-//            page: pageNum,
-//            maxVisible: 7,
-//            leaps: true,
-//            firstLastUse: true,
-//            first: '首页',
-//            last: '尾页',
-//            wrapClass: 'pagination',
-//            activeClass: 'active',
-//            disabledClass: 'disabled',
-//            nextClass: 'next',
-//            prevClass: 'prev',
-//            lastClass: 'last',
-//            firstClass: 'first'
-//        }).on("page", function(event, num){
-//            $("#js-bootpag-num").val(num);
-//            submitForm();
-//            $("#js-bootpag-num").val("1");
-//        });
-//    }
+        function submitForm(){
+            $("#user-search-form").attr('action','/admin/user/list.do');
+            $("#user-search-form").submit();
+        }
 </script>
 </body>
 <!-- END BODY -->

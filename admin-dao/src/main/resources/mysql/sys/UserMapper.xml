@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.funny.admin.dao.sys.UserMapper" >
-  
+<mapper namespace="com.funny.admin.dao.sys.UserMapper">
+    <select id="getPageUserList" resultMap="BaseResultMap" parameterType="com.funny.admin.domain.sys.UserCondition">
+        select
+        <include refid="Base_Column_List"/>
+        from admin_user where yn=1
+        <include refid="user_where_sql"/>
+    </select>
+
+    <sql id="user_where_sql">
+        <if test="userName != null and userName != '' ">
+            and user_name like concate('%',#{userName},'%')
+        </if>
+        <if test="realName != null and realName != '' ">
+            and user_name like concate('%',#{realName},'%')
+        </if>
+        <if test="mobile != null and mobile != '' ">
+            and mobile like concate('%',#{mobile},'%')
+        </if>
+        <if test="email != null and email != '' ">
+            and email like concate('%',#{email},'%')
+        </if>
+    </sql>
 </mapper>
