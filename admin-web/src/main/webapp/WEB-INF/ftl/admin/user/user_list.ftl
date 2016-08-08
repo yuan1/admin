@@ -40,7 +40,8 @@
                 </div>
                 <div class="portlet-body form">
                     <form class="form-horizontal" action="#" id="user-search-form">
-                        <input type="hidden"  name="pageNo"  value="${pageInfo.pageNum}" >
+                        <input type="hidden" id="js-bootpag-num" name="pageNo" value="1"/>
+
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
@@ -193,12 +194,12 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="col-md-12">
         <div class="col-md-6 pull-left">
-            <p style="margin-bottom: 0px;line-height: 55px;">总共${pageInfo.total}个记录&nbsp;每页${pageInfo.size}
+            <p style="margin-bottom: 0px;line-height: 55px;">总共${pageInfo.total}个记录&nbsp;每页${pageInfo.pageSize}
                 &nbsp;当前${pageInfo.pageNum}</p>
         </div>
-        <div class="col-md-6 pull-right" id="js-bootpag" style="text-align: right;"></div>
+        <div class="col-md-6 pull-right" id="js-bootpag" style="text-align: right"></div>
     </div>
     <!-- END PAGE CONTENT-->
 </div>
