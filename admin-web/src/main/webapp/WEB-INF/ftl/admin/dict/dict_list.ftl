@@ -44,58 +44,21 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">用户名</label>
+                                    <label class="col-md-4 control-label">类型id</label>
 
                                     <div class="col-md-8">
                                         <input type="text" class="form-control input-inline" id="userName"
-                                               name="userName" <#if condition.userName?exists> value="${condition.userName}" </#if> >
+                                               name="userName" <#if condition.dictId?exists> value="${condition.dictId}" </#if> >
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">姓名</label>
+                                    <label class="col-md-4 control-label">类型名称</label>
 
                                     <div class="col-md-8">
                                         <input type="text" class="form-control input-inline" id="realName"
-                                               name="realName"<#if condition.realName?exists> value="${condition.realName}" </#if>>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">手机号</label>
-
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control input-inline" id="mobile"
-                                               name="mobile" <#if condition.mobile?exists> value="${condition.mobile}" </#if>>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">邮箱</label>
-
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control input-inline" id="email"
-                                               name="email" <#if condition.email?exists> value="${condition.mobile}" </#if>>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">角色</label>
-
-                                    <div class="col-md-8">
-                                        <select class="bs-select select2 form-control input-inline" name="userType"
-                                                data-live-search="true">
-                                            <option value=''>全部</option>
-                                            <option value="1">销售顾问</option>
-                                            <option value="2">销售经理</option>
-                                            <option value="3">总经理</option>
-                                        </select>
+                                               name="realName"<#if condition.dictName?exists> value="${condition.dictName}" </#if>>
                                     </div>
                                 </div>
                             </div>
@@ -116,10 +79,10 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-grid font-green"></i>
-                        <span class="caption-subject font-green">用户列表</span>
+                        <span class="caption-subject font-green">字典类型列表</span>
                     </div>
                     <div class="actions">
-                        <a href="/admin/user/add.do" class="btn btn-circle blue">
+                        <a href="/admin/dict/add.do" class="btn btn-circle blue">
                             <i class="fa fa-plus"></i>新增
                         </a>
                         <a href="javascript:;" class="btn btn-circle red">
@@ -135,22 +98,10 @@
                                 id
                             </th>
                             <th>
-                                用户名
+                                类型id
                             </th>
                             <th>
-                                姓名
-                            </th>
-                            <th>
-                                手机号
-                            </th>
-                            <th>
-                                邮箱
-                            </th>
-                            <th>
-                                状态
-                            </th>
-                            <th>
-                                创建时间
+                                类型名称
                             </th>
                             <th>
                                 操作
@@ -158,29 +109,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <#list userList as user>
+                        <#list dictList as dict>
                         <tr>
                             <td>
-                            ${user.id}
+                            ${dict.id}
                             </td>
                             <td>
-                            ${user.userName}
+                            ${dict.dictId}
                             </td>
                             <td>
-                            ${user.realName}
+                            ${dict.dictName}
                             </td>
-                            <td>
-                            ${user.mobile}
-                            </td>
-                            <td>
-                            ${user.email}
-                            </td>
-                            <td>
-                            ${user.userStatus}
-                            </td>
-                            <td>
-                            ${user.createTime?string('yyyy-MM-dd. HH:mm:ss')}
-                            </td>
+
                             <td>
                                 <a class="btn btn-circle btn-primary" href="#"><i class="icon-edit"></i>修改</a>
                                 <a class="btn btn-circle btn-danger" href="#"><i class="icon-remove"></i>删除</a>
@@ -230,7 +170,7 @@
         });
 
         function submitForm(){
-            $("#user-search-form").attr('action','/admin/user/list.do');
+            $("#user-search-form").attr('action','/admin/dict/list.do');
             $("#user-search-form").submit();
         }
 </script>

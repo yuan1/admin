@@ -1,11 +1,9 @@
 package com.funny.admin.controller.sys;
 
-import com.funny.admin.domain.sys.User;
-import com.funny.admin.condition.sys.UserCondition;
-import com.funny.admin.service.sys.UserService;
-import com.funny.result.JsonResult;
-import com.github.pagehelper.PageInfo;
-import com.google.common.base.Strings;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,20 +11,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.funny.admin.controller.BaseController;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
+import com.funny.admin.domain.sys.User;
+import com.funny.admin.condition.sys.UserCondition;
+import com.funny.admin.service.sys.UserService;
+import com.funny.result.JsonResult;
+import com.github.pagehelper.PageInfo;
+import com.google.common.base.Strings;
 
 @Controller
-public class UserController extends BaseController {
+public class DictaryController extends BaseController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/user/list")
+    @RequestMapping("/dictary/list")
     public ModelAndView getUserList(HttpServletRequest request, UserCondition condition) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/admin/user/user_list");
+        modelAndView.setViewName("/admin/dict/dict_list");
         condition.setPageSize(10);
         PageInfo<User> pageInfo = userService.getPageUserList(condition);
 
@@ -36,21 +37,21 @@ public class UserController extends BaseController {
         return modelAndView;
     }
 
-    @RequestMapping("/user/add")
+    @RequestMapping("/dictary/add")
     public ModelAndView add(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/admin/user/user_edit");
         return modelAndView;
     }
 
-    @RequestMapping("/user/getUserById")
+    @RequestMapping("/dictary/getUserById")
     public ModelAndView getUserById(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/admin/user/user_edit");
         return modelAndView;
     }
 
-    @RequestMapping("/user/save")
+    @RequestMapping("/dictary/save")
     @ResponseBody
     public JsonResult saveUser(HttpServletRequest request, User user) {
         JsonResult jsonResult = checkUser(user);
