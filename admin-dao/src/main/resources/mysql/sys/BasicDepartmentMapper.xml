@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.funny.admin.dao.sys.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.funny.admin.domain.sys.Department" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="depart_id" property="departId" jdbcType="BIGINT" />
+    <result column="depart_name" property="departName" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="yn" property="yn" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, depart_id, depart_name, parent_id, create_by, create_time, update_by, update_time, 
+    yn
+  </sql>
+  <insert id="insert" parameterType="com.funny.admin.domain.sys.BasicDepartment" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into admin_department (depart_id, depart_name, parent_id, 
+      create_by, create_time, update_by, 
+      update_time, yn)
+    values (#{departId,jdbcType=BIGINT}, #{departName,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
+      #{createBy,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{yn,jdbcType=BIT})
+  </insert>
+  <update id="updateByIdSelected" parameterType="com.funny.admin.domain.sys.Department" >
+    update admin_department
+    <set >
+      <if test="departId != null" >
+        depart_id = #{departId,jdbcType=BIGINT},
+      </if>
+      <if test="departName != null" >
+        depart_name = #{departName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yn != null" >
+        yn = #{yn,jdbcType=BIT}
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteById" parameterType="java.lang.Long" >
+    update admin_department
+    set yn = 0
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin_department
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="count" resultType="java.lang.Long" >
+    select count(*) from admin_department where yn =1 
+  </select>
+  <select id="findAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin_department where yn =1 
+  </select>
+</mapper>

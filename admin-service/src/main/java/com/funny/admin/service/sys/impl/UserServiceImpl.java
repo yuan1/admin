@@ -2,7 +2,7 @@ package com.funny.admin.service.sys.impl;
 
 import com.funny.admin.dao.sys.UserMapper;
 import com.funny.admin.domain.sys.User;
-import com.funny.admin.domain.sys.UserCondition;
+import com.funny.admin.condition.sys.UserCondition;
 import com.funny.admin.service.sys.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2016-08-02 21:18:28
+Date: 2016-08-11 22:11:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,40 +20,36 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_department`;
 CREATE TABLE `admin_department` (
-  `DEPARTMENT_ID` varchar(100) NOT NULL,
-  `NAME` varchar(30) DEFAULT NULL COMMENT '名称',
-  `NAME_EN` varchar(50) DEFAULT NULL COMMENT '英文',
-  `BIANMA` varchar(50) DEFAULT NULL COMMENT '编码',
-  `PARENT_ID` varchar(100) DEFAULT NULL COMMENT '上级ID',
-  `BZ` varchar(255) DEFAULT NULL COMMENT '备注',
-  `HEADMAN` varchar(30) DEFAULT NULL COMMENT '负责人',
-  `TEL` varchar(50) DEFAULT NULL COMMENT '电话',
-  `FUNCTIONS` varchar(255) DEFAULT NULL COMMENT '部门职能',
-  `ADDRESS` varchar(255) DEFAULT NULL COMMENT '地址',
-  PRIMARY KEY (`DEPARTMENT_ID`)
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `depart_id` bigint(20) DEFAULT NULL,
+  `depart_name` varchar(255) DEFAULT NULL,
+  `parent_id` bigint(20) DEFAULT NULL,
+  `create_by` bigint(20) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `update_by` bigint(20) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `yn` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin_department
 -- ----------------------------
-INSERT INTO `admin_department` VALUES ('0956d8c279274fca92f4091f2a69a9ad', '销售会计', 'xiaokuai', '05896', 'd41af567914a409893d011aa53eda797', '', '', '', '', '');
-INSERT INTO `admin_department` VALUES ('3e7227e11dc14b4d9e863dd1a1fcedf6', '成本会计', 'chengb', '03656', 'd41af567914a409893d011aa53eda797', '', '', '', '', '');
-INSERT INTO `admin_department` VALUES ('5cccdb7c432449d8b853c52880058140', 'B公司', 'b', '002', '0', '冶铁', '李四', '112', '冶铁', '河北');
-INSERT INTO `admin_department` VALUES ('83a25761c618457cae2fa1211bd8696d', '销售B组', 'xiaob', '002365', 'cbbc84eddde947ba8af7d509e430eb70', '', '李四', '', '', '');
-INSERT INTO `admin_department` VALUES ('8f8b045470f342fdbc4c312ab881d62b', '销售A组', 'xiaoA', '0326', 'cbbc84eddde947ba8af7d509e430eb70', '', '张三', '0201212', '', '');
-INSERT INTO `admin_department` VALUES ('a0982dea52554225ab682cd4b421de47', '1队', 'yidui', '02563', '8f8b045470f342fdbc4c312ab881d62b', '', '小王', '12356989', '', '');
-INSERT INTO `admin_department` VALUES ('a6c6695217ba4a4dbfe9f7e9d2c06730', 'A公司', 'a', '001', '0', '挖煤', '张三', '110', '洼煤矿', '山西');
-INSERT INTO `admin_department` VALUES ('cbbc84eddde947ba8af7d509e430eb70', '销售部', 'xiaoshoubu', '00201', '5cccdb7c432449d8b853c52880058140', '推销商品', '小明', '11236', '推销商品', '909办公室');
-INSERT INTO `admin_department` VALUES ('d41af567914a409893d011aa53eda797', '财务部', 'caiwubu', '00101', 'a6c6695217ba4a4dbfe9f7e9d2c06730', '负责发工资', '王武', '11236', '管理财务', '308办公室');
 
 -- ----------------------------
 -- Table structure for admin_dict
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_dict`;
 CREATE TABLE `admin_dict` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `dict_id` int(11) DEFAULT NULL,
-  `dict_name` varchar(255) DEFAULT NULL
+  `dict_name` varchar(255) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `create_by` bigint(20) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `update_by` bigint(20) DEFAULT NULL,
+  `yn` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -65,30 +61,22 @@ CREATE TABLE `admin_dict` (
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_dictionary`;
 CREATE TABLE `admin_dictionary` (
-  `DICTIONARIES_ID` varchar(100) NOT NULL,
-  `NAME` varchar(30) DEFAULT NULL COMMENT '名称',
-  `NAME_EN` varchar(50) DEFAULT NULL COMMENT '英文',
-  `BIANMA` varchar(50) DEFAULT NULL COMMENT '编码',
-  `ORDER_BY` int(11) NOT NULL COMMENT '排序',
-  `PARENT_ID` varchar(100) DEFAULT NULL COMMENT '上级ID',
-  `BZ` varchar(255) DEFAULT NULL COMMENT '备注',
-  `TBSNAME` varchar(100) DEFAULT NULL COMMENT '排查表',
-  PRIMARY KEY (`DICTIONARIES_ID`)
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `dict_id` bigint(20) DEFAULT NULL COMMENT '名称',
+  `dic_name` varchar(100) DEFAULT NULL COMMENT '英文',
+  `dic_value` varchar(50) DEFAULT NULL COMMENT '编码',
+  `dic_id` int(11) DEFAULT NULL COMMENT '排序',
+  `create_time` datetime DEFAULT NULL COMMENT '上级ID',
+  `create_by` bigint(20) DEFAULT NULL COMMENT '备注',
+  `update_by` bigint(20) DEFAULT NULL COMMENT '排查表',
+  `update_time` datetime DEFAULT NULL,
+  `yn` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin_dictionary
 -- ----------------------------
-INSERT INTO `admin_dictionary` VALUES ('096e4ec8986149d994b09e604504e38d', '黄浦区', 'huangpu', '0030201', '1', 'f1ea30ddef1340609c35c88fb2919bee', '黄埔', '');
-INSERT INTO `admin_dictionary` VALUES ('12a62a3e5bed44bba0412b7e6b733c93', '北京', 'beijing', '00301', '1', 'be4a8c5182c744d28282a5345783a77f', '北京', '');
-INSERT INTO `admin_dictionary` VALUES ('507fa87a49104c7c8cdb52fdb297da12', '宣武区', 'xuanwuqu', '0030101', '1', '12a62a3e5bed44bba0412b7e6b733c93', '宣武区', '');
-INSERT INTO `admin_dictionary` VALUES ('8994f5995f474e2dba6cfbcdfe5ea07a', '语文', 'yuwen', '00201', '1', 'fce20eb06d7b4b4d8f200eda623f725c', '语文', '');
-INSERT INTO `admin_dictionary` VALUES ('8ea7c44af25f48b993a14f791c8d689f', '分类', 'fenlei', '001', '1', '0', '分类', '');
-INSERT INTO `admin_dictionary` VALUES ('be4a8c5182c744d28282a5345783a77f', '地区', 'diqu', '003', '3', '0', '地区', '');
-INSERT INTO `admin_dictionary` VALUES ('d428594b0494476aa7338d9061e23ae3', '红色', 'red', '00101', '1', '8ea7c44af25f48b993a14f791c8d689f', '红色', '');
-INSERT INTO `admin_dictionary` VALUES ('de9afadfbed0428fa343704d6acce2c4', '绿色', 'green', '00102', '2', '8ea7c44af25f48b993a14f791c8d689f', '绿色', '');
-INSERT INTO `admin_dictionary` VALUES ('f1ea30ddef1340609c35c88fb2919bee', '上海', 'shanghai', '00302', '2', 'be4a8c5182c744d28282a5345783a77f', '上海', '');
-INSERT INTO `admin_dictionary` VALUES ('fce20eb06d7b4b4d8f200eda623f725c', '课程', 'kecheng', '002', '2', '0', '课程', '');
 
 -- ----------------------------
 -- Table structure for admin_menu
@@ -142,11 +130,11 @@ INSERT INTO `admin_menu` VALUES ('35', '四级菜单2', 'login_default.do', '24'
 INSERT INTO `admin_menu` VALUES ('36', '角色(基础权限)', 'role.do', '2', '1', 'menu-icon fa fa-key orange', '1', '1', null, null, null, null);
 INSERT INTO `admin_menu` VALUES ('37', '按钮权限', 'buttonrights/list.do', '2', '2', 'menu-icon fa fa-key green', '1', '1', null, null, null, null);
 INSERT INTO `admin_menu` VALUES ('38', '菜单管理', '/admin/menu/list.do', '1', '3', 'menu-icon fa fa-folder-open-o brown', '1', '1', null, null, null, null);
-INSERT INTO `admin_menu` VALUES ('39', '按钮管理', 'system/button/', '1', '4', 'menu-icon fa fa-download orange', '1', '1', null, null, null, null);
+INSERT INTO `admin_menu` VALUES ('39', '字典类型', '/admin/dict/list.do', '1', '4', 'menu-icon fa fa-download orange', '1', '1', null, null, null, null);
 INSERT INTO `admin_menu` VALUES ('40', '其他管理', '#', '0', '2', 'menu-icon fa fa-users blue', '2', '1', null, null, null, null);
 INSERT INTO `admin_menu` VALUES ('41', '用户管理', '/admin/user/list.do', '1', '1', 'menu-icon fa fa-users green', '1', '1', null, null, null, null);
 INSERT INTO `admin_menu` VALUES ('42', '会员管理', 'happuser/listUsers.do', '40', '2', 'menu-icon fa fa-users orange', '1', '1', null, null, null, null);
-INSERT INTO `admin_menu` VALUES ('43', '数据字典', 'system/dictionary/', '1', '4', 'menu-icon fa fa-book purple', '1', '1', null, null, null, null);
+INSERT INTO `admin_menu` VALUES ('43', '数据字典', '/admin/dictary/list.do', '1', '4', 'menu-icon fa fa-book purple', '1', '1', null, null, null, null);
 INSERT INTO `admin_menu` VALUES ('44', '代码生成', 'createCode/list.do', '9', '0', 'menu-icon fa fa-cogs brown', '1', '1', null, null, null, null);
 INSERT INTO `admin_menu` VALUES ('45', '七级菜单1', '#', '33', '1', 'menu-icon fa fa-leaf black', '1', '1', null, null, null, null);
 INSERT INTO `admin_menu` VALUES ('46', '七级菜单2', '#', '33', '2', 'menu-icon fa fa-leaf black', '1', '1', null, null, null, null);
@@ -182,63 +170,78 @@ CREATE TABLE `admin_parameter` (
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_role`;
 CREATE TABLE `admin_role` (
-  `ROLE_ID` varchar(100) NOT NULL,
-  `ROLE_NAME` varchar(100) DEFAULT NULL,
-  `RIGHTS` varchar(255) DEFAULT NULL,
-  `PARENT_ID` varchar(100) DEFAULT NULL,
-  `ADD_QX` varchar(255) DEFAULT NULL,
-  `DEL_QX` varchar(255) DEFAULT NULL,
-  `EDIT_QX` varchar(255) DEFAULT NULL,
-  `CHA_QX` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`ROLE_ID`)
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(100) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `create_by` bigint(20) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `update_by` bigint(20) DEFAULT NULL,
+  `yn` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin_role
 -- ----------------------------
-INSERT INTO `admin_role` VALUES ('1', '系统管理组', '2251798773489606', '0', '1', '1', '1', '1');
-INSERT INTO `admin_role` VALUES ('115b386ff04f4352b060dffcd2b5d1da', '中级会员', '498', '2', '0', '0', '0', '0');
-INSERT INTO `admin_role` VALUES ('1b67fc82ce89457a8347ae53e43a347e', '初级会员', '498', '2', '0', '0', '0', '0');
-INSERT INTO `admin_role` VALUES ('2', '会员组', '498', '0', '0', '0', '0', '1');
-INSERT INTO `admin_role` VALUES ('3264c8e83d0248bb9e3ea6195b4c0216', '一级管理员', '2251798773489606', '1', '2251798773489606', '2251798773489606', '1125898866646982', '2251798773489606');
-INSERT INTO `admin_role` VALUES ('46294b31a71c4600801724a6eb06bb26', '职位组', '', '0', '0', '0', '0', '0');
-INSERT INTO `admin_role` VALUES ('5466347ac07044cb8d82990ec7f3a90e', '主管', '', '46294b31a71c4600801724a6eb06bb26', '0', '0', '0', '0');
-INSERT INTO `admin_role` VALUES ('68f8e4a39efe47c7bb869e9d15ab925d', '二级管理员', '2251798773489606', '1', '0', '0', '2251798773489606', '0');
-INSERT INTO `admin_role` VALUES ('856849f422774ad390a4e564054d8cc8', '经理', '', '46294b31a71c4600801724a6eb06bb26', '0', '0', '0', '0');
-INSERT INTO `admin_role` VALUES ('8b70a7e67f2841e7aaba8a4d92e5ff6f', '高级会员', '498', '2', '0', '0', '0', '0');
-INSERT INTO `admin_role` VALUES ('c21cecf84048434b93383182b1d98cba', '组长', '', '46294b31a71c4600801724a6eb06bb26', '0', '0', '0', '0');
-INSERT INTO `admin_role` VALUES ('d449195cd8e7491080688c58e11452eb', '总监', '', '46294b31a71c4600801724a6eb06bb26', '0', '0', '0', '0');
-INSERT INTO `admin_role` VALUES ('de9de2f006e145a29d52dfadda295353', '三级管理员', '2251798773489606', '1', '0', '0', '0', '0');
+
+-- ----------------------------
+-- Table structure for admin_role_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_role_menu`;
+CREATE TABLE `admin_role_menu` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `role_id` bigint(20) DEFAULT NULL,
+  `menu_id` bigint(20) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `create_by` bigint(20) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `update_by` bigint(20) DEFAULT NULL,
+  `yn` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of admin_role_menu
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for admin_user
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_user`;
 CREATE TABLE `admin_user` (
-  `USER_ID` varchar(100) NOT NULL,
-  `USERNAME` varchar(255) DEFAULT NULL,
-  `PASSWORD` varchar(255) DEFAULT NULL,
-  `NAME` varchar(255) DEFAULT NULL,
-  `RIGHTS` varchar(255) DEFAULT NULL,
-  `ROLE_ID` varchar(100) DEFAULT NULL,
-  `LAST_LOGIN` varchar(255) DEFAULT NULL,
-  `IP` varchar(15) DEFAULT NULL,
-  `STATUS` varchar(32) DEFAULT NULL,
-  `BZ` varchar(255) DEFAULT NULL,
-  `SKIN` varchar(100) DEFAULT NULL,
-  `EMAIL` varchar(32) DEFAULT NULL,
-  `NUMBER` varchar(100) DEFAULT NULL,
-  `PHONE` varchar(32) DEFAULT NULL,
-  PRIMARY KEY (`USER_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(50) DEFAULT NULL,
+  `user_pwd` varchar(128) DEFAULT NULL,
+  `real_name` varchar(20) DEFAULT NULL,
+  `mobile` varchar(20) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `user_status` tinyint(1) unsigned zerofill DEFAULT '1' COMMENT '1正常 2 禁用',
+  `create_time` datetime DEFAULT NULL,
+  `create_by` bigint(20) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `update_by` bigint(20) DEFAULT NULL,
+  `yn` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('1', 'admin', 'de41b7fb99201d8334c23c014db35ecd92df81bc', '系统管理员', '1133671055321055258374707980945218933803269864762743594642571294', '1', '2016-07-02 23:03:48', '0:0:0:0:0:0:0:1', '0', '最高统治者', 'default', 'QQ313596790@main.com', '001', '18788888888');
-INSERT INTO `admin_user` VALUES ('69177258a06e4927b4639ab1684c3320', 'san', '47c4a8dc64ac2f0bb46bbd8813b037c9718f9349', '三', '', '3264c8e83d0248bb9e3ea6195b4c0216', '2016-01-25 16:25:36', '192.168.1.102', '0', '111', 'default', '978336446@qq.com', '333', '13562202556');
-INSERT INTO `admin_user` VALUES ('9991f4d7782a4ccfb8a65bd96ea7aafa', 'lisi', '2612ade71c1e48cd7150b5f4df152faa699cedfe', '李四', '', '3264c8e83d0248bb9e3ea6195b4c0216', '2016-01-06 01:24:26', '127.0.0.1', '0', '小李', 'default', '313596790@qq.com', '1102', '13566233663');
-INSERT INTO `admin_user` VALUES ('e29149962e944589bb7da23ad18ddeed', 'zhangsan', 'c2da1419caf053885c492e10ebde421581cdc03f', '张三', '', '3264c8e83d0248bb9e3ea6195b4c0216', '', '', '0', '小张', 'default', 'zhangsan@www.com', '1101', '2147483647');
+INSERT INTO `admin_user` VALUES ('1', '11', null, '122', '12', '11', '1', '2016-08-05 20:53:55', '1', null, null, '1');
+INSERT INTO `admin_user` VALUES ('2', '222', null, '22', '22', '222', '1', '2016-08-05 20:55:32', '1', null, null, '1');
+INSERT INTO `admin_user` VALUES ('3', '333', null, '333', '333', '333', '1', '2016-08-05 20:56:26', '1', null, null, '1');
+INSERT INTO `admin_user` VALUES ('4', '444', null, '44', '444', '44', '1', '2016-08-05 20:57:13', '1', null, null, '1');
+INSERT INTO `admin_user` VALUES ('5', '55', null, '55', '55', '55', '1', '2016-08-05 20:57:42', '1', null, null, '1');
+INSERT INTO `admin_user` VALUES ('6', '123', null, '3123123', '123213', '21312312', '1', '2016-08-05 20:59:00', '1', null, null, '1');
+INSERT INTO `admin_user` VALUES ('7', 'ccc', null, '3213', 'sadf314123', '21312', '1', '2016-08-05 20:59:11', '1', null, null, '1');
+INSERT INTO `admin_user` VALUES ('8', '1111', null, '23', '111', '12', '1', '2016-08-05 20:59:19', '1', null, null, '1');
+INSERT INTO `admin_user` VALUES ('9', 'cc', null, '213', 'cc', '213', '1', '2016-08-05 21:00:36', '1', null, null, '1');
+INSERT INTO `admin_user` VALUES ('10', '21321', null, '3123', '321', '3213', '1', '2016-08-05 21:00:58', '1', null, null, '1');
+INSERT INTO `admin_user` VALUES ('11', 'ccc', null, 'ccc', 'ccc', 'cc', '1', '2016-08-05 21:01:03', '1', null, null, '1');
+INSERT INTO `admin_user` VALUES ('12', '111', null, '66', '3', '5435', '1', '2016-08-05 21:01:10', '1', null, null, '1');
+INSERT INTO `admin_user` VALUES ('13', '11', null, '455', '123213', '231312', '1', '2016-08-05 21:01:15', '1', null, null, '1');
+INSERT INTO `admin_user` VALUES ('14', '111', null, '1111', '111', '111', '1', '2016-08-05 21:01:20', '1', null, null, '1');
+INSERT INTO `admin_user` VALUES ('15', 'fang', null, 'fangli123', 'fangl', 'fangli', '1', '2016-08-05 21:01:28', '1', null, null, '1');
 
 -- ----------------------------
 -- Table structure for admin_user_role
