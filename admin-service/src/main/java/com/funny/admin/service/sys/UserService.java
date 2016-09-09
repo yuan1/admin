@@ -5,11 +5,13 @@ import com.funny.admin.condition.sys.UserCondition;
 import com.github.pagehelper.PageInfo;
 
 public interface UserService {
-    void addUser(User user);
+    int addUser(User user);
 
-    void updateUser(User user);
+    int updateUser(User user);
 
     User getUserById(Long id);
+
+    int deleteUser(Long id);
 
     PageInfo<User> getPageUserList(UserCondition condition);
 }

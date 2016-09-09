@@ -184,7 +184,7 @@
                             </td>
                             <td>
                                 <a class="btn btn-circle btn-primary" href="#"><i class="icon-edit"></i>修改</a>
-                                <a class="btn btn-circle btn-danger" href="#"><i class="icon-remove"></i>删除</a>
+                                <a class="btn btn-circle btn-danger" href="#" onclick="deleteUser('${user.id}')"><i class="icon-remove"></i>删除</a>
                             </td>
                         </tr>
                         </#list>
@@ -233,6 +233,25 @@
         function submitForm(){
             $("#user-search-form").attr('action','/admin/user/list.do');
             $("#user-search-form").submit();
+        }
+
+        function deleteUser(id){
+            $.ajax({
+                type: "post",
+                url: '/admin/user/delete.do',
+                data: {
+                    id: id
+                },
+                dataType: 'json',
+                cache: false,
+                success: function (data) {
+                    if (data.returncode == 0) {
+                        window.location.href = "/admin/user/list.do"
+                    }else{
+                        alert(data.message);
+                    }
+                }
+            });
         }
 </script>
 </body>

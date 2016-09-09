@@ -17,13 +17,13 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public void addUser(User user) {
-        userMapper.insert(user);
+    public int addUser(User user) {
+        return userMapper.insert(user);
     }
 
     @Override
-    public void updateUser(User user) {
-        userMapper.updateByIdSelected(user);
+    public int updateUser(User user) {
+        return userMapper.updateByIdSelected(user);
     }
 
     @Override
@@ -32,8 +32,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int deleteUser(Long id) {
+        return userMapper.deleteById(id);
+    }
+
+    @Override
     public PageInfo<User> getPageUserList(UserCondition condition) {
         PageHelper.startPage(condition.getPageNo(), condition.getPageSize());
+        PageHelper.orderBy("id desc");
         List<User> users = userMapper.getPageUserList(condition);
         return new PageInfo<User>(users);
     }

@@ -6,6 +6,7 @@ import com.funny.admin.service.sys.UserService;
 import com.funny.result.JsonResult;
 import com.github.pagehelper.PageInfo;
 import com.google.common.base.Strings;
+import com.sun.tracing.dtrace.ModuleName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +19,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Controller
+@ModuleName("用户管理")
 public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
+
 
     @RequestMapping("/user/list")
     public ModelAndView getUserList(HttpServletRequest request, UserCondition condition) {
@@ -44,8 +47,10 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping("/user/getUserById")
-    public ModelAndView getUserById(HttpServletRequest request) {
+    public ModelAndView getUserById(HttpServletRequest request, Long id) {
         ModelAndView modelAndView = new ModelAndView();
+        User user = userService.getUserById(id);
+        modelAndView.addObject("user", user);
         modelAndView.setViewName("/admin/user/user_edit");
         return modelAndView;
     }
@@ -74,6 +79,21 @@ public class UserController extends BaseController {
             e.printStackTrace();
             jsonResult.setReturncode(500);
             jsonResult.setMessage("保存失败");
+        }
+        return jsonResult;
+    }
+
+    @RequestMapping("/user/delete")
+    @ResponseBody
+    public JsonResult deleteUser(HttpServletRequest request, Long id) {
+        JsonResult jsonResult = new JsonResult();
+        try {
+            userService.deleteUser(id);
+            jsonResult.setSuccess();
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsonResult.setReturncode(500);
+            jsonResult.setMessage("删除失败");
         }
         return jsonResult;
     }

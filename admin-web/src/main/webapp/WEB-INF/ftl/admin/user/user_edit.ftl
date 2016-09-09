@@ -79,7 +79,7 @@
                         <div class="row">
                             <div class="col-md-offset-3 col-md-9">
                                 <a href="#"  class="btn btn-circle green-haze" onclick="submit();">确定</a>
-                                <a href="#"  class="btn btn-circle red" onclick="window.history.go("-1");">取消</a>
+                                <a href="/admin/user/list.do "  class="btn btn-circle red">取消</a>
                             </div>
                         </div>
                     </div>
