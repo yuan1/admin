@@ -1,4 +1,4 @@
-package com.funny.admin.vo.sys;
+package com.funny.admin.domain.sys.vo;
 
 import com.funny.admin.domain.sys.BasicMenu;
 import com.funny.admin.domain.sys.Menu;

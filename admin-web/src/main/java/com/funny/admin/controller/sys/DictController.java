@@ -4,7 +4,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.funny.admin.condition.sys.DictCondition;
+import com.funny.admin.domain.sys.condition.DictCondition;
 import com.funny.admin.domain.sys.Dict;
 import com.funny.admin.service.sys.DictService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.funny.admin.condition.sys.UserCondition;
 import com.funny.admin.controller.BaseController;
-import com.funny.admin.domain.sys.User;
-import com.funny.admin.service.sys.UserService;
 import com.funny.result.JsonResult;
 import com.github.pagehelper.PageInfo;
 import com.google.common.base.Strings;

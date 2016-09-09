@@ -1,7 +1,8 @@
 package com.funny.admin.controller.sys;
 
 import com.funny.admin.domain.sys.User;
-import com.funny.admin.condition.sys.UserCondition;
+import com.funny.admin.domain.sys.condition.UserCondition;
+import com.funny.admin.domain.sys.enums.UserStatusEnum;
 import com.funny.admin.service.sys.UserService;
 import com.funny.result.JsonResult;
 import com.github.pagehelper.PageInfo;
@@ -33,6 +34,7 @@ public class UserController extends BaseController {
         condition.setPageSize(10);
         PageInfo<User> pageInfo = userService.getPageUserList(condition);
 
+        modelAndView.addObject("statusList", UserStatusEnum.values());
         modelAndView.addObject("pageInfo", pageInfo);
         modelAndView.addObject("userList", pageInfo.getList());
         modelAndView.addObject("condition", condition);

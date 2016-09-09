@@ -87,22 +87,22 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">角色</label>
+                                    <label class="col-md-4 control-label">状态</label>
 
                                     <div class="col-md-8">
                                         <select class="bs-select select2 form-control input-inline" name="userType"
                                                 data-live-search="true">
-                                            <option value=''>全部</option>
-                                            <option value="1">销售顾问</option>
-                                            <option value="2">销售经理</option>
-                                            <option value="3">总经理</option>
+                                            <option value="">全部</option>
+                                            <#list statusList as status>
+                                                <option value=">${status.value}">${status.desc}</option>
+                                            </#list>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <a class="btn btn-sm btn-circle blue"><i class="fa fa-search"></i>查询</a>
-                                <a class="btn btn-sm btn-circle grey-cascade"><i class="fa fa-times"></i>重置</a>
+                                <a class="btn btn-sm btn-circle blue" id="searchBtn"><i class="fa fa-search"></i>查询</a>
+                                <a class="btn btn-sm btn-circle grey-cascade" id="resetBtn"><i class="fa fa-times"></i>重置</a>
                             </div>
                         </div>
                     </form>
@@ -206,6 +206,13 @@
 <#include "../../layout/bottom.ftl">
 <script>
         $(function(){
+            $("#searchBtn").click(function () {
+                submitForm();
+            });
+            $("#resetBtn").click(function () {
+                resetForm();
+            });
+
             var totalPage = ${pageInfo.pages};
             var pageNum = ${pageInfo.pageNum};
             $('#js-bootpag').bootpag({
@@ -233,6 +240,10 @@
         function submitForm(){
             $("#user-search-form").attr('action','/admin/user/list.do');
             $("#user-search-form").submit();
+        }
+        function resetForm(){
+            document.getElementById("user-search-form").reset();
+            //$("#user-search-form")[0].reset();
         }
 
         function deleteUser(id){

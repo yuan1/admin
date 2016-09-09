@@ -3,15 +3,13 @@ package com.funny.admin.controller.sys;
 import com.funny.admin.controller.BaseController;
 import com.funny.admin.domain.sys.Menu;
 import com.funny.admin.service.sys.MenuService;
-import com.funny.admin.vo.sys.MenuVo;
+import com.funny.admin.domain.sys.vo.MenuVo;
 import com.funny.result.JsonResult;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 
 
 @Controller

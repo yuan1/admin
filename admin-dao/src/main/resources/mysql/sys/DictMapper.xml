@@ -10,7 +10,7 @@
         where dict_id = #{dictId,jdbcType=INTEGER}
     </select>
 
-    <select id="getPageDictList" resultMap="BaseResultMap" parameterType="com.funny.admin.condition.sys.DictCondition" >
+    <select id="getPageDictList" resultMap="BaseResultMap" parameterType="com.funny.admin.domain.sys.condition.DictCondition" >
         select
         <include refid="Base_Column_List" />
         from admin_dict

@@ -1,6 +1,6 @@
 package com.funny.admin.service.sys;
 
-import com.funny.admin.condition.sys.DictCondition;
+import com.funny.admin.domain.sys.condition.DictCondition;
 import com.funny.admin.domain.sys.Dict;
 import com.github.pagehelper.PageInfo;
 

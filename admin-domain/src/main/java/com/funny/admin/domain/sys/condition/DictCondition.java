@@ -1,4 +1,4 @@
-package com.funny.admin.condition.sys;
+package com.funny.admin.domain.sys.condition;
 
 import com.funny.admin.domain.PageCondition;
 
