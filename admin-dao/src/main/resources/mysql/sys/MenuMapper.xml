@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.funny.admin.dao.sys.MenuMapper" >
-  <select id="listSubMenuByParentId" parameterType="long" resultMap="BaseResultMap">
-      select <include refid="Base_Column_List" /> from admin_menu where yn=1 and parent_id = #{parentId}
+  <select id="selectMenuListByCondition" parameterType="com.funny.admin.domain.sys.condition.MenuCondition" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List" /> from admin_menu where yn=1
+      <if test="parentId != null ">
+          and parent_id = #{parentId}
+      </if>
       order by menu_order
   </select>
 </mapper>

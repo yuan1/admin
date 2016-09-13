@@ -27,8 +27,10 @@ public class MenuController extends BaseController {
             MenuEntity menu = menuService.getMenuById(id);
             BeanUtils.copyProperties(menu, menuVo);
             if (menu.getParentId() != null && menu.getParentId() != 0L) {
-                MenuEntity parentMenu = menuService.getMenuById(menu.getParentId());
-                menuVo.setParentMenu(parentMenu);
+                MenuEntity parentEntity = menuService.getMenuById(menu.getParentId());
+                MenuVo parent = new MenuVo();
+                BeanUtils.copyProperties(parentEntity,parent);
+                menuVo.setParentMenu(parent);
             }
             jsonResult.setSuccess();
             jsonResult.setResult(menuVo);

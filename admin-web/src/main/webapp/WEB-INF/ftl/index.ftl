@@ -102,9 +102,9 @@
                         } else {
                             mentstr += '<li onclick="selectParent(this);"><a href="' + item.menuUrl + '"><i class="' + item.menuIcon + '"></i><span class="title">' + item.menuName + '</span></a>';
                         }
-                        if (item.menuList.length > 0) {
+                        if (item.childList!=null && item.childList.length > 0) {
                             mentstr += '<ul class="sub-menu">';
-                            $.each(item.menuList, function (i, it) {
+                            $.each(item.childList, function (i, it) {
                                 mentstr += '<li><a href="' + it.menuUrl + '" target="mainFrame" onclick="selectMenu(this,'+it.id+');"><i class="' + it.menuIcon + '"></i><span class="title">' + it.menuName + '</span></a></li>';
                             });
                             mentstr += '</ul>';
