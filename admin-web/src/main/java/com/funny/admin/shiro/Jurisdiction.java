@@ -7,7 +7,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 
 import com.fh.util.Const;
-import com.funny.admin.domain.sys.Menu;
+import com.funny.admin.domain.sys.entity.MenuEntity;
 
 
 /**
@@ -31,7 +31,7 @@ public class Jurisdiction {
 		 */
 		String USERNAME = getUsername();	//获取当前登录者loginname
 		Session session = getSession();
-		List<Menu> menuList = (List<Menu>)session.getAttribute(USERNAME + Const.SESSION_allmenuList); //获取菜单列表
+		List<MenuEntity> menuList = (List<MenuEntity>)session.getAttribute(USERNAME + Const.SESSION_allmenuList); //获取菜单列表
 		return readMenu(menuList,menuUrl,session,USERNAME);
 	}
 	
@@ -41,7 +41,7 @@ public class Jurisdiction {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public static boolean readMenu(List<Menu> menuList,String menuUrl,Session session,String USERNAME){
+	public static boolean readMenu(List<MenuEntity> menuList,String menuUrl,Session session,String USERNAME){
 		for(int i=0;i<menuList.size();i++){
 			if(menuList.get(i).getMenuUrl().split(".do")[0].equals(menuUrl.split(".do")[0])){ //访问地址与菜单地址循环匹配，如何匹配到就进一步验证，如果没匹配到就不处理(可能是接口链接或其它链接)
 //				if(!menuList.get(i).isHasMenu()){				//判断有无此菜单权限
@@ -84,7 +84,7 @@ public class Jurisdiction {
 		 */
 		String USERNAME = getUsername();	//获取当前登录者loginname
 		Session session = getSession();
-		List<Menu> menuList = (List<Menu>)session.getAttribute(USERNAME + Const.SESSION_allmenuList); //获取菜单列表
+		List<MenuEntity> menuList = (List<MenuEntity>)session.getAttribute(USERNAME + Const.SESSION_allmenuList); //获取菜单列表
 		readMenuButton(menuList,menuUrl,session,USERNAME,type);
 		return true;
 	}
@@ -95,7 +95,7 @@ public class Jurisdiction {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public static boolean readMenuButton(List<Menu> menuList,String menuUrl,Session session,String USERNAME, String type){
+	public static boolean readMenuButton(List<MenuEntity> menuList,String menuUrl,Session session,String USERNAME, String type){
 		for(int i=0;i<menuList.size();i++){
 //			if(menuList.get(i).getMENU_URL().split(".do")[0].equals(menuUrl.split(".do")[0])){ //访问地址与菜单地址循环匹配，如何匹配到就进一步验证，如果没匹配到就不处理(可能是接口链接或其它链接)
 //				if(!menuList.get(i).isHasMenu()){				//判断有无此菜单权限

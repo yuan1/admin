@@ -1,12 +1,12 @@
 package com.funny.admin.dao.sys;
 
-import com.funny.admin.dao.BaseMapper;
-import com.funny.admin.domain.sys.User;
-import com.funny.admin.domain.sys.condition.UserCondition;
-
 import java.util.List;
 
-public interface UserMapper extends BaseMapper<User> {
+import com.funny.admin.dao.BaseMapper;
+import com.funny.admin.domain.sys.condition.UserCondition;
+import com.funny.admin.domain.sys.entity.UserEntity;
 
-    List<User> getPageUserList(UserCondition condition);
+public interface UserMapper extends BaseMapper<UserEntity> {
+
+    List<UserEntity> getPageUserList(UserCondition condition);
 }

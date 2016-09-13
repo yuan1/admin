@@ -1,8 +1,8 @@
-package com.funny.admin.domain.sys;
+package com.funny.admin.domain.sys.entity;
 
 import com.funny.admin.domain.BaseEntity;
 
-public class BasicRole extends BaseEntity {
+public class RoleEntity extends BaseEntity {
     private static final long serialVersionUID = 1467208031621L;
 
     /**

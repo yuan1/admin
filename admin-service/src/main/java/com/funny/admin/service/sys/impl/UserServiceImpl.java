@@ -1,7 +1,7 @@
 package com.funny.admin.service.sys.impl;
 
 import com.funny.admin.dao.sys.UserMapper;
-import com.funny.admin.domain.sys.User;
+import com.funny.admin.domain.sys.entity.UserEntity;
 import com.funny.admin.domain.sys.condition.UserCondition;
 import com.funny.admin.service.sys.UserService;
 import com.github.pagehelper.PageHelper;
@@ -17,17 +17,17 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public int addUser(User user) {
+    public int addUser(UserEntity user) {
         return userMapper.insert(user);
     }
 
     @Override
-    public int updateUser(User user) {
+    public int updateUser(UserEntity user) {
         return userMapper.updateByIdSelected(user);
     }
 
     @Override
-    public User getUserById(Long id) {
+    public UserEntity getUserById(Long id) {
         return userMapper.findById(id);
     }
 
@@ -37,10 +37,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageInfo<User> getPageUserList(UserCondition condition) {
+    public PageInfo<UserEntity> getPageUserList(UserCondition condition) {
         PageHelper.startPage(condition.getPageNo(), condition.getPageSize());
         PageHelper.orderBy("id desc");
-        List<User> users = userMapper.getPageUserList(condition);
-        return new PageInfo<User>(users);
+        List<UserEntity> users = userMapper.getPageUserList(condition);
+        return new PageInfo<UserEntity>(users);
     }
 }

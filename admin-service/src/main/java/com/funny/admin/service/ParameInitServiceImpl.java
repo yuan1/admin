@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentMap;
 import javax.annotation.Resource;
 
 import com.funny.admin.dao.sys.ParameterMapper;
-import com.funny.admin.domain.sys.Parameter;
+import com.funny.admin.domain.sys.entity.ParameterEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -34,10 +34,10 @@ public class ParameInitServiceImpl  implements InitializingBean {
     /**
      * spring 初始化后load数据，程序中<b>不许</b>调用此方法
      */
-    public static void loadData(List<Parameter> dict) {
+    public static void loadData(List<ParameterEntity> dict) {
         logger.info("load parameters data into memory.");
-        ConcurrentMap<Long, Parameter> dataMap = Maps.newConcurrentMap();
-        for (Parameter para : dict) {
+        ConcurrentMap<Long, ParameterEntity> dataMap = Maps.newConcurrentMap();
+        for (ParameterEntity para : dict) {
             dataMap.put(para.getId(), para);
         }
         RedisUtils.getInstance().OBJECTS.set(PARAM_CACHE_KEY, dataMap);
@@ -50,8 +50,8 @@ public class ParameInitServiceImpl  implements InitializingBean {
      * @return 参数value
      */
     @SuppressWarnings("unchecked")
-    public static Parameter getDictValue(final Long dicType) {
-        ConcurrentMap<Long, Parameter> dataMap = (ConcurrentMap<Long, Parameter>) RedisUtils.getInstance().OBJECTS.get(PARAM_CACHE_KEY);
+    public static ParameterEntity getDictValue(final Long dicType) {
+        ConcurrentMap<Long, ParameterEntity> dataMap = (ConcurrentMap<Long, ParameterEntity>) RedisUtils.getInstance().OBJECTS.get(PARAM_CACHE_KEY);
         return dataMap.get(dicType);
     }
 

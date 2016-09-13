@@ -1,8 +1,9 @@
 package com.funny.admin.controller.sys;
 
-import com.funny.admin.domain.sys.User;
+import com.funny.admin.domain.sys.entity.UserEntity;
 import com.funny.admin.domain.sys.condition.UserCondition;
 import com.funny.admin.domain.sys.enums.UserStatusEnum;
+import com.funny.admin.domain.sys.vo.UserVo;
 import com.funny.admin.service.sys.UserService;
 import com.funny.result.JsonResult;
 import com.github.pagehelper.PageInfo;
@@ -32,7 +33,7 @@ public class UserController extends BaseController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/admin/user/user_list");
         condition.setPageSize(10);
-        PageInfo<User> pageInfo = userService.getPageUserList(condition);
+        PageInfo<UserEntity> pageInfo = userService.getPageUserList(condition);
 
         modelAndView.addObject("statusList", UserStatusEnum.values());
         modelAndView.addObject("pageInfo", pageInfo);
@@ -51,7 +52,7 @@ public class UserController extends BaseController {
     @RequestMapping("/user/getUserById")
     public ModelAndView getUserById(HttpServletRequest request, Long id) {
         ModelAndView modelAndView = new ModelAndView();
-        User user = userService.getUserById(id);
+        UserEntity user = userService.getUserById(id);
         modelAndView.addObject("user", user);
         modelAndView.setViewName("/admin/user/user_edit");
         return modelAndView;
@@ -59,7 +60,7 @@ public class UserController extends BaseController {
 
     @RequestMapping("/user/save")
     @ResponseBody
-    public JsonResult saveUser(HttpServletRequest request, User user) {
+    public JsonResult saveUser(HttpServletRequest request, UserVo user) {
         JsonResult jsonResult = checkUser(user);
         if (!jsonResult.isSuccess()) {
             return jsonResult;
@@ -100,7 +101,7 @@ public class UserController extends BaseController {
         return jsonResult;
     }
 
-    private JsonResult checkUser(User user) {
+    private JsonResult checkUser(UserVo user) {
         JsonResult jsonResult = new JsonResult();
         if (Strings.isNullOrEmpty(user.getUserName())) {
             jsonResult.setReturncode(500);

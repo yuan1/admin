@@ -1,17 +1,17 @@
 package com.funny.admin.service.sys;
 
-import com.funny.admin.domain.sys.User;
 import com.funny.admin.domain.sys.condition.UserCondition;
+import com.funny.admin.domain.sys.entity.UserEntity;
 import com.github.pagehelper.PageInfo;
 
 public interface UserService {
-    int addUser(User user);
+    int addUser(UserEntity user);
 
-    int updateUser(User user);
+    int updateUser(UserEntity user);
 
-    User getUserById(Long id);
+    UserEntity getUserById(Long id);
 
     int deleteUser(Long id);
 
-    PageInfo<User> getPageUserList(UserCondition condition);
+    PageInfo<UserEntity> getPageUserList(UserCondition condition);
 }

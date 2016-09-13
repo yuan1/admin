@@ -1,8 +1,8 @@
-package com.funny.admin.domain.sys;
+package com.funny.admin.domain.sys.entity;
 
 import com.funny.admin.domain.BaseEntity;
 
-public class BasicUser extends BaseEntity {
+public class UserEntity extends BaseEntity {
     private static final long serialVersionUID = 1467208033489L;
 
     /**

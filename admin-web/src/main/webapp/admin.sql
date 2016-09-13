@@ -1,3 +1,4 @@
+http://keenthemes.com/preview/metronic/theme/admin_1/index.html
 /*
 Navicat MySQL Data Transfer
 
@@ -35,44 +36,36 @@ CREATE TABLE `admin_department` (
 -- ----------------------------
 -- Records of admin_department
 -- ----------------------------
-
--- ----------------------------
--- Table structure for admin_dict
--- ----------------------------
-DROP TABLE IF EXISTS `admin_dict`;
-CREATE TABLE `admin_dict` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `dict_id` int(11) DEFAULT NULL,
-  `dict_name` varchar(255) DEFAULT NULL,
-  `create_time` datetime DEFAULT NULL,
-  `create_by` bigint(20) DEFAULT NULL,
-  `update_time` datetime DEFAULT NULL,
-  `update_by` bigint(20) DEFAULT NULL,
-  `yn` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of admin_dict
--- ----------------------------
-
--- ----------------------------
--- Table structure for admin_dictionary
--- ----------------------------
-DROP TABLE IF EXISTS `admin_dictionary`;
-CREATE TABLE `admin_dictionary` (
+DROP TABLE IF EXISTS `admin_config_item`;
+CREATE TABLE `admin_config_item` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `dict_id` bigint(20) DEFAULT NULL COMMENT '名称',
-  `dic_name` varchar(100) DEFAULT NULL COMMENT '英文',
-  `dic_value` varchar(50) DEFAULT NULL COMMENT '编码',
-  `dic_id` int(11) DEFAULT NULL COMMENT '排序',
+  `config_id` bigint(20) DEFAULT NULL COMMENT '配置id',
+  `item_name` varchar(100) DEFAULT NULL COMMENT '配置项描述',
+  `item_value` varchar(50) DEFAULT NULL COMMENT '配置value',
+  `item_id` int(11) DEFAULT NULL COMMENT '配置项id',
+  `order_num` int(11) DEFAULT NULL COMMENT '排序',
   `create_time` datetime DEFAULT NULL COMMENT '上级ID',
   `create_by` bigint(20) DEFAULT NULL COMMENT '备注',
   `update_by` bigint(20) DEFAULT NULL COMMENT '排查表',
   `update_time` datetime DEFAULT NULL,
+  `yn` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_config_id` (`config_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='系统配置项表';
+
+DROP TABLE IF EXISTS `admin_config`;
+CREATE TABLE `admin_config` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `config_code` varchar(50) DEFAULT NULL COMMENT '配置编码',
+  `config_desc` varchar(100) DEFAULT NULL COMMENT '配置描述',
+  `create_time` datetime DEFAULT NULL,
+  `create_by` bigint(20) DEFAULT NULL,
+  `update_by` bigint(20) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
   `yn` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `idx_config_code` (`config_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统配置';
 
 -- ----------------------------
 -- Records of admin_dictionary

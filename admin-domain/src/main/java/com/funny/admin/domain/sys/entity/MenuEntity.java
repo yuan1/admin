@@ -1,9 +1,9 @@
-package com.funny.admin.domain.sys;
+package com.funny.admin.domain.sys.entity;
 
 
 import com.funny.admin.domain.BaseEntity;
 
-public class BasicMenu extends BaseEntity {
+public class MenuEntity extends BaseEntity {
     private static final long serialVersionUID = 1468326216090L;
 
     /**

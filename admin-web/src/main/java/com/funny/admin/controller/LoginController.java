@@ -18,7 +18,7 @@ import com.fh.util.Const;
 import com.fh.util.PageData;
 import com.fh.util.Tools;
 import com.funny.result.JsonResult;
-import com.funny.admin.domain.sys.Menu;
+import com.funny.admin.domain.sys.entity.MenuEntity;
 
 
 @Controller
@@ -60,9 +60,9 @@ public class LoginController {
 	public JsonResult createMenuTree(){
 		JsonResult jsonResult = new JsonResult();
 		try {
-			List<Menu> menuList = menuService.listSubMenuByParentId(0L);
-			for(Menu menu:menuList){
-				menu.setMenuList(menuService.listSubMenuByParentId(menu.getId()));
+			List<MenuEntity> menuList = menuService.listSubMenuByParentId(0L);
+			for(MenuEntity menu:menuList){
+				//menu.setMenuList(menuService.listSubMenuByParentId(menu.getId()));
 			}
 			jsonResult.setSuccess();
 			jsonResult.setResult(menuList);
