@@ -1,4 +1,4 @@
-package com.fh.util.mail;
+package com.funny.utils.mail;
 
 import java.util.Date;
 import java.util.Properties;
@@ -19,13 +19,13 @@ public class SimpleMailSender {
   * 以文本格式发送邮件   
   * @param mailInfo 待发送的邮件的信息   
   */    
-    public boolean sendTextMail(MailSenderInfo mailInfo) throws Exception{    
+    public boolean sendTextMail(MailSenderInfo mailInfo) throws Exception{
       // 判断是否需要身份认证    
-      MyAuthenticator authenticator = null;    
+      MyAuthenticator authenticator = null;
       Properties pro = mailInfo.getProperties();   
       if (mailInfo.isValidate()) {    
       // 如果需要身份认证，则创建一个密码验证器    
-        authenticator = new MyAuthenticator(mailInfo.getUserName(), mailInfo.getPassword());    
+        authenticator = new MyAuthenticator(mailInfo.getUserName(), mailInfo.getPassword());
       }   
       // 根据邮件会话属性和密码验证器构造一个发送邮件的session    
       Session sendMailSession = Session.getDefaultInstance(pro, authenticator);
@@ -54,13 +54,13 @@ public class SimpleMailSender {
       * 以HTML格式发送邮件   
       * @param mailInfo 待发送的邮件信息   
       */    
-    public  boolean sendHtmlMail(MailSenderInfo mailInfo) throws Exception{    
+    public  boolean sendHtmlMail(MailSenderInfo mailInfo) throws Exception{
       // 判断是否需要身份认证    
-      MyAuthenticator authenticator = null;   
+      MyAuthenticator authenticator = null;
       Properties pro = mailInfo.getProperties();   
       //如果需要身份认证，则创建一个密码验证器     
       if (mailInfo.isValidate()) {    
-        authenticator = new MyAuthenticator(mailInfo.getUserName(), mailInfo.getPassword());   
+        authenticator = new MyAuthenticator(mailInfo.getUserName(), mailInfo.getPassword());
       }    
       // 根据邮件会话属性和密码验证器构造一个发送邮件的session    
       Session sendMailSession = Session.getDefaultInstance(pro, authenticator);
@@ -101,7 +101,7 @@ public class SimpleMailSender {
     public boolean sendMail(String title,String content,String type,String tomail) throws Exception{   
         
     	//这个类主要是设置邮件   
-	     MailSenderInfo mailInfo = new MailSenderInfo();    
+	     MailSenderInfo mailInfo = new MailSenderInfo();
 	     mailInfo.setMailServerHost("smtp.qq.com");    
 	     mailInfo.setMailServerPort("25");    
 	     mailInfo.setValidate(true);    
@@ -154,7 +154,7 @@ public class SimpleMailSender {
     
     public static void main(String[] args){   
         //这个类主要是设置邮件   
-	     MailSenderInfo mailInfo = new MailSenderInfo();    
+	     MailSenderInfo mailInfo = new MailSenderInfo();
 	     mailInfo.setMailServerHost("smtp.qq.com");    
 	     mailInfo.setMailServerPort("25");    
 	     mailInfo.setValidate(true);    

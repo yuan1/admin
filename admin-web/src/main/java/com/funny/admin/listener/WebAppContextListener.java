@@ -1,30 +1,19 @@
-package com.funny.web.listener;
+package com.funny.admin.listener;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.fh.util.Const;
-
-/**
- * 
-* 类名称：WebAppContextListener.java
-* 类描述： 
-* 作者：FH 
-* 联系方式：
-* @version 1.0
- */
 public class WebAppContextListener implements ServletContextListener {
+    private static WebApplicationContext was = null;
 
-	public void contextDestroyed(ServletContextEvent event) {
-		// TODO Auto-generated method stub
-	}
+    public void contextDestroyed(ServletContextEvent event) {
+    }
 
-	public void contextInitialized(ServletContextEvent event) {
-		// TODO Auto-generated method stub
-		Const.WEB_APP_CONTEXT = WebApplicationContextUtils.getWebApplicationContext(event.getServletContext());
-		//System.out.println("========获取Spring WebApplicationContext");
-	}
+    public void contextInitialized(ServletContextEvent event) {
+        was = WebApplicationContextUtils.getWebApplicationContext(event.getServletContext());
+    }
 
 }
