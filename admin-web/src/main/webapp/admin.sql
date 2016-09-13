@@ -1,4 +1,3 @@
-http://keenthemes.com/preview/metronic/theme/admin_1/index.html
 /*
 Navicat MySQL Data Transfer
 
