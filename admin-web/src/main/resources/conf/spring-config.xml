@@ -3,43 +3,14 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-       http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:annotation-config/>
+    <!-- 扫描注解Bean -->
+    <context:component-scan base-package="com.funny.admin.service"/>
 
-    <import resource="classpath:conf/spring-config-*.xml"/>
-    <!-- ================ Shiro start ================
-    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <property name="realm" ref="ShiroRealm" />
-    </bean>
-    <bean id="ShiroRealm" class="ShiroRealm" ></bean>-->
-    <!-- 項目自定义的Realm -->
-    <!-- Shiro Filter
-    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-        <property name="securityManager" ref="securityManager" />
-
-        <property name="loginUrl" value="/" />
-
-        <property name="successUrl" value="/main/index" />
-
-        <property name="unauthorizedUrl" value="toLogin" />
-
-        <property name="filterChainDefinitions">
-            <value>
-                /static/login/** 			= anon
-                /static/js/myjs/** 			= authc
-                /static/js/** 				= anon
-                /static/css/** 				= anon
-                /uploadFiles/uploadImgs/** 	= anon
-                /code.do 					= anon
-                /login       	 			= anon
-                /app**/** 					= anon
-                /weixin/** 					= anon
-                /**							= authc
-            </value>
-        </property>-->
-    <!-- ================ Shiro end ================ -->
+    <import resource="classpath:conf/spring-config-dao.xml"/>
+    <import resource="classpath:conf/spring-config-shiro.xml"/>
 </beans>
 
 

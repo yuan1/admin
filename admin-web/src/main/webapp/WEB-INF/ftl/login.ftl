@@ -86,17 +86,11 @@
 <script src="${basePath}assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="${basePath}assets/js/metronic.js" type="text/javascript"></script>
-<script src="${basePath}assets/js/layout.js" type="text/javascript"></script>
-<script src="${basePath}assets/js/demo.js" type="text/javascript"></script>
 <script src="${basePath}assets/js/login.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
     jQuery(document).ready(function () {
-        Metronic.init(); // init metronic core components
-        Layout.init(); // init current layout
         Login.init();
-        Demo.init();
     });
 </script>
 <!-- END JAVASCRIPTS -->

@@ -35,7 +35,7 @@
                     </li>
                 </ul>
             </div>
-            <iframe name="mainFrame" id="mainFrame" frameborder="0" scrolling="auto" src="/admin/user/list.do"
+            <iframe name="mainFrame" id="mainFrame" frameborder="0" scrolling="auto" src="/main.do"
                     style="margin:0;width:100%;height:100%;" ></iframe>
         </div>
     </div>
