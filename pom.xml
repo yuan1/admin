@@ -13,7 +13,7 @@
     </modules>
     <groupId>com.funny</groupId>
     <artifactId>admin</artifactId>
-    <version>${admin.version}</version>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <org.springframework.version>4.2.0.RELEASE</org.springframework.version>
