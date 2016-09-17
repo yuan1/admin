@@ -8,7 +8,7 @@ import com.funny.admin.web.controller.BaseController;
 
 
 @Controller
-@RequestMapping(value="/role")
+@RequestMapping(value="/admin/role")
 public class RoleController extends BaseController {
 	
 

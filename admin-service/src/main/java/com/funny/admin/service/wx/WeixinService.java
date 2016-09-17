@@ -1,8 +1,8 @@
 package com.funny.admin.service.wx;
 
 
-import com.funny.admin.domain.wx.WeixinMessage;
-import com.funny.admin.domain.wx.WeixinToken;
+import com.funny.admin.common.domain.wx.WeixinMessage;
+import com.funny.admin.common.domain.wx.WeixinToken;
 
 import java.util.List;
 

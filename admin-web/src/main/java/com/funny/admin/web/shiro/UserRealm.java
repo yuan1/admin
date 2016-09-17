@@ -1,6 +1,6 @@
 package com.funny.admin.web.shiro;
 
-import com.funny.admin.domain.sys.entity.UserEntity;
+import com.funny.admin.common.domain.sys.entity.UserEntity;
 import com.funny.admin.service.sys.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

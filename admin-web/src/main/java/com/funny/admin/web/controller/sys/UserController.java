@@ -1,14 +1,13 @@
 package com.funny.admin.web.controller.sys;
 
-import com.funny.admin.domain.sys.entity.UserEntity;
-import com.funny.admin.domain.sys.condition.UserCondition;
-import com.funny.admin.domain.sys.enums.UserStatusEnum;
-import com.funny.admin.domain.sys.vo.UserVo;
+import com.funny.admin.common.domain.sys.entity.UserEntity;
+import com.funny.admin.common.domain.sys.condition.UserCondition;
+import com.funny.admin.common.domain.sys.enums.UserStatusEnum;
+import com.funny.admin.common.domain.sys.vo.UserVo;
 import com.funny.admin.service.sys.UserService;
-import com.funny.result.JsonResult;
+import com.funny.admin.common.result.JsonResult;
 import com.github.pagehelper.PageInfo;
 import com.google.common.base.Strings;
-import com.sun.tracing.dtrace.ModuleName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,14 +20,14 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Controller
-@ModuleName("用户管理")
+@RequestMapping("/admin/user/")
 public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
 
 
-    @RequestMapping("/user/list")
+    @RequestMapping("/list")
     public ModelAndView getUserList(HttpServletRequest request, UserCondition condition) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/admin/user/user_list");
@@ -42,14 +41,14 @@ public class UserController extends BaseController {
         return modelAndView;
     }
 
-    @RequestMapping("/user/add")
+    @RequestMapping("/add")
     public ModelAndView add(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/admin/user/user_edit");
         return modelAndView;
     }
 
-    @RequestMapping("/user/getUserById")
+    @RequestMapping("/getUserById")
     public ModelAndView getUserById(HttpServletRequest request, Long id) {
         ModelAndView modelAndView = new ModelAndView();
         UserEntity user = userService.getUserById(id);
@@ -58,7 +57,7 @@ public class UserController extends BaseController {
         return modelAndView;
     }
 
-    @RequestMapping("/user/save")
+    @RequestMapping("/save")
     @ResponseBody
     public JsonResult saveUser(HttpServletRequest request, UserVo user) {
         JsonResult jsonResult = checkUser(user);
@@ -86,7 +85,7 @@ public class UserController extends BaseController {
         return jsonResult;
     }
 
-    @RequestMapping("/user/delete")
+    @RequestMapping("/delete")
     @ResponseBody
     public JsonResult deleteUser(HttpServletRequest request, Long id) {
         JsonResult jsonResult = new JsonResult();

@@ -1,8 +1,8 @@
 package com.funny.admin.service.sys;
 
 
-import com.funny.admin.domain.sys.condition.MenuCondition;
-import com.funny.admin.domain.sys.entity.MenuEntity;
+import com.funny.admin.common.domain.sys.condition.MenuCondition;
+import com.funny.admin.common.domain.sys.entity.MenuEntity;
 
 import java.util.List;
 

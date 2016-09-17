@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.funny.admin.dao.sys.ParameterMapper" >
-  <resultMap id="BaseResultMap" type="com.funny.admin.domain.sys.entity.ParameterEntity" >
+<mapper namespace="com.funny.admin.common.dao.sys.ParameterMapper" >
+  <resultMap id="BaseResultMap" type="com.funny.admin.common.domain.sys.entity.ParameterEntity" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="param_name" property="paramName" jdbcType="VARCHAR" />
     <result column="param_value" property="paramValue" jdbcType="VARCHAR" />
@@ -17,7 +17,7 @@
     id, param_name, param_value, param_type, note, create_by, create_time, update_by, 
     update_time, yn
   </sql>
-  <insert id="insert" parameterType="com.funny.admin.domain.sys.entity.ParameterEntity" >
+  <insert id="insert" parameterType="com.funny.admin.common.domain.sys.entity.ParameterEntity" >
     insert into admin_parameter (id, param_name, param_value,
       param_type, note, create_by, 
       create_time, update_by, update_time, 
@@ -27,7 +27,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{yn,jdbcType=INTEGER})
   </insert>
-  <update id="updateByIdSelected" parameterType="com.funny.admin.domain.sys.entity.ParameterEntity" >
+  <update id="updateByIdSelected" parameterType="com.funny.admin.common.domain.sys.entity.ParameterEntity" >
     update admin_parameter
     <set >
       <if test="paramName != null" >

@@ -1,13 +1,13 @@
 package com.funny.admin.service.sys.impl;
 
-import com.funny.admin.domain.sys.entity.ConfigEntity;
-import com.funny.admin.domain.sys.entity.ConfigItemEntity;
-import com.funny.admin.domain.sys.condition.ConfigItemCondition;
+import com.funny.admin.common.domain.sys.entity.ConfigEntity;
+import com.funny.admin.common.domain.sys.entity.ConfigItemEntity;
+import com.funny.admin.common.domain.sys.condition.ConfigItemCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.funny.admin.dao.sys.ConfigItemMapper;
-import com.funny.admin.dao.sys.ConfigMapper;
+import com.funny.admin.common.dao.sys.ConfigItemMapper;
+import com.funny.admin.common.dao.sys.ConfigMapper;
 import com.funny.admin.service.sys.ConfigService;
 
 import java.util.List;

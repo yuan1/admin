@@ -1,8 +1,8 @@
 package com.funny.admin.service.sys.impl;
 
-import com.funny.admin.dao.sys.MenuMapper;
-import com.funny.admin.domain.sys.condition.MenuCondition;
-import com.funny.admin.domain.sys.entity.MenuEntity;
+import com.funny.admin.common.dao.sys.MenuMapper;
+import com.funny.admin.common.domain.sys.condition.MenuCondition;
+import com.funny.admin.common.domain.sys.entity.MenuEntity;
 import com.funny.admin.service.sys.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

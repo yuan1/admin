@@ -2,9 +2,9 @@ package com.funny.admin.service.sys;
 
 import java.util.List;
 
-import com.funny.admin.domain.sys.entity.ConfigEntity;
-import com.funny.admin.domain.sys.entity.ConfigItemEntity;
-import com.funny.admin.domain.sys.condition.ConfigItemCondition;
+import com.funny.admin.common.domain.sys.entity.ConfigEntity;
+import com.funny.admin.common.domain.sys.entity.ConfigItemEntity;
+import com.funny.admin.common.domain.sys.condition.ConfigItemCondition;
 
 public interface ConfigService {
     List<ConfigEntity> findConfigList();

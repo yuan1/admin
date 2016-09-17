@@ -7,19 +7,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.funny.admin.web.controller.BaseController;
-import com.funny.admin.domain.sys.entity.MenuEntity;
-import com.funny.admin.domain.sys.vo.MenuVo;
+import com.funny.admin.common.domain.sys.entity.MenuEntity;
+import com.funny.admin.common.domain.sys.vo.MenuVo;
 import com.funny.admin.service.sys.MenuService;
-import com.funny.result.JsonResult;
+import com.funny.admin.common.result.JsonResult;
 
 @Controller
+@RequestMapping("/admin/menu/")
 public class MenuController extends BaseController {
 
     @Autowired
     private MenuService menuService;
 
-    @RequestMapping(value = "/menu/getMenuParentById")
+    @RequestMapping(value = "/getMenuParentById")
     @ResponseBody
     public JsonResult getMenuParentById(Long id) {
         JsonResult<MenuVo> jsonResult = new JsonResult<MenuVo>();

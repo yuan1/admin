@@ -1,9 +1,8 @@
 package com.funny.admin.service.sys;
 
-import com.funny.admin.domain.sys.condition.UserCondition;
-import com.funny.admin.domain.sys.entity.UserEntity;
+import com.funny.admin.common.domain.sys.condition.UserCondition;
+import com.funny.admin.common.domain.sys.entity.UserEntity;
 import com.github.pagehelper.PageInfo;
-import com.google.common.base.Strings;
 
 import java.util.Set;
 

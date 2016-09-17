@@ -5,14 +5,14 @@ import java.util.concurrent.ConcurrentMap;
 
 import javax.annotation.Resource;
 
-import com.funny.admin.dao.sys.ParameterMapper;
-import com.funny.admin.domain.sys.entity.ParameterEntity;
+import com.funny.admin.common.dao.sys.ParameterMapper;
+import com.funny.admin.common.domain.sys.entity.ParameterEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 
-import com.funny.utils.RedisUtils;
+import com.funny.admin.common.utils.RedisUtils;
 import com.google.common.collect.Maps;
 
 @Service

@@ -1,9 +1,9 @@
 package com.funny.admin.service.wx.impl;
 
 
-import com.funny.admin.dao.wx.WeixinMessageMapper;
-import com.funny.admin.domain.wx.WeixinMessage;
-import com.funny.admin.domain.wx.WeixinToken;
+import com.funny.admin.common.dao.wx.WeixinMessageMapper;
+import com.funny.admin.common.domain.wx.WeixinMessage;
+import com.funny.admin.common.domain.wx.WeixinToken;
 import com.funny.admin.service.wx.WeixinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

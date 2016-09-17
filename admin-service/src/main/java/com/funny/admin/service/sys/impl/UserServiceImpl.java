@@ -1,8 +1,8 @@
 package com.funny.admin.service.sys.impl;
 
-import com.funny.admin.dao.sys.UserMapper;
-import com.funny.admin.domain.sys.entity.UserEntity;
-import com.funny.admin.domain.sys.condition.UserCondition;
+import com.funny.admin.common.dao.sys.UserMapper;
+import com.funny.admin.common.domain.sys.entity.UserEntity;
+import com.funny.admin.common.domain.sys.condition.UserCondition;
 import com.funny.admin.service.sys.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

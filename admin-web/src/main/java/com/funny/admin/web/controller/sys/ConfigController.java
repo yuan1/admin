@@ -16,33 +16,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.funny.admin.web.controller.BaseController;
-import com.funny.admin.domain.sys.entity.ConfigEntity;
-import com.funny.admin.domain.sys.entity.ConfigItemEntity;
-import com.funny.admin.domain.sys.condition.ConfigItemCondition;
-import com.funny.admin.domain.sys.vo.ConfigItemVo;
+import com.funny.admin.common.domain.sys.entity.ConfigEntity;
+import com.funny.admin.common.domain.sys.entity.ConfigItemEntity;
+import com.funny.admin.common.domain.sys.condition.ConfigItemCondition;
+import com.funny.admin.common.domain.sys.vo.ConfigItemVo;
 import com.funny.admin.service.sys.ConfigService;
-import com.funny.result.JsonResult;
+import com.funny.admin.common.result.JsonResult;
 import com.google.common.base.Strings;
-import com.sun.tracing.dtrace.ModuleName;
 
 /**
  * Created by funny on 16/8/25.
  */
 @Controller
-@ModuleName("系统配置")
+@RequestMapping("/admin/config/")
 public class ConfigController extends BaseController {
     private final static Logger logger = LoggerFactory.getLogger(ConfigController.class);
     @Resource
     private ConfigService configService;
 
-    @RequestMapping(value = "/config/list")
+    @RequestMapping(value = "/list")
     public ModelAndView list(Long configId) {
         ModelAndView mv = new ModelAndView("config/list");
         return mv;
     }
 
-    @RequestMapping(value = "/config/getConfigList")
+    @RequestMapping(value = "/getConfigList")
     @ResponseBody
     public JsonResult getConfigList() {
         JsonResult jsonResult = new JsonResult();
@@ -56,7 +54,7 @@ public class ConfigController extends BaseController {
         return jsonResult;
     }
 
-    @RequestMapping(value = "/config/getConfigById")
+    @RequestMapping(value = "/getConfigById")
     @ResponseBody
     public JsonResult getConfigById(Long id) {
         JsonResult jsonResult = new JsonResult();
@@ -69,7 +67,7 @@ public class ConfigController extends BaseController {
         return jsonResult;
     }
 
-    @RequestMapping(value = "/config/itemList")
+    @RequestMapping(value = "/itemList")
     public ModelAndView itemList(ConfigItemCondition condition) {
         ModelAndView mv = new ModelAndView("config/item-list");
         try {
@@ -80,7 +78,7 @@ public class ConfigController extends BaseController {
         return mv;
     }
 
-    @RequestMapping(value = "/config/saveConfig")
+    @RequestMapping(value = "/saveConfig")
     @ResponseBody
     public JsonResult saveConfig(HttpServletRequest request, ConfigItemVo vo) {
         JsonResult jsonResult = new JsonResult();
@@ -104,7 +102,7 @@ public class ConfigController extends BaseController {
         return jsonResult;
     }
 
-    @RequestMapping(value = "/config/addItem")
+    @RequestMapping(value = "/addItem")
     public ModelAndView addItem(Long configId) {
         ModelAndView mv = new ModelAndView("config/item-add");
         if (configId != null) {
@@ -114,7 +112,7 @@ public class ConfigController extends BaseController {
         return mv;
     }
 
-    @RequestMapping(value = "/config/submitAddItem")
+    @RequestMapping(value = "/submitAddItem")
     @ResponseBody
     public JsonResult submitAddItem(HttpServletRequest request, ConfigItemVo vo) {
         JsonResult jsonResult = checkConfigItem(vo);
@@ -133,7 +131,7 @@ public class ConfigController extends BaseController {
         return jsonResult;
     }
 
-    @RequestMapping(value = "/config/editItem")
+    @RequestMapping(value = "/editItem")
     public ModelAndView editItem(Long id) {
         ModelAndView mv = new ModelAndView("config/item-edit");
         ConfigItemEntity configItemEntity = configService.findConfigItemById(id);
@@ -141,7 +139,7 @@ public class ConfigController extends BaseController {
         return mv;
     }
 
-    @RequestMapping(value = "/config/submitEditItem")
+    @RequestMapping(value = "/submitEditItem")
     @ResponseBody
     public JsonResult submitEditItem(HttpServletRequest request, ConfigItemVo vo) {
         JsonResult jsonResult = new JsonResult();
@@ -167,14 +165,14 @@ public class ConfigController extends BaseController {
         return jsonResult;
     }
 
-    @RequestMapping(value = "/config/removeItem")
+    @RequestMapping(value = "/removeItem")
     public ModelAndView removeItem(Long id) {
         ModelAndView mv = new ModelAndView("config/item-remove");
         mv.addObject("id", id);
         return mv;
     }
 
-    @RequestMapping(value = "/config/submitRemoveItem", method = RequestMethod.POST)
+    @RequestMapping(value = "/submitRemoveItem", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult submitRemoveItem(HttpServletRequest request, Long id) {
         JsonResult jsonResult = new JsonResult();

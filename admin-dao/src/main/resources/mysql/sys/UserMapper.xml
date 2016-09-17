@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.funny.admin.dao.sys.UserMapper">
-    <select id="getPageUserList" resultMap="BaseResultMap" parameterType="com.funny.admin.domain.sys.condition.UserCondition">
+<mapper namespace="com.funny.admin.common.dao.sys.UserMapper">
+    <select id="getPageUserList" resultMap="BaseResultMap" parameterType="com.funny.admin.common.domain.sys.condition.UserCondition">
         select
         <include refid="Base_Column_List"/>
         from admin_user where yn=1

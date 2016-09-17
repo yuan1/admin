@@ -1,18 +1,15 @@
 package com.funny.admin.web.controller;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import com.funny.admin.domain.sys.condition.MenuCondition;
-import com.funny.admin.domain.sys.entity.UserEntity;
-import com.funny.admin.domain.sys.vo.MenuVo;
+import com.funny.admin.common.domain.sys.condition.MenuCondition;
+import com.funny.admin.common.domain.sys.vo.MenuVo;
 import com.funny.admin.service.sys.UserService;
 import com.google.common.base.Predicate;
-import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -22,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.funny.admin.domain.sys.entity.MenuEntity;
+import com.funny.admin.common.domain.sys.entity.MenuEntity;
 import com.funny.admin.service.sys.MenuService;
-import com.funny.result.JsonResult;
+import com.funny.admin.common.result.JsonResult;
 
 @Controller
 public class LoginController {
