@@ -35,8 +35,8 @@ public class ConfigController extends BaseController {
     private ConfigService configService;
 
     @RequestMapping(value = "/list")
-    public ModelAndView list(Long configId) {
-        ModelAndView mv = new ModelAndView("config/list");
+    public ModelAndView list() {
+        ModelAndView mv = new ModelAndView("config/tree");
         return mv;
     }
 
@@ -69,7 +69,7 @@ public class ConfigController extends BaseController {
 
     @RequestMapping(value = "/itemList")
     public ModelAndView itemList(ConfigItemCondition condition) {
-        ModelAndView mv = new ModelAndView("config/item-list");
+        ModelAndView mv = new ModelAndView("config/list");
         try {
             List<ConfigItemEntity> configItemEntityList = configService.findConfigItemList(condition);
             mv.addObject("configItemList", configItemEntityList);

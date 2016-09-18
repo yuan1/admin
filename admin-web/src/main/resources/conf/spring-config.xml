@@ -10,7 +10,7 @@
     <context:component-scan base-package="com.funny.admin.service"/>
 
     <import resource="classpath:conf/spring-config-dao.xml"/>
-    <import resource="classpath:conf/spring-config-shiro.xml"/>
+    <!--<import resource="classpath:conf/spring-config-shiro.xml"/>-->
 </beans>
 
 

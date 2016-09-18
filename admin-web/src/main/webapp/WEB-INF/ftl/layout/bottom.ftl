@@ -20,11 +20,5 @@
 <script type="text/javascript" src="${basePath}assets/plugins/jquery-bootpag/jquery.bootpag.min.js"></script>
 <script type="text/javascript" src="${basePath}assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="${basePath}assets/plugins/select2/select2.min.js"></script>
+<script type="text/javascript" src="${basePath}assets/plugins/bootstrap-toastr/toastr.min.js"></script>
 <!-- END PAGE LEVEL PLUGINS -->
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="${basePath}assets/js/metronic.js" type="text/javascript"></script>
-<script src="${basePath}assets/js/layout.js" type="text/javascript"></script>
-<script src="${basePath}assets/js/quick-sidebar.js" type="text/javascript"></script>
-<script src="${basePath}assets/js/demo.js" type="text/javascript"></script>
-<script src="${basePath}assets/js/index.js" type="text/javascript"></script>
-<script src="${basePath}assets/js/tasks.js" type="text/javascript"></script>

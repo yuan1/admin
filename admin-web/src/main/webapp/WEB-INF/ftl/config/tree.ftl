@@ -1,13 +1,13 @@
-#set($layout="layout/bootstrap-default.vm")
-<style>
-    .input-sm {
-        width: 220px !important
-    }
-</style>
-<link type="text/css" rel="stylesheet" href="/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css"/>
-<link type="text/css" rel="stylesheet" href="/assets/global/plugins/jstree/dist/themes/default/style.min.css"/>
-<script type="text/javascript" src="/assets/global/plugins/jstree/dist/jstree.min.js"></script>
-<script type="text/javascript" src="/assets/pages/js/config.js?v=2016082222"></script>
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+<#include "../layout/common.ftl">
+    <link type="text/css" rel="stylesheet"
+          href="${basePath}assets/plugins/jstree/dist/themes/default/style.min.css"/>
+    <script type="text/javascript" src="${basePath}assets/plugins/jstree/dist/jstree.min.js"></script>
+    <script type="text/javascript" src="${basePath}assets/js/sys/config.js?v=2016082222"></script>
+</head>
+<body style="overflow: hidden">
 
 <div class="col-md-12">
     <div class="col-md-2">
@@ -20,15 +20,19 @@
                 <div class="caption" style="padding: 0px;">
                     <form method="post" id="js-edit-form" class="form-horizontal">
                         <input type="hidden" name="id" id="id"/>
+
                         <div class="form-group" style="width: 600px;margin-bottom: 5px;font-size: 14px">
                             <label class="col-md-2 control-label">
                                 配置:<span class="required" aria-required="true"> * </span>
                             </label>
 
-                            <div class="col-md-10" style="padding-top:5px;" >
-                                <input type="text" name="configCode" id="configCode" placeholder="配置编码" style="float:left;width: 100px;margin-right: 5px;"/>
-                                <input type="text" name="configDesc" id="configDesc" placeholder="配置描述" style="float:left;width: 200px;margin-left: 5px;margin-right: 10px;"/>
-                                <a class="btn btn-circle green btn-sm" onclick="saveConfig();" style="margin-left: 10px;height: 24px;margin-left: 10px;padding: 3px 10px;">
+                            <div class="col-md-10" style="padding-top:5px;">
+                                <input type="text" name="configCode" id="configCode" placeholder="配置编码"
+                                       style="float:left;width: 100px;margin-right: 5px;"/>
+                                <input type="text" name="configDesc" id="configDesc" placeholder="配置描述"
+                                       style="float:left;width: 200px;margin-left: 5px;margin-right: 10px;"/>
+                                <a class="btn btn-circle green btn-sm" onclick="saveConfig();"
+                                   style="margin-left: 10px;height: 24px;margin-left: 10px;padding: 3px 10px;">
                                     <i class="fa fa-check"></i> 保存
                                 </a>
                             </div>
@@ -54,6 +58,9 @@
 
 <div class="modal fade" id="ajax-modal" data-width="550"></div>
 
-<script type="text/javascript">
+<#include "../layout/bottom.ftl">
+<script>
     ConfigJS.init();
 </script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <meta charset="utf-8"/>
-<title>Metronic | Login Options - Login Form 1</title>
+<title></title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -14,6 +14,7 @@
 <link href="${basePath}assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
 <link href="${basePath}assets/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
 <link href="${basePath}assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
+<link href="${basePath}assets/plugins/bootstrap-toastr/toastr.css" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN THEME STYLES -->
 <link href="${basePath}assets/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>

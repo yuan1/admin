@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh_CN">
 <head>
-<#include "../../layout/common.ftl">
+<#include "../layout/common.ftl">
 </head>
 <body style="overflow: hidden">
 <!-- BEGIN CONTENT -->
@@ -234,7 +234,7 @@
         </div>
     </div>
 </div>
-<#include "../../layout/bottom.ftl">
+<#include "../layout/bottom.ftl">
 <script>
         $(function(){
             $("#searchBtn").click(function () {

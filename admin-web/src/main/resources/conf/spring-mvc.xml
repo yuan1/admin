@@ -25,6 +25,7 @@
     </mvc:annotation-driven>
 
     <mvc:default-servlet-handler/>
+    <mvc:resources mapping="/assets/**" location="/assets/"/>
 
     <mvc:interceptors>
         <mvc:interceptor>
