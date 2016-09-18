@@ -76,7 +76,7 @@ var ConfigJS = function () {
             var selected = $('#' + data.selected);
             configId = selected.attr('id');
             $("#addbtn").show();
-            $("#addbtn").attr('data-url', '/config/addItem.do?configId=' + configId);
+            $("#addbtn").attr('data-url', '/admin/config/addItem.do?configId=' + configId);
             loadInput();
             submitItemFrom();
         });
@@ -103,7 +103,7 @@ var configId = '';
 function loadTree() {
     $.ajax({
         type: "get",
-        url: '/config/getConfigList.do',
+        url: '/admin/config/getConfigList.do',
         dataType: 'json',
         async: false,
         cache: false,
@@ -148,7 +148,7 @@ function loadInput(){
     };
     $.ajax({
         type: "post",
-        url: '/config/getConfigById.do',
+        url: '/admin/config/getConfigById.do',
         dataType: 'json',
         async: false,
         data: args,
@@ -167,7 +167,7 @@ function loadInput(){
 function submitItemFrom() {
     $("#js-item-form").ajaxSubmit({
         type: 'post', // 提交方式 get/post
-        url: '/config/itemList.do?configId=' + configId,
+        url: '/admin/config/itemList.do?configId=' + configId,
         success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
             // 此处可对 data 作相关处理
             $("#js-item-body").html(data);
@@ -196,7 +196,7 @@ function saveConfig() {
     };
     $.ajax({
         type: "post",
-        url: '/config/saveConfig.do',
+        url: '/admin/config/saveConfig.do',
         dataType: 'json',
         async: false,
         data: args,
@@ -219,7 +219,7 @@ function removeConfig() {
     };
     $.ajax({
         type: "post",
-        url: '/config/submitRemove.html',
+        url: '/admin/config/submitRemove.do',
         dataType: 'json',
         async: false,
         data: args,

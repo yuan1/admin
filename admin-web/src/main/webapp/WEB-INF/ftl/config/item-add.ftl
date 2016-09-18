@@ -3,7 +3,7 @@
     <h4 class="modal-title">新增 <label style="color: red">${config.configDesc} </label> 的配置项</h4>
 </div>
 <div class="modal-body">
-    <form method="post" id="js-add-item-form" class="form-horizontal" action="/config/submitAddItem.do">
+    <form method="post" id="js-add-item-form" class="form-horizontal">
         <input type="hidden" value="$!config.id" name="configId" id="configId"/>
         <div class="form-group">
             <label class="col-md-2 control-label" style="width: 100px">

@@ -57,8 +57,6 @@
 </form>
 
 <div class="modal fade" id="ajax-modal" data-width="550"></div>
-
-<#include "../layout/bottom.ftl">
 <script>
     ConfigJS.init();
 </script>

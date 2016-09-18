@@ -3,7 +3,7 @@
     <h4 class="modal-title">删除配置项</h4>
 </div>
 <div class="modal-body">
-    <form method="post" id="js-remove-item-form" class="form-horizontal" action="/config/submitRemoveItem.do">
+    <form method="post" id="js-remove-item-form" class="form-horizontal">
         <input type="hidden" value="$!id" name="id"/>
         <div class="alert alert-info margin-bottom-5">
             <strong>提示!</strong> 您确定要把这个配置项删除吗？

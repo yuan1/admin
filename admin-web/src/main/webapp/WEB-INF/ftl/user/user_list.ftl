@@ -234,7 +234,6 @@
         </div>
     </div>
 </div>
-<#include "../layout/bottom.ftl">
 <script>
         $(function(){
             $("#searchBtn").click(function () {
