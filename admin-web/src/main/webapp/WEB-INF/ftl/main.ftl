@@ -12,7 +12,5 @@
         </div>
     </div>
 </div>
-<#include "layout/bottom.ftl">
-
 </body>
 </html>

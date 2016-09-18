@@ -45,6 +45,11 @@ public class ConfigServiceImpl implements ConfigService {
     }
 
     @Override
+    public int selectMaxItemId(Long configId) {
+        return configItemMapper.selectMaxItemId(configId);
+    }
+
+    @Override
     public int addConfigItem(ConfigItemEntity item) {
         return configItemMapper.insert(item);
     }

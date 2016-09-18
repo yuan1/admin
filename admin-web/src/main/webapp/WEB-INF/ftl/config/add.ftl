@@ -4,15 +4,7 @@
 </div>
 <div class="modal-body">
     <form method="post" id="js-add-item-form" class="form-horizontal">
-        <input type="hidden" value="$!config.id" name="configId" id="configId"/>
-        <div class="form-group">
-            <label class="col-md-2 control-label" style="width: 100px">
-                id <span class="required" aria-required="true"> * </span>
-            </label>
-            <div class="col-md-10" style="width: 300px">
-                <input type="text" value="" name="itemId" id="itemId"/>
-            </div>
-        </div>
+        <input type="hidden" value="${config.id}" name="configId" id="configId"/>
         <div class="form-group">
             <label class="col-md-2 control-label" style="width: 100px">
                 value <span class="required" aria-required="true"> * </span>

@@ -172,7 +172,7 @@
                 </div>
                 <div class="modal-body">
                     <div >
-                            <form class="form-horizontal" role="form" action="#">
+                            <form class="form-horizontal" role="form" action="#" id="user-add-form">
                                 <input type="hidden" id="id" name="id">
                                 <div class="form-body">
                                     <div class="form-group">
@@ -236,6 +236,21 @@
 </div>
 <script>
         $(function(){
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "positionClass": "toast-bottom-right",
+                "onclick": null,
+                "showDuration": "1000",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+
             $("#searchBtn").click(function () {
                 submitForm();
             });
@@ -268,7 +283,21 @@
         });
 
         function addUser(){
-            alert(111);
+            $("#user-add-form").ajaxSubmit({
+                url:'/admin/user/save.do',
+                type: 'post', // 提交方式 get/post
+                dataType: "json",
+                success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
+                    // 此处可对 data 作相关处理
+                    if (data.returncode == 0) {
+                        toastr["success"](data.message, "新增用户");
+                        $("#add-modal").modal("hide");
+                        submitForm();
+                    } else {
+                        toastr["error"](data.message, "新增用户");
+                    }
+                }
+            });
         }
 
         function submitForm(){
@@ -277,7 +306,6 @@
         }
         function resetForm(){
             document.getElementById("user-search-form").reset();
-            //$("#user-search-form")[0].reset();
         }
 
         function deleteUser(id){

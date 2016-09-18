@@ -1,4 +1,4 @@
-var ConfigJS = function () {
+var UserJS = function () {
     toastr.options = {
         "closeButton": true,
         "debug": false,
@@ -14,7 +14,7 @@ var ConfigJS = function () {
         "hideMethod": "fadeOut"
     };
 
-    var addConfigItem = function () {
+    var addUser = function () {
         $("#js-add-item-btn").click(function () {
             $("#js-add-item-form").ajaxSubmit({
                 url:'/admin/config/submitAddItem.do',

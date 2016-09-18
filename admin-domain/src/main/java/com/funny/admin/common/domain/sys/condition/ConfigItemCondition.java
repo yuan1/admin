@@ -13,9 +13,11 @@ public class ConfigItemCondition{
      */
     private Long configId;
     /**
-     * 配置项id
+     * 配置项value
      */
-    private Integer itemId;
+    private String itemValue;
+
+    private Long nid;
 
     public String getConfigCode() {
         return configCode;
@@ -33,11 +35,19 @@ public class ConfigItemCondition{
         this.configId = configId;
     }
 
-    public Integer getItemId() {
-        return itemId;
+    public String getItemValue() {
+        return itemValue;
     }
 
-    public void setItemId(Integer itemId) {
-        this.itemId = itemId;
+    public void setItemValue(String itemValue) {
+        this.itemValue = itemValue;
+    }
+
+    public Long getNid() {
+        return nid;
+    }
+
+    public void setNid(Long nid) {
+        this.nid = nid;
     }
 }

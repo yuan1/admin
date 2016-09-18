@@ -17,6 +17,8 @@ public interface ConfigService {
 
     List<ConfigItemEntity> findConfigItemList(ConfigItemCondition condition);
 
+    int selectMaxItemId(Long configId);
+
     int addConfigItem(ConfigItemEntity item);
 
     int updateConfigItem(ConfigItemEntity item);

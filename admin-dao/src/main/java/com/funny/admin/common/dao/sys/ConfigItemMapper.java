@@ -8,4 +8,5 @@ import com.funny.admin.common.domain.sys.condition.ConfigItemCondition;
 
 public interface ConfigItemMapper extends BaseMapper<ConfigItemEntity> {
     List<ConfigItemEntity> findConfigItemByCondition(ConfigItemCondition configItemCondition);
+    int selectMaxItemId(Long configId);
 }

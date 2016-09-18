@@ -4,16 +4,9 @@
 </div>
 <div class="modal-body">
     <form method="post" id="js-edit-item-form" class="form-horizontal">
-        <input type="hidden" value="$!configItem.id" name="id" id="id"/>
-        <input type="hidden" value="$!configItem.configId" name="configId" id="configId" />
-        <div class="form-group">
-            <label class="col-md-2 control-label" style="width: 100px">
-                id <span class="required" aria-required="true"> * </span>
-            </label>
-            <div class="col-md-10" style="width: 300px">
-                <input type="text" value="$!configItem.itemId" name="itemId" id="itemId"/>
-            </div>
-        </div>
+        <input type="hidden" value="${configItem.id}" name="id" id="id"/>
+        <input type="hidden" value="${configItem.configId}" name="configId" id="configId" />
+        <input type="hidden" value="${configItem.itemId}" name="itemId" id="itemId"/>
         <div class="form-group">
             <label class="col-md-2 control-label" style="width: 100px">
                 value <span class="required" aria-required="true"> * </span>

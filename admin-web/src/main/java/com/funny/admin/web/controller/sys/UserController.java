@@ -30,7 +30,7 @@ public class UserController extends BaseController {
     @RequestMapping("/list")
     public ModelAndView getUserList(HttpServletRequest request, UserCondition condition) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/admin/user/user_list");
+        modelAndView.setViewName("user/list");
         condition.setPageSize(10);
         PageInfo<UserEntity> pageInfo = userService.getPageUserList(condition);
 
@@ -41,19 +41,12 @@ public class UserController extends BaseController {
         return modelAndView;
     }
 
-    @RequestMapping("/add")
-    public ModelAndView add(HttpServletRequest request) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/admin/user/user_edit");
-        return modelAndView;
-    }
-
     @RequestMapping("/getUserById")
     public ModelAndView getUserById(HttpServletRequest request, Long id) {
         ModelAndView modelAndView = new ModelAndView();
         UserEntity user = userService.getUserById(id);
         modelAndView.addObject("user", user);
-        modelAndView.setViewName("/admin/user/user_edit");
+        modelAndView.setViewName("user/edit");
         return modelAndView;
     }
 
