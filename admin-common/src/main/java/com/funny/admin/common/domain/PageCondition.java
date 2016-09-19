@@ -4,8 +4,7 @@ import java.io.Serializable;
 
 /**
  * 分页封装类
- * @author Administrator
- *
+ * Created by fangli@autohome.com.cn on 2016/8/6.
  */
 public class PageCondition implements Serializable{
 	protected int pageNo = 1;

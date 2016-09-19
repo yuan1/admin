@@ -1,13 +1,17 @@
 package com.funny.admin.web.controller.sys;
 
+import com.alibaba.fastjson.JSON;
 import com.funny.admin.common.domain.sys.entity.UserEntity;
 import com.funny.admin.common.domain.sys.condition.UserCondition;
 import com.funny.admin.common.domain.sys.enums.UserStatusEnum;
 import com.funny.admin.common.domain.sys.vo.UserVo;
+import com.funny.admin.common.result.ReturnCode;
 import com.funny.admin.service.sys.UserService;
 import com.funny.admin.common.result.JsonResult;
 import com.github.pagehelper.PageInfo;
 import com.google.common.base.Strings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,18 +26,21 @@ import java.util.Date;
 @Controller
 @RequestMapping("/admin/user/")
 public class UserController extends BaseController {
-
+    private final static Logger logger = LoggerFactory.getLogger(ConfigController.class);
     @Autowired
     private UserService userService;
 
-
     @RequestMapping("/list")
-    public ModelAndView getUserList(HttpServletRequest request, UserCondition condition) {
+    public ModelAndView getUserList(UserCondition condition) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user/list");
         condition.setPageSize(10);
-        PageInfo<UserEntity> pageInfo = userService.getPageUserList(condition);
-
+        PageInfo<UserEntity> pageInfo = null;
+        try {
+            pageInfo = userService.getPageUserList(condition);
+        } catch (Exception e) {
+            logger.error("查询用户列表失败,param={}", JSON.toJSONString(condition), e);
+        }
         modelAndView.addObject("statusList", UserStatusEnum.values());
         modelAndView.addObject("pageInfo", pageInfo);
         modelAndView.addObject("userList", pageInfo.getList());
@@ -42,9 +49,14 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping("/getUserById")
-    public ModelAndView getUserById(HttpServletRequest request, Long id) {
+    public ModelAndView getUserById(Long id) {
         ModelAndView modelAndView = new ModelAndView();
-        UserEntity user = userService.getUserById(id);
+        UserEntity user = null;
+        try {
+            user = userService.getUserById(id);
+        } catch (Exception e) {
+            logger.error("查询用户失败,param={}", id, e);
+        }
         modelAndView.addObject("user", user);
         modelAndView.setViewName("user/edit");
         return modelAndView;
@@ -52,7 +64,7 @@ public class UserController extends BaseController {
 
     @RequestMapping("/save")
     @ResponseBody
-    public JsonResult saveUser(HttpServletRequest request, UserVo user) {
+    public JsonResult saveUser(UserVo user) {
         JsonResult jsonResult = checkUser(user);
         if (!jsonResult.isSuccess()) {
             return jsonResult;
@@ -71,24 +83,22 @@ public class UserController extends BaseController {
             }
             jsonResult.setSuccess();
         } catch (Exception e) {
-            e.printStackTrace();
-            jsonResult.setReturncode(500);
-            jsonResult.setMessage("保存失败");
+            logger.error("保存用户失败,param={}", JSON.toJSONString(user), e);
+            jsonResult.setFail("保存用户失败");
         }
         return jsonResult;
     }
 
     @RequestMapping("/delete")
     @ResponseBody
-    public JsonResult deleteUser(HttpServletRequest request, Long id) {
+    public JsonResult deleteUser(Long id) {
         JsonResult jsonResult = new JsonResult();
         try {
             userService.deleteUser(id);
             jsonResult.setSuccess();
         } catch (Exception e) {
-            e.printStackTrace();
-            jsonResult.setReturncode(500);
-            jsonResult.setMessage("删除失败");
+            logger.error("删除用户失败,param={}", id, e);
+            jsonResult.setFail("删除用户失败");
         }
         return jsonResult;
     }
@@ -96,23 +106,19 @@ public class UserController extends BaseController {
     private JsonResult checkUser(UserVo user) {
         JsonResult jsonResult = new JsonResult();
         if (Strings.isNullOrEmpty(user.getUserName())) {
-            jsonResult.setReturncode(500);
-            jsonResult.setMessage("用户名不能为空!");
+            jsonResult.setFail(ReturnCode.PARAMS_IS_NOT_VALID, "用户名不能为空!");
             return jsonResult;
         }
         if (Strings.isNullOrEmpty(user.getRealName())) {
-            jsonResult.setReturncode(500);
-            jsonResult.setMessage("姓名不能为空!");
+            jsonResult.setFail(ReturnCode.PARAMS_IS_NOT_VALID, "姓名不能为空!");
             return jsonResult;
         }
         if (Strings.isNullOrEmpty(user.getMobile())) {
-            jsonResult.setReturncode(500);
-            jsonResult.setMessage("手机不能为空!");
+            jsonResult.setFail(ReturnCode.PARAMS_IS_NOT_VALID, "手机不能为空!");
             return jsonResult;
         }
         if (Strings.isNullOrEmpty(user.getEmail())) {
-            jsonResult.setReturncode(500);
-            jsonResult.setMessage("邮箱不能为空!");
+            jsonResult.setFail(ReturnCode.PARAMS_IS_NOT_VALID, "邮箱不能为空!");
             return jsonResult;
         }
         jsonResult.setSuccess();
