@@ -21,7 +21,7 @@
 <!-- BEGIN LOGIN -->
 <div class="content">
     <!-- BEGIN LOGIN FORM -->
-    <form class="login-form" action="index.do" method="post">
+    <form class="login-form" action="/index.do" method="post">
         <h3 class="form-title">擎天柱admin后台管理系统</h3>
 
         <div class="alert alert-danger display-hide">
@@ -76,16 +76,8 @@
 <script src="${basePath}assets/plugins/excanvas.min.js"></script>
 <![endif]-->
 <script src="${basePath}assets/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
 <script src="${basePath}assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-<!-- END CORE PLUGINS -->
-<!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="${basePath}assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-<!-- END PAGE LEVEL PLUGINS -->
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="${basePath}assets/js/login.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>

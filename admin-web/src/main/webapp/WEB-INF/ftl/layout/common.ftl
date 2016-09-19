@@ -7,7 +7,6 @@
 <meta content="" name="author"/>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
-<#--<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>-->
 <link href="${basePath}assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="${basePath}assets/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
 <link href="${basePath}assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -35,14 +34,11 @@
 <script src="${basePath}assets/plugins/excanvas.min.js"></script>
 <![endif]-->
 <script src="${basePath}assets/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
 <!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
 <script src="${basePath}assets/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
 <script src="${basePath}assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
 <script src="${basePath}assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="${basePath}assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
 <script src="${basePath}assets/plugins/jquery.form.js" type="text/javascript"></script>
 <script src="${basePath}assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
 <script src="${basePath}assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
