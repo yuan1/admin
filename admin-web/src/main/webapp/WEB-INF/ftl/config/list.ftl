@@ -17,11 +17,11 @@
             <td style="text-align: center;">
                 <a class="js-ajax-dialog" data-toggle="modal" data-target="#ajax-modal"
                    style="margin-left: 10px"
-                   data-url="/config/editItem.html?id=$!item.id"><i class="fa fa-trash"></i> 修改
+                   data-url="/admin/config/editItem.do?id=${item.id}"><i class="fa fa-trash"></i> 修改
                 </a>
                 <a class="js-ajax-dialog" data-toggle="modal" data-target="#ajax-modal"
                    style="margin-left: 10px"
-                   data-url="/config/removeItem.html?id=$!item.id"><i class="fa fa-trash"></i> 删除
+                   data-url="/admin/config/removeItem.do?id=${item.id}"><i class="fa fa-trash"></i> 删除
                 </a>
             </td>
         </tr>

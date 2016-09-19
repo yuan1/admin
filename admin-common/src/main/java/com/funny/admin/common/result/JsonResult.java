@@ -51,6 +51,16 @@ public class JsonResult<T> {
         this.message = "成功";
     }
 
+    public void setFail(String message) {
+        this.returncode = ReturnCode.SERVICE_ERROR;
+        this.message = message;
+    }
+
+    public void setFail(int returncode, String message) {
+        this.returncode = returncode;
+        this.message = message;
+    }
+
     public void setSuccess(T result) {
         setSuccess();
         setResult(result);

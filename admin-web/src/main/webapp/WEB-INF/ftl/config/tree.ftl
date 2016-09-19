@@ -52,7 +52,7 @@
     </div>
 </div>
 
-<form method="post" id="js-item-form" class="form-horizontal" action="/config/itemList.html">
+<form method="post" id="js-item-form" class="form-horizontal">
     <input type="hidden" id="js-item-num" name="pageNo" value="1"/>
 </form>
 

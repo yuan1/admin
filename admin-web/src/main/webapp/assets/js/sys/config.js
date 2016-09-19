@@ -17,7 +17,7 @@ var ConfigJS = function () {
     var addConfigItem = function () {
         $("#js-add-item-btn").click(function () {
             $("#js-add-item-form").ajaxSubmit({
-                url:'/admin/config/submitAddItem.do',
+                url: '/admin/config/submitAddItem.do',
                 type: 'post', // 提交方式 get/post
                 dataType: "json",
                 success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
@@ -37,7 +37,7 @@ var ConfigJS = function () {
     var updateConfigItem = function () {
         $("#js-edit-item-btn").click(function () {
             $("#js-edit-item-form").ajaxSubmit({
-                url:'/admin/config/submitEditItem.do',
+                url: '/admin/config/submitEditItem.do',
                 type: 'post', // 提交方式 get/post
                 dataType: "json",
                 success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
@@ -57,7 +57,7 @@ var ConfigJS = function () {
     var removeConfigItem = function () {
         $("#js-remove-item-btn").click(function () {
             $("#js-remove-item-form").ajaxSubmit({
-                url:'/admin/config/submitRemoveItem.do',
+                url: '/admin/config/submitRemoveItem.do',
                 type: 'post', // 提交方式 get/post
                 dataType: "json",
                 success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
@@ -73,7 +73,7 @@ var ConfigJS = function () {
             });
         });
     };
-    var init = function (){
+    var init = function () {
         loadTree();
         $('#tree-config').on('select_node.jstree', function (e, data) {
             var selected = $('#' + data.selected);
@@ -87,7 +87,7 @@ var ConfigJS = function () {
     };
 
     return {
-        init:function(){
+        init: function () {
             init();
             ajaxDalog();
         },
@@ -121,7 +121,7 @@ function loadTree() {
                     treearray.push(data);
                 });
                 var treeItem = {
-                    'id': 0, 'text': '配置列表', 'children': treearray,
+                    'id': 999999999, 'text': '配置列表', 'children': treearray,
                     state: {opened: true, disabled: false, selected: true}
                 };
                 $('#tree-config').jstree({
@@ -145,40 +145,52 @@ function loadTree() {
     });
 }
 
-function loadInput(){
-    var args = {
-        id: configId
-    };
-    $.ajax({
-        type: "post",
-        url: '/admin/config/getConfigById.do',
-        dataType: 'json',
-        async: false,
-        data: args,
-        success: function (data) {
-            if (data.returncode == 0) {
-                $("#id").val(data.result.id);
-                $("#configCode").val(data.result.configCode);
-                $("#configCode").attr('disabled',true);
-                $("#configDesc").val(data.result.configDesc);
-            } else {
-                toastr["error"](data.message, "新增配置");
+function loadInput() {
+    if (999999999 != configId) {
+        var args = {
+            id: configId
+        };
+        $.ajax({
+            type: "post",
+            url: '/admin/config/getConfigById.do',
+            dataType: 'json',
+            async: false,
+            data: args,
+            success: function (data) {
+                if (data.returncode == 0) {
+                    $("#id").val(data.result.id);
+                    $("#configCode").val(data.result.configCode);
+                    $("#configCode").attr('disabled', true);
+                    $("#configDesc").val(data.result.configDesc);
+                } else {
+                    toastr["error"](data.message, "新增配置");
+                }
             }
-        }
-    });
+        });
+    } else {
+        $("#addbtn").hide();
+        $("#id").val('');
+        $("#configCode").val('');
+        $("#configCode").attr('disabled', false);
+        $("#configDesc").val('');
+    }
 }
 function submitItemFrom() {
-    $("#js-item-form").ajaxSubmit({
-        type: 'post', // 提交方式 get/post
-        url: '/admin/config/itemList.do?configId=' + configId,
-        success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
-            // 此处可对 data 作相关处理
-            $("#js-item-body").html(data);
-            ajaxDalog();
-        }
-    });
+    if (configId != 999999999) {
+        $("#js-item-form").ajaxSubmit({
+            type: 'post', // 提交方式 get/post
+            url: '/admin/config/itemList.do?configId=' + configId,
+            success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
+                // 此处可对 data 作相关处理
+                $("#js-item-body").html(data);
+                ajaxDalog();
+            }
+        });
+    } else {
+        $("#js-item-body").html('');
+    }
 };
-function ajaxDalog () {
+function ajaxDalog() {
     $.each($(".js-ajax-dialog"), function () {
         $(this).bind("click", function () {
             $("body").modalmanager();

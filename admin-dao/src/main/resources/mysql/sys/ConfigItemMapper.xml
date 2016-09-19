@@ -7,8 +7,8 @@
     <if test=" configId !=null">
       and config_id = #{configId}
     </if>
-    <if test=" itemId !=null ">
-      and item_id = #{itemId}
+    <if test=" itemValue !=null and itemValue != '' ">
+      and item_value = #{itemValue}
     </if>
     <if test=" nid !=null ">
       and id != #{nid}
@@ -18,6 +18,6 @@
 
   <select id="selectMaxItemId" resultType="int"
           parameterType="long" >
-    select max(item_id) from admin_config_item where yn =1 and config_id = #{configId}
+    select IFNULL(max(item_id),0) from admin_config_item where yn =1 and config_id = #{configId}
   </select>
 </mapper>

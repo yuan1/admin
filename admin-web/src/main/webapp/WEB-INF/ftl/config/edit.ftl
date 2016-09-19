@@ -12,7 +12,7 @@
                 value <span class="required" aria-required="true"> * </span>
             </label>
             <div class="col-md-10" style="width: 300px">
-                <input type="text" value="$!configItem.itemValue" name="itemValue" id="itemValue"/>
+                <input type="text" value="${configItem.itemValue}" name="itemValue" id="itemValue"/>
             </div>
         </div>
 
@@ -21,7 +21,7 @@
                 描述 <span class="required" aria-required="true"> * </span>
             </label>
             <div class="col-md-10" style="width: 300px">
-                <input type="text" value="$!configItem.itemName" name="itemName" id="itemName"/>
+                <input type="text" value="${configItem.itemName}" name="itemName" id="itemName"/>
             </div>
         </div>
     </form>
