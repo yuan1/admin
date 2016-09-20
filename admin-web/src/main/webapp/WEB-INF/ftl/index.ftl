@@ -41,11 +41,10 @@
     </div>
     <!-- END CONTENT -->
     <!-- BEGIN QUICK SIDEBAR -->
-    <a href="javascript:;" class="page-quick-sidebar-toggler"><i class="icon-close"></i></a>
-
-    <div class="page-quick-sidebar-wrapper">
-    <#include "layout/right.ftl">
-    </div>
+    <#--<a href="javascript:;" class="page-quick-sidebar-toggler"><i class="icon-close"></i></a>-->
+    <#--<div class="page-quick-sidebar-wrapper">-->
+    <#--<#include "layout/right.ftl">-->
+    <#--</div>-->
     <!-- END QUICK SIDEBAR -->
 </div>
 <!-- END CONTAINER -->
@@ -70,12 +69,9 @@
 <!-- END CORE PLUGINS -->
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="${basePath}assets/js/metronic.js" type="text/javascript"></script>
-<script src="${basePath}assets/js/layout.js" type="text/javascript"></script>
-<script src="${basePath}assets/js/quick-sidebar.js" type="text/javascript"></script>
-<script src="${basePath}assets/js/demo.js" type="text/javascript"></script>
-<script src="${basePath}assets/js/index.js" type="text/javascript"></script>
-<script src="${basePath}assets/js/tasks.js" type="text/javascript"></script>
+<script src="${basePath}assets/js/sys/metronic.js" type="text/javascript"></script>
+<script src="${basePath}assets/js/sys/layout.js" type="text/javascript"></script>
+<script src="${basePath}assets/js/sys/quick-sidebar.js" type="text/javascript"></script>
 
 
 <script type="text/javascript">

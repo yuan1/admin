@@ -10,6 +10,7 @@ import com.funny.admin.service.sys.UserService;
 import com.funny.admin.common.result.JsonResult;
 import com.github.pagehelper.PageInfo;
 import com.google.common.base.Strings;
+import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,19 +33,28 @@ public class UserController extends BaseController {
 
     @RequestMapping("/list")
     public ModelAndView getUserList(UserCondition condition) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user/list");
-        condition.setPageSize(10);
-        PageInfo<UserEntity> pageInfo = null;
-        try {
-            pageInfo = userService.getPageUserList(condition);
-        } catch (Exception e) {
-            logger.error("查询用户列表失败,param={}", JSON.toJSONString(condition), e);
-        }
+        ModelAndView modelAndView = new ModelAndView("user/list");
         modelAndView.addObject("statusList", UserStatusEnum.values());
-        modelAndView.addObject("pageInfo", pageInfo);
-        modelAndView.addObject("userList", pageInfo.getList());
         modelAndView.addObject("condition", condition);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "userPageList")
+    public ModelAndView userPageList(UserCondition condition) {
+        ModelAndView modelAndView = new ModelAndView("user/page");
+        condition.setPageSize(10);
+        try {
+            PageInfo<UserEntity> pageInfo = null;
+            try {
+                pageInfo = userService.getPageUserList(condition);
+            } catch (Exception e) {
+                logger.error("查询用户列表失败,param={}", JSON.toJSONString(condition), e);
+            }
+            modelAndView.addObject("pageInfo", pageInfo);
+            modelAndView.addObject("userList", pageInfo.getList());
+        } catch (Exception e) {
+            logger.error("获取经销商退网列表，内部发生异常", e);
+        }
         return modelAndView;
     }
 
