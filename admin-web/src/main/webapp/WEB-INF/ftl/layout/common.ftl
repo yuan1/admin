@@ -41,6 +41,7 @@
 <script src="${basePath}assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="${basePath}assets/plugins/jquery.form.js" type="text/javascript"></script>
 <script src="${basePath}assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="${basePath}assets/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
 <script src="${basePath}assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <script src="${basePath}assets/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
 <script src="${basePath}assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>

@@ -160,6 +160,18 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-md-3 control-label">姓名</label>
+
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <input type="text" class="form-control input-inline input-medium"
+                                               autocomplete="off"
+                                               placeholder="姓名" name="realName" id="realName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-md-3 control-label">手机号</label>
 
                                 <div class="col-md-9">
@@ -181,18 +193,6 @@
                                         <input type="email" class="form-control input-inline input-medium"
                                                autocomplete="off"
                                                placeholder="Email Address" name="email" id="email">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">姓名</label>
-
-                                <div class="col-md-9">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input type="text" class="form-control input-inline input-medium"
-                                               autocomplete="off"
-                                               placeholder="姓名" name="realName" id="realName">
                                     </div>
                                 </div>
                             </div>

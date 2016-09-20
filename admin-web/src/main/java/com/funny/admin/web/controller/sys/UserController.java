@@ -60,7 +60,7 @@ public class UserController extends BaseController {
 
     @RequestMapping("/getUserById")
     public ModelAndView getUserById(Long id) {
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView("user/edit");
         UserEntity user = null;
         try {
             user = userService.getUserById(id);
@@ -68,7 +68,6 @@ public class UserController extends BaseController {
             logger.error("查询用户失败,param={}", id, e);
         }
         modelAndView.addObject("user", user);
-        modelAndView.setViewName("user/edit");
         return modelAndView;
     }
 

@@ -60,22 +60,20 @@ var UserJS = function () {
         });
     };
     var updateUser = function () {
-        $("#js-edit-item-btn").click(function () {
-            $("#js-edit-item-form").ajaxSubmit({
-                url:'/admin/config/submitEditItem.do',
-                type: 'post', // 提交方式 get/post
-                dataType: "json",
-                success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
-                    // 此处可对 data 作相关处理
-                    if (data.returncode == 0) {
-                        toastr["success"](data.message, "修改配置项");
-                        $("#ajax-modal").modal("hide");
-                        submitItemFrom();
-                    } else {
-                        toastr["error"](data.message, "修改配置项");
-                    }
+        $("#user-edit-form").ajaxSubmit({
+            url:'/admin/user/save.do',
+            type: 'post', // 提交方式 get/post
+            dataType: "json",
+            success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
+                // 此处可对 data 作相关处理
+                if (data.returncode == 0) {
+                    toastr["success"](data.message, "修改用户");
+                    $("#ajax-modal").modal("hide");
+                    submitItemFrom();
+                } else {
+                    toastr["error"](data.message, "修改用户");
                 }
-            });
+            }
         });
     };
 
@@ -88,10 +86,10 @@ var UserJS = function () {
                 success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
                     // 此处可对 data 作相关处理
                     if (data.returncode == 0) {
-                        toastr["success"](data.message, "删除配置项");
+                        toastr["success"](data.message, "删除用户");
                         $("#ajax-modal").modal("hide");
                     } else {
-                        toastr["error"](data.message, "删除配置项");
+                        toastr["error"](data.message, "删除用户");
                     }
                 }
             });
