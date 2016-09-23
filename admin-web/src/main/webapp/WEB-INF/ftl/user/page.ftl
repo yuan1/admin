@@ -12,22 +12,29 @@
     </tr>
     </thead>
     <tbody>
-        <#list userList as user>
+        <#if userList?exists && userList?size&gt;0 >
+            <#list userList as user>
+                <tr>
+                    <td style="text-align: center">${user.id}</td>
+                    <td style="text-align: center">${user.userName}</td>
+                    <td style="text-align: center">${user.realName}</td>
+                    <td style="text-align: center">${user.mobile}</td>
+                    <td style="text-align: center">${user.email}</td>
+                    <td style="text-align: center">${user.userStatus}</td>
+                    <td style="text-align: center">${user.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+                    <td style="text-align: center">
+                        <a class="btn btn-circle btn-primary" data-toggle="modal" data-target="#ajax-modal"
+                           data-url="/admin/user/getUserById.do?id=${user.id}"><i class="icon-edit"></i>修改</a>
+                        <a class="btn btn-circle btn-danger"  data-toggle="modal" href="#delete-modal"><i class="icon-remove"></i>删除</a>
+                    </td>
+                </tr>
+            </#list>
+        <#else>
             <tr>
-                <td style="text-align: center">${user.id}</td>
-                <td style="text-align: center">${user.userName}</td>
-                <td style="text-align: center">${user.realName}</td>
-                <td style="text-align: center">${user.mobile}</td>
-                <td style="text-align: center">${user.email}</td>
-                <td style="text-align: center">${user.userStatus}</td>
-                <td style="text-align: center">${user.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
-                <td style="text-align: center">
-                    <a class="btn btn-circle btn-primary" data-toggle="modal" data-target="#ajax-modal"
-                       data-url="/admin/user/getUserById.do?id=${user.id}"><i class="icon-edit"></i>修改</a>
-                    <a class="btn btn-circle btn-danger"  data-toggle="modal" href="#delete-modal"><i class="icon-remove"></i>删除</a>
-                </td>
+                <td colspan="8" style="text-align: center">暂无数据</td>
             </tr>
-        </#list>
+        </#if>
+
     </tbody>
 </table>
 
