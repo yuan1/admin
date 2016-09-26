@@ -2,7 +2,7 @@
 <html lang="zh_CN">
 <head>
 <#include "../layout/common.ftl">
-    <script type="text/javascript" src="${basePath}assets/js/admin/user.js?v=2016082222"></script>
+    <script type="text/javascript" src="${basePath}assets/js/admin/user.js?v=20160822122"></script>
 </head>
 <body style="overflow: hidden">
 

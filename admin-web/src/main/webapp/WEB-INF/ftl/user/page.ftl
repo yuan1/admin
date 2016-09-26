@@ -24,7 +24,7 @@
                     <td style="text-align: center">${user.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                     <td style="text-align: center">
                         <a class="btn btn-circle btn-primary" data-toggle="modal" data-target="#ajax-modal"
-                           data-url="/admin/user/getUserById.do?id=${user.id}"><i class="icon-edit"></i>修改</a>
+                           data-url="/admin/user/getUserById.do?id=${user.id}" onclick="UserJS.toUpdate(this)"><i class="icon-edit"></i>修改</a>
                         <a class="btn btn-circle btn-danger"  data-toggle="modal" href="#delete-modal"><i class="icon-remove"></i>删除</a>
                     </td>
                 </tr>
