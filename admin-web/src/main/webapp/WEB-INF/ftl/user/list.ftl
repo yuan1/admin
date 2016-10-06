@@ -125,7 +125,7 @@
     </div>
     <div class="modal-body">
         <div>
-            <form class="form-horizontal" role="form" action="#" id="user-add-form">
+            <form class="form-horizontal" role="form" action="#" id="user-form">
                 <input type="hidden" id="id" name="id">
 
                 <div class="form-body">
@@ -184,7 +184,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" data-dismiss="modal" class="btn dark btn-outline">取消</button>
-        <button type="button" class="btn green" onclick="UserJS.addUser();">保存</button>
+        <button type="button" class="btn green" onclick="UserJS.submitSave();">保存</button>
     </div>
 </div>
 

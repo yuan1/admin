@@ -3,6 +3,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<!-- HTTP 1.1 -->
+<meta http-equiv="pragma" content="no-cache">
+<!-- HTTP 1.0 -->
+<meta http-equiv="cache-control" content="no-cache">
+<!-- Prevent caching at the proxy server -->
+<meta http-equiv="expires" content="0">
 <meta content="" name="description"/>
 <meta content="" name="author"/>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -54,3 +60,19 @@
 <script type="text/javascript" src="${basePath}assets/plugins/select2/select2.min.js"></script>
 <script type="text/javascript" src="${basePath}assets/plugins/bootstrap-toastr/toastr.min.js"></script>
 <!-- END PAGE LEVEL PLUGINS -->
+<script type="text/javascript">
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "positionClass": "toast-bottom-right",
+        "onclick": null,
+        "showDuration": "1000",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+</script>
