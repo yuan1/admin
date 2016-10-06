@@ -16,7 +16,7 @@
 <link href="${basePath}assets/plugins/bootstrap-toastr/toastr.css" rel="stylesheet" type="text/css"/>
 <link href="${basePath}assets/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
 <link href="${basePath}assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
-
+<link href="${basePath}assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN THEME STYLES -->
 <link href="${basePath}assets/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
@@ -45,6 +45,8 @@
 <script src="${basePath}assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <script src="${basePath}assets/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
 <script src="${basePath}assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+<script src="${basePath}assets/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script type="text/javascript" src="${basePath}assets/plugins/jquery-bootpag/jquery.bootpag.min.js"></script>

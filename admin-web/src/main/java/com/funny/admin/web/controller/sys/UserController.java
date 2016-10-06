@@ -10,7 +10,6 @@ import com.funny.admin.service.sys.UserService;
 import com.funny.admin.common.result.JsonResult;
 import com.github.pagehelper.PageInfo;
 import com.google.common.base.Strings;
-import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,7 @@ import java.util.Date;
 @Controller
 @RequestMapping("/admin/user/")
 public class UserController extends BaseController {
-    private final static Logger logger = LoggerFactory.getLogger(ConfigController.class);
+    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService userService;
 
@@ -53,22 +52,24 @@ public class UserController extends BaseController {
             modelAndView.addObject("pageInfo", pageInfo);
             modelAndView.addObject("userList", pageInfo.getList());
         } catch (Exception e) {
-            logger.error("获取经销商退网列表，内部发生异常", e);
+            logger.error("获取用户列表，内部发生异常", e);
         }
         return modelAndView;
     }
 
     @RequestMapping("/getUserById")
-    public ModelAndView getUserById(Long id) {
-        ModelAndView modelAndView = new ModelAndView("user/edit");
+    @ResponseBody
+    public JsonResult<UserEntity> getUserById(Long id) {
+        JsonResult<UserEntity> jsonResult = new JsonResult<>();
         UserEntity user = null;
         try {
             user = userService.getUserById(id);
+            jsonResult.setSuccess(user);
         } catch (Exception e) {
+            jsonResult.setFail("查询用户失败");
             logger.error("查询用户失败,param={}", id, e);
         }
-        modelAndView.addObject("user", user);
-        return modelAndView;
+        return jsonResult;
     }
 
     @RequestMapping("/save")

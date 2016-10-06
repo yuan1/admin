@@ -14,14 +14,6 @@ var UserJS = function () {
         "hideMethod": "fadeOut"
     };
 
-    function ajaxDalog(obj) {
-        $("body").modalmanager();
-        var ele = $(obj), targetId = ele.attr("data-target");
-        var dialogModal = $(targetId);
-        dialogModal.load(ele.attr("data-url"), "", function () {
-            dialogModal.modal();
-        });
-    };
     var pageAjax = function (totalPage, pageNum) {
         $('#js-bootpag').bootpag({
             total: totalPage,
@@ -55,9 +47,51 @@ var UserJS = function () {
         });
     };
 
-    var toUpdate = function (obj) {
+    var toUpdate = function (id) {
+        $.ajax({
+            type: "post",
+            url: '/admin/user/getUserById.do?id='+id,
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                if (data.returncode == 0) {
+                    $(".modal-title").text('修改用户');
+                    $("#add-modal").modal('show');
+                    $("#id").val(data.result.id);
+                    $("#userName").val(data.result.userName);
+                    $("#realName").val(data.result.realName);
+                    $("#mobile").val(data.result.mobile);
+                    $("#email").val(data.result.email);
+                }
+            }
+        });
+    };
 
-        ajaxDalog(obj);
+
+    var toRemove = function (id) {
+        swal({
+            title: "确定要删除这个用户吗?",
+            text: "删除之后不可恢复!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: true
+            },
+            function(){
+                $.ajax({
+                    type: "post",
+                    url: '/admin/user/delete.do?id='+id,
+                    dataType: 'json',
+                    async: false,
+                    success: function (data) {
+                        if (data.returncode == 0) {
+                            submitForm();
+                        }
+                    }
+                });
+            }
+        );
     };
 
     var updateUser = function () {
@@ -100,6 +134,11 @@ var UserJS = function () {
         $("#searchBtn").click(function () {
             submitForm();
         });
+        $("#addBtn").click(function () {
+            $(".modal-title").text('新增用户');
+            $("#add-modal").modal('show');
+            $("#user-add-form")[0].reset();
+        });
         submitForm();
     };
 
@@ -124,7 +163,6 @@ var UserJS = function () {
     return {
         init: function () {
             init();
-            ajaxDalog();
         },
         initPage: function (totalPage, pageNum) {
             pageAjax(totalPage, pageNum);
@@ -132,11 +170,14 @@ var UserJS = function () {
         addUser: function () {
             addUser();
         },
-        toUpdate: function (obj) {
-            toUpdate(obj);
+        toUpdate: function (id) {
+            toUpdate(id);
         },
         updateUser: function () {
             updateUser();
+        },
+        toRemove: function (id) {
+            toRemove(id);
         },
         removeUser: function () {
             removeUser();

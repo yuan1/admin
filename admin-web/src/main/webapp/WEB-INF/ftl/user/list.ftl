@@ -2,7 +2,7 @@
 <html lang="zh_CN">
 <head>
 <#include "../layout/common.ftl">
-    <script type="text/javascript" src="${basePath}assets/js/admin/user.js?v=20160822122"></script>
+    <script type="text/javascript" src="${basePath}assets/js/admin/user.js?v=2016018112"></script>
 </head>
 <body style="overflow: hidden">
 
@@ -25,7 +25,7 @@
                                 <label class="col-md-4 control-label">用户名</label>
 
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-inline" id="userName"
+                                    <input type="text" class="form-control input-inline" id="s_user_name"
                                            name="userName" <#if condition.userName?exists>
                                            value="${condition.userName}" </#if>>
                                 </div>
@@ -36,7 +36,7 @@
                                 <label class="col-md-4 control-label">姓名</label>
 
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-inline" id="realName"
+                                    <input type="text" class="form-control input-inline" id="s_real_name"
                                            name="realName"<#if condition.realName?exists>
                                            value="${condition.realName}" </#if>>
                                 </div>
@@ -47,7 +47,7 @@
                                 <label class="col-md-4 control-label">手机号</label>
 
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-inline" id="mobile"
+                                    <input type="text" class="form-control input-inline" id="s_mobile"
                                            name="mobile" <#if condition.mobile?exists>
                                            value="${condition.mobile}" </#if>>
                                 </div>
@@ -60,7 +60,7 @@
                                 <label class="col-md-4 control-label">邮箱</label>
 
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-inline" id="email"
+                                    <input type="text" class="form-control input-inline" id="s_email"
                                            name="email" <#if condition.email?exists> value="${condition.mobile}" </#if>>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                                 <label class="col-md-4 control-label">状态</label>
 
                                 <div class="col-md-8">
-                                    <select class="bs-select select2 form-control input-inline" name="userType"
+                                    <select class="bs-select select2 form-control input-inline" name="userType" id="s_user_type"
                                             data-live-search="true">
                                         <option value="">全部</option>
                                     <#list statusList as status>
@@ -100,7 +100,7 @@
                     <span class="caption-subject font-green">用户列表</span>
                 </div>
                 <div class="actions">
-                    <a class="btn btn-circle blue" data-toggle="modal" href="#add-modal">
+                    <a class="btn btn-circle blue" id="addBtn">
                         <i class="fa fa-plus"></i>新增
                     </a>
                 </div>
@@ -118,25 +118,9 @@
 
 <div class="modal fade" id="ajax-modal" data-width="550"></div>
 
-<div id="delete-modal" class="modal fade" tabindex="-1" role="basic" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">删除用户</h4>
-            </div>
-            <div class="modal-body"></div>
-            <div class="modal-footer">
-                <button type="button" class="btn dark btn-outline" data-dismiss="modal">取消</button>
-                <button type="button" class="btn red">删除</button>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div id="add-modal" class="modal fade" tabindex="-1">
+<div id="add-modal" class="modal fade" tabindex="-1" aria-hidden="true">
     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
         <h4 class="modal-title">新增用户</h4>
     </div>
     <div class="modal-body">

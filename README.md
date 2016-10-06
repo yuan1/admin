@@ -3,8 +3,8 @@
 web样式参照：
 http://keenthemes.com/preview/metronic/theme/admin_1/index.html
 sql文件：/admin-web/src/main/webapp/admin.sql
-
-
+参考文件：
+http://www.cnblogs.com/wuhuacong/p/4757984.html
  Shiro-1.2.2内置的FilterChain
 =========================================================================================================================
   1)Shiro验证URL时,URL匹配成功便不再继续匹配查找(所以要注意配置文件中的URL顺序,尤其在使用通配符时)
