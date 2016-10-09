@@ -149,16 +149,16 @@ var Layout = function () {
             var keepExpand = menu.data("keep-expanded");
 
             if (keepExpand !== true) {
-                parent.children('li.open').children('a').children('.arrow').removeClass('open');
+                parent.children('li.open').children('a').children('.arrow').removeClass();
                 parent.children('li.open').children('.sub-menu:not(.always-open)').slideUp(slideSpeed);
-                parent.children('li.open').removeClass('open');
+                parent.children('li.open').removeClass();
             }
 
             var slideOffeset = -200;
 
             if (sub.is(":visible")) {
-                $('.arrow', $(this)).removeClass("open");
-                $(this).parent().removeClass("open");
+                $('.arrow', $(this)).removeClass();
+                $(this).parent().removeClass();
                 sub.slideUp(slideSpeed, function () {
                     if (autoScroll === true && $('body').hasClass('page-sidebar-closed') === false) {
                         if ($('body').hasClass('page-sidebar-fixed')) {
@@ -172,8 +172,8 @@ var Layout = function () {
                     handleSidebarAndContentHeight();
                 });
             } else if (hasSubMenu) {
-                $('.arrow', $(this)).addClass("open");
-                $(this).parent().addClass("open");
+                $('.arrow', $(this)).addClass("active open");
+                $(this).parent().addClass("active open");
                 sub.slideDown(slideSpeed, function () {
                     if (autoScroll === true && $('body').hasClass('page-sidebar-closed') === false) {
                         if ($('body').hasClass('page-sidebar-fixed')) {

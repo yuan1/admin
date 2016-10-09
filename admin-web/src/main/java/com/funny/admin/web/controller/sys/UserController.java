@@ -60,7 +60,7 @@ public class UserController extends BaseController {
     @RequestMapping("/getUserById")
     @ResponseBody
     public JsonResult<UserEntity> getUserById(Long id) {
-        JsonResult<UserEntity> jsonResult = new JsonResult<>();
+        JsonResult<UserEntity> jsonResult = new JsonResult();
         UserEntity user = null;
         try {
             user = userService.getUserById(id);

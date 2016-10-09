@@ -94,9 +94,9 @@
                     var mentstr = "";
                     $.each(data.result, function (index, item) {
                         if (index == 0) {
-                            mentstr += '<li class="start active open" onclick="selectParent(this);"> <a href="' + item.menuUrl + '"><i class="' + item.menuIcon + '"></i><span class="title">' + item.menuName + '</span></a>';
+                            mentstr += '<li > <a href="' + item.menuUrl + '"><i class="' + item.menuIcon + '"></i><span class="title">' + item.menuName + '</span></a>';
                         } else {
-                            mentstr += '<li onclick="selectParent(this);"><a href="' + item.menuUrl + '"><i class="' + item.menuIcon + '"></i><span class="title">' + item.menuName + '</span></a>';
+                            mentstr += '<li ><a href="' + item.menuUrl + '"><i class="' + item.menuIcon + '"></i><span class="title">' + item.menuName + '</span></a>';
                         }
                         if (item.childList!=null && item.childList.length > 0) {
                             mentstr += '<ul class="sub-menu">';
@@ -113,12 +113,12 @@
         });
     }
     function selectParent(menu) {
-        $(menu).siblings().removeClass();
-        $(menu).addClass("active open");
+        //$(menu).siblings().removeClass();
+        //$(menu).addClass("active open");
     }
     function selectMenu(menu,id) {
-        $(menu).siblings().removeClass();
-        $(menu).addClass("active open");
+        //$(menu).siblings().removeClass();
+        //$(menu).addClass("active open");
         $.ajax({
             type: "get",
             url: '/admin/menu/getMenuParentById.do?id='+id,
@@ -133,9 +133,8 @@
                 }
             }
         });
-
-
     }
+
     var browserVersion = window.navigator.userAgent.toUpperCase();
     var isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
     var isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;
