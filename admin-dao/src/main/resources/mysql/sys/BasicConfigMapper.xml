@@ -23,8 +23,8 @@
       create_time, create_by,
       update_by, update_time, yn)
     values (#{configCode,jdbcType=VARCHAR}, #{configDesc,jdbcType=VARCHAR},
-      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT},
-      #{updateBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{yn,jdbcType=INTEGER})
+      now(), #{createBy,jdbcType=BIGINT},
+      #{updateBy,jdbcType=BIGINT}, now(), 1)
   </insert>
   <update id="updateByIdSelected" parameterType="com.funny.admin.common.domain.sys.entity.ConfigEntity" >
     update admin_config
@@ -35,21 +35,13 @@
       <if test="configDesc != null" >
         config_desc = #{configDesc,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createBy != null" >
-        create_by = #{createBy,jdbcType=BIGINT},
-      </if>
       <if test="updateBy != null" >
         update_by = #{updateBy,jdbcType=BIGINT},
       </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="yn != null" >
-        yn = #{yn,jdbcType=INTEGER}
+        yn = #{yn,jdbcType=INTEGER},
       </if>
+      update_time = now(),
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>

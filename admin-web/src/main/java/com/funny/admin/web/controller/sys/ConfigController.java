@@ -95,11 +95,8 @@ public class ConfigController extends BaseController {
         try {
             BeanUtils.copyProperties(vo, configEntity);
             if (vo.getId() == null) {
-                configEntity.setYn(1);
-                configEntity.setCreateTime(new Date());
                 configService.addConfig(configEntity);
             } else {
-                configEntity.setUpdateTime(new Date());
                 configService.updateConfig(configEntity);
             }
             jsonResult.setSuccess();

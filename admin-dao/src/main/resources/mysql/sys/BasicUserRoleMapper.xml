@@ -19,8 +19,8 @@
       create_time, create_by, update_time, 
       update_by, yn)
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{updateBy,jdbcType=BIGINT}, #{yn,jdbcType=INTEGER})
+      now(), #{createBy,jdbcType=BIGINT}, now(),
+      #{updateBy,jdbcType=BIGINT}, 1)
   </insert>
     <update id="updateByIdSelected" parameterType="com.funny.admin.common.domain.sys.entity.UserRoleEntity">
         update admin_user_role
@@ -31,21 +31,13 @@
             <if test="roleId != null">
                 role_id = #{roleId,jdbcType=BIGINT},
             </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createBy != null">
-                create_by = #{createBy,jdbcType=BIGINT},
-            </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="updateBy != null">
                 update_by = #{updateBy,jdbcType=BIGINT},
             </if>
             <if test="yn != null">
                 yn = #{yn,jdbcType=INTEGER}
             </if>
+            update_time = now(),
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>

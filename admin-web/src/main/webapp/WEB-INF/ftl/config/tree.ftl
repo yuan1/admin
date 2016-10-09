@@ -21,16 +21,16 @@
                     <form method="post" id="js-edit-form" class="form-horizontal">
                         <input type="hidden" name="id" id="id"/>
 
-                        <div class="form-group" style="width: 600px;margin-bottom: 5px;font-size: 14px">
+                        <div class="form-group" style="width: 650px;margin-bottom: 5px;font-size: 14px">
                             <label class="col-md-2 control-label">
                                 配置:<span class="required" aria-required="true"> * </span>
                             </label>
 
                             <div class="col-md-10" style="padding-top:5px;">
                                 <input type="text" name="configCode" id="configCode" placeholder="配置编码"
-                                       style="float:left;width: 100px;margin-right: 5px;"/>
+                                       style="float:left;width: 150px;margin-right: 5px;"/>
                                 <input type="text" name="configDesc" id="configDesc" placeholder="配置描述"
-                                       style="float:left;width: 200px;margin-left: 5px;margin-right: 10px;"/>
+                                       style="float:left;width: 250px;margin-left: 5px;margin-right: 10px;"/>
                                 <a class="btn btn-circle green btn-sm" onclick="saveConfig();"
                                    style="margin-left: 10px;height: 24px;margin-left: 10px;padding: 3px 10px;">
                                     <i class="fa fa-check"></i> 保存

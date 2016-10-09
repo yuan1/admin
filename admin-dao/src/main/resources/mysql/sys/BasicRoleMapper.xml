@@ -17,9 +17,8 @@
     insert into admin_role (id, role_name, create_time,
       create_by, update_time, update_by, 
       yn)
-    values (#{id,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
-      #{createBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, 
-      #{yn,jdbcType=INTEGER})
+    values (#{id,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, now(),
+      #{createBy,jdbcType=BIGINT}, now(), #{updateBy,jdbcType=BIGINT},1)
   </insert>
   <update id="updateByIdSelected" parameterType="com.funny.admin.common.domain.sys.entity.RoleEntity" >
     update admin_role
@@ -27,21 +26,13 @@
       <if test="roleName != null" >
         role_name = #{roleName,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createBy != null" >
-        create_by = #{createBy,jdbcType=BIGINT},
-      </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="updateBy != null" >
         update_by = #{updateBy,jdbcType=BIGINT},
       </if>
       <if test="yn != null" >
-        yn = #{yn,jdbcType=INTEGER}
+        yn = #{yn,jdbcType=INTEGER},
       </if>
+      update_time = now(),
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>

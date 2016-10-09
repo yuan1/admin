@@ -10,7 +10,7 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_by" property="updateBy" jdbcType="BIGINT" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <result column="yn" property="yn" jdbcType="BIT" />
+    <result column="yn" property="yn" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, depart_id, depart_name, parent_id, create_by, create_time, update_by, update_time, 
@@ -24,8 +24,8 @@
       create_by, create_time, update_by, 
       update_time, yn)
     values (#{departId,jdbcType=BIGINT}, #{departName,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
-      #{createBy,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{yn,jdbcType=BIT})
+      #{createBy,jdbcType=BIGINT},now(), #{updateBy,jdbcType=BIGINT},
+      now(), 1)
   </insert>
   <update id="updateByIdSelected" parameterType="com.funny.admin.common.domain.sys.entity.DepartmentEntity" >
     update admin_department
@@ -39,21 +39,13 @@
       <if test="parentId != null" >
         parent_id = #{parentId,jdbcType=BIGINT},
       </if>
-      <if test="createBy != null" >
-        create_by = #{createBy,jdbcType=BIGINT},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="updateBy != null" >
         update_by = #{updateBy,jdbcType=BIGINT},
       </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="yn != null" >
-        yn = #{yn,jdbcType=BIT}
+        yn = #{yn,jdbcType=INTEGER},
       </if>
+      update_time = NOW(),
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>

@@ -5,12 +5,13 @@
 	</properties>
 	<appenders>
 		<Console name="Console" target="SYSTEM_OUT">
-			<PatternLayout charset="UTF-8" pattern="[%d{MM-dd HH:mm:ss.SSS}] %t %-5p: %c.%M: %L - %m%n" />
+			<PatternLayout charset="UTF-8" pattern="[%d{YYYY-MM-dd HH:mm:ss.SSS}] %t %-5p: %c.%M: %L - %m%n" />
 		</Console>
-		<RollingFile name="file" fileName="${LOG_HOME}/all.log"
-			filePattern="${LOG_HOME}/all-%d{MM-dd-yyyy}.log.gz" ignoreExceptions="false">
+		<RollingFile name="file" fileName="${LOG_HOME}/admin-info.log"
+			filePattern="${LOG_HOME}/info-%d{MM-dd-yyyy}.log.gz" ignoreExceptions="false">
+			<ThresholdFilter level="${log.level}" onMatch="ACCEPT" onMismatch="DENY"/>
 			<PatternLayout charset="UTF-8">
-				<Pattern>[%d{MM-dd HH:mm:ss.SSS}] %t %-5p: %l - %m%n</Pattern>
+				<Pattern>[%d{YYYY-MM-dd HH:mm:ss.SSS}] %t %-5p: %l - %m%n</Pattern>
 			</PatternLayout>
 			<Policies>
 				<TimeBasedTriggeringPolicy />
@@ -18,38 +19,15 @@
 			</Policies>
 			<DefaultRolloverStrategy max="10" />
 		</RollingFile>
-		<RollingFile name="warnFile" fileName="${LOG_HOME}/warn.log"
-			filePattern="${LOG_HOME}/warn-%d{MM-dd-yyyy}.log.gz" ignoreExceptions="false">
-			<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
-			<PatternLayout charset="UTF-8">
-				<Pattern>[%d{MM-dd HH:mm:ss.SSS}] %t %-5p: %l - %m%n</Pattern>
-			</PatternLayout>
-			<Policies>
-				<TimeBasedTriggeringPolicy />
-				<SizeBasedTriggeringPolicy size="2048 KB" />
-			</Policies>
-			<DefaultRolloverStrategy max="10" />
-		</RollingFile>
-		<RollingFile name="errorFile" fileName="${LOG_HOME}/error.log"
+		<RollingFile name="errorFile" fileName="${LOG_HOME}/admin-error.log"
 			filePattern="${LOG_HOME}/error-%d{MM-dd-yyyy}.log.gz" ignoreExceptions="false">
 			<ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
 			<PatternLayout charset="UTF-8">
-				<Pattern>[%d{MM-dd HH:mm:ss.SSS}] %t %-5p: %l - %m%n</Pattern>
+				<Pattern>[%d{YYYY-MM-dd HH:mm:ss.SSS}] %t %-5p: %l - %m%n</Pattern>
 			</PatternLayout>
 			<Policies>
 				<TimeBasedTriggeringPolicy />
 				<SizeBasedTriggeringPolicy size="2048 KB" />
-			</Policies>
-			<DefaultRolloverStrategy max="10" />
-		</RollingFile>
-		<RollingFile name="dbFile" fileName="${LOG_HOME}/druid.log"
-			filePattern="${LOG_HOME}/druid-%d{MM-dd-yyyy}.log.gz" ignoreExceptions="false">
-			<PatternLayout charset="UTF-8">
-				<Pattern>[%d{MM-dd HH:mm:ss.SSS}] %t %-5p: %l - %m%n</Pattern>
-			</PatternLayout>
-			<Policies>
-				<TimeBasedTriggeringPolicy />
-				<SizeBasedTriggeringPolicy size="5120 KB" />
 			</Policies>
 			<DefaultRolloverStrategy max="10" />
 		</RollingFile>
@@ -58,27 +36,12 @@
 		<root level="${log.level}">
 			<appender-ref ref="Console"/>
 			<appender-ref ref="file"/>
-			<appender-ref ref="warnFile"/>
 			<appender-ref ref="errorFile"/>
 		</root>
 
-		<logger name="org.springframework" level="${log.level}" additivity="false">
+		<logger name="com.funny" level="${log.level}" additivity="true">
 			<appender-ref ref="Console"/>
 			<appender-ref ref="file"/>
-			<appender-ref ref="warnFile"/>
-			<appender-ref ref="errorFile"/>
-		</logger>
-	
-		<logger name="com.alibaba.druid" level="${log.level}" additivity="false">
-			<appender-ref ref="Console"/>
-			<appender-ref ref="dbFile" />
-		</logger>
-	
-
-		<logger name="com.funny" level="${log.level}" additivity="false">
-			<appender-ref ref="Console"/>
-			<appender-ref ref="file"/>
-			<appender-ref ref="warnFile"/>
 			<appender-ref ref="errorFile"/>
 		</logger>
 	</loggers>

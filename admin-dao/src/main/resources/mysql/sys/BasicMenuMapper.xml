@@ -27,9 +27,8 @@
       )
     values (#{id,jdbcType=BIGINT}, #{menuName,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, 
       #{parentId,jdbcType=VARCHAR}, #{menuOrder,jdbcType=INTEGER}, #{menuIcon,jdbcType=VARCHAR},
-      #{menuType,jdbcType=INTEGER}, #{yn,jdbcType=INTEGER}, #{createBy,jdbcType=BIGINT},
-      #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+      #{menuType,jdbcType=INTEGER}, 1, #{createBy,jdbcType=BIGINT},
+      now(), #{updateBy,jdbcType=BIGINT}, now())
   </insert>
   <update id="updateByIdSelected" parameterType="com.funny.admin.common.domain.sys.entity.MenuEntity" >
     update admin_menu
@@ -55,18 +54,10 @@
       <if test="yn != null" >
         yn = #{yn,jdbcType=INTEGER},
       </if>
-      <if test="createBy != null" >
-        create_by = #{createBy,jdbcType=BIGINT},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="updateBy != null" >
         update_by = #{updateBy,jdbcType=BIGINT},
       </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP}
-      </if>
+      update_time = now(),
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>

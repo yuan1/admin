@@ -26,8 +26,8 @@
       update_by, yn)
     values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},#{userPwd,jdbcType=VARCHAR},
       #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{userStatus,jdbcType=BIT}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{updateBy,jdbcType=BIGINT}, #{yn,jdbcType=INTEGER})
+      now(), #{createBy,jdbcType=BIGINT}, now(),
+      #{updateBy,jdbcType=BIGINT}, 1)
   </insert>
   <update id="updateByIdSelected" parameterType="com.funny.admin.common.domain.sys.entity.UserEntity" >
     update admin_user
@@ -50,21 +50,13 @@
       <if test="userStatus != null" >
         user_status = #{userStatus,jdbcType=BIT},
       </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createBy != null" >
-        create_by = #{createBy,jdbcType=BIGINT},
-      </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="updateBy != null" >
         update_by = #{updateBy,jdbcType=BIGINT},
       </if>
       <if test="yn != null" >
-        yn = #{yn,jdbcType=INTEGER}
+        yn = #{yn,jdbcType=INTEGER},
       </if>
+      update_time = now(),
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>

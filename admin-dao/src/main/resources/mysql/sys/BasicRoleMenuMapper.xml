@@ -9,7 +9,7 @@
     <result column="create_by" property="createBy" jdbcType="BIGINT" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="update_by" property="updateBy" jdbcType="BIGINT" />
-    <result column="yn" property="yn" jdbcType="BIT" />
+    <result column="yn" property="yn" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, role_id, menu_id, create_time, create_by, update_time, update_by, yn
@@ -21,9 +21,8 @@
     insert into admin_role_menu (role_id, menu_id, create_time, 
       create_by, update_time, update_by, 
       yn)
-    values (#{roleId,jdbcType=BIGINT}, #{menuId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{createBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, 
-      #{yn,jdbcType=BIT})
+    values (#{roleId,jdbcType=BIGINT}, #{menuId,jdbcType=BIGINT}, now(),
+      #{createBy,jdbcType=BIGINT}, now(), #{updateBy,jdbcType=BIGINT},1)
   </insert>
   <update id="updateByIdSelected" parameterType="com.funny.admin.common.domain.sys.entity.RoleMenuEntity" >
     update admin_role_menu
@@ -34,21 +33,13 @@
       <if test="menuId != null" >
         menu_id = #{menuId,jdbcType=BIGINT},
       </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createBy != null" >
-        create_by = #{createBy,jdbcType=BIGINT},
-      </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="updateBy != null" >
         update_by = #{updateBy,jdbcType=BIGINT},
       </if>
       <if test="yn != null" >
-        yn = #{yn,jdbcType=BIT}
+        yn = #{yn,jdbcType=INTEGER},
       </if>
+      update_time = now(),
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
