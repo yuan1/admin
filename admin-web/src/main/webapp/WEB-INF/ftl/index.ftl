@@ -93,11 +93,7 @@
                 if (data.returncode == 0) {
                     var mentstr = "";
                     $.each(data.result, function (index, item) {
-                        if (index == 0) {
-                            mentstr += '<li > <a href="' + item.menuUrl + '"><i class="' + item.menuIcon + '"></i><span class="title">' + item.menuName + '</span></a>';
-                        } else {
-                            mentstr += '<li ><a href="' + item.menuUrl + '"><i class="' + item.menuIcon + '"></i><span class="title">' + item.menuName + '</span></a>';
-                        }
+                        mentstr += '<li ><a href="' + item.menuUrl + '"><i class="' + item.menuIcon + '"></i><span class="title">' + item.menuName + '</span></a>';
                         if (item.childList!=null && item.childList.length > 0) {
                             mentstr += '<ul class="sub-menu">';
                             $.each(item.childList, function (i, it) {
