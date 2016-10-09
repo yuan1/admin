@@ -1,5 +1,14 @@
 package com.funny.admin.web.controller.sys;
 
+import com.alibaba.fastjson.JSON;
+import com.funny.admin.common.domain.sys.condition.MenuCondition;
+import com.funny.admin.common.domain.sys.condition.UserCondition;
+import com.funny.admin.common.domain.sys.entity.ConfigItemEntity;
+import com.funny.admin.common.domain.sys.enums.UserStatusEnum;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -13,6 +22,10 @@ import com.funny.admin.common.domain.sys.vo.MenuVo;
 import com.funny.admin.common.result.JsonResult;
 import com.funny.admin.service.sys.MenuService;
 import com.funny.admin.web.controller.BaseController;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/menu/")
@@ -29,7 +42,7 @@ public class MenuController extends BaseController {
         try {
             MenuEntity menu = menuService.getMenuById(id);
             BeanUtils.copyProperties(menu, menuVo);
-            if (menu.getParentId() != null && menu.getParentId() != 0L) {
+            if (menu.getParentId() != null && menu.getParentId() != 999999999L) {
                 MenuEntity parentEntity = menuService.getMenuById(menu.getParentId());
                 MenuVo parent = new MenuVo();
                 BeanUtils.copyProperties(parentEntity, parent);
@@ -43,4 +56,39 @@ public class MenuController extends BaseController {
         }
         return jsonResult;
     }
+
+
+    @RequestMapping("/list")
+    public ModelAndView getMenuList(UserCondition condition) {
+        ModelAndView modelAndView = new ModelAndView("menu/list");
+        return modelAndView;
+    }
+
+    @RequestMapping("/getSubMenuList")
+    public ModelAndView getSubMenuList(Long parentId) {
+        ModelAndView mv = new ModelAndView("menu/page");
+        MenuCondition menuCondition = new MenuCondition();
+        menuCondition.setParentId(parentId);
+        try {
+            List<MenuEntity> menuEntityList = menuService.selectMenuListByCondition(menuCondition);
+            mv.addObject("subMenuList", menuEntityList);
+        } catch (Exception e) {
+            logger.error("获取子菜单列表失败,param={}", parentId, e);
+        }
+        return mv;
+    }
+
+    @RequestMapping(value = "/getMenuList")
+    @ResponseBody
+    public JsonResult getMenuList() {
+        JsonResult jsonResult = new JsonResult();
+        try {
+            jsonResult.setSuccess(menuService.getMenuTree());
+        } catch (Exception e) {
+            logger.error("获取菜单失败",e);
+            jsonResult.setFail("获取菜单失败");
+        }
+        return jsonResult;
+    }
+
 }

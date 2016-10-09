@@ -24,7 +24,7 @@ public class MenuEntity extends BaseEntity {
     /**
     * 
     */
-    private String menuOrder;
+    private Integer menuOrder;
 
     /**
     * 
@@ -60,12 +60,12 @@ public class MenuEntity extends BaseEntity {
         return parentId;
     }
 
-    public void setMenuOrder(String menuOrder) {
-        this.menuOrder = menuOrder == null ? null : menuOrder.trim();
+    public Integer getMenuOrder() {
+        return menuOrder;
     }
 
-    public String getMenuOrder() {
-        return menuOrder;
+    public void setMenuOrder(Integer menuOrder) {
+        this.menuOrder = menuOrder;
     }
 
     public void setMenuIcon(String menuIcon) {

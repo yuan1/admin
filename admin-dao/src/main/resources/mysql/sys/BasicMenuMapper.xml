@@ -6,7 +6,7 @@
     <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
     <result column="menu_url" property="menuUrl" jdbcType="VARCHAR" />
     <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
-    <result column="menu_order" property="menuOrder" jdbcType="VARCHAR" />
+    <result column="menu_order" property="menuOrder" jdbcType="INTEGER" />
     <result column="menu_icon" property="menuIcon" jdbcType="VARCHAR" />
     <result column="menu_type" property="menuType" jdbcType="INTEGER" />
     <result column="yn" property="yn" jdbcType="INTEGER" />
@@ -26,7 +26,7 @@
       create_time, update_by, update_time
       )
     values (#{id,jdbcType=BIGINT}, #{menuName,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, 
-      #{parentId,jdbcType=VARCHAR}, #{menuOrder,jdbcType=VARCHAR}, #{menuIcon,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=VARCHAR}, #{menuOrder,jdbcType=INTEGER}, #{menuIcon,jdbcType=VARCHAR},
       #{menuType,jdbcType=INTEGER}, #{yn,jdbcType=INTEGER}, #{createBy,jdbcType=BIGINT},
       #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}
       )
@@ -44,7 +44,7 @@
         parent_id = #{parentId,jdbcType=VARCHAR},
       </if>
       <if test="menuOrder != null" >
-        menu_order = #{menuOrder,jdbcType=VARCHAR},
+        menu_order = #{menuOrder,jdbcType=INTEGER},
       </if>
       <if test="menuIcon != null" >
         menu_icon = #{menuIcon,jdbcType=VARCHAR},

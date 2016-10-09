@@ -9,10 +9,13 @@ import javax.servlet.http.HttpSession;
 import com.funny.admin.common.domain.sys.condition.MenuCondition;
 import com.funny.admin.common.domain.sys.vo.MenuVo;
 import com.funny.admin.service.sys.UserService;
+import com.funny.admin.web.controller.sys.ConfigController;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +28,8 @@ import com.funny.admin.common.result.JsonResult;
 
 @Controller
 public class LoginController {
+    private final static Logger logger = LoggerFactory.getLogger(LoginController.class);
+
 
     @Resource
     private MenuService menuService;
@@ -87,44 +92,11 @@ public class LoginController {
     public JsonResult createMenuTree() {
         JsonResult jsonResult = new JsonResult();
         try {
-            List<MenuEntity> menuList = menuService.selectMenuListByCondition(new MenuCondition());
-            Map<Long, MenuEntity> menuEntityMap = Maps.newHashMap();
-            Map<Long, List<MenuVo>> childMap = Maps.newHashMap();
-
-            for (MenuEntity menu : menuList) {
-                menuEntityMap.put(menu.getId(), menu);
-            }
-            List<MenuVo> entityList = null;
-            for (MenuEntity menu : menuList) {
-                if (childMap.get(menu.getParentId()) == null) {
-                    entityList = Lists.newArrayList();
-                } else {
-                    entityList = childMap.get(menu.getParentId());
-                }
-                MenuVo menuVo = new MenuVo();
-                BeanUtils.copyProperties(menu, menuVo);
-                entityList.add(menuVo);
-                childMap.put(menu.getParentId(), entityList);
-            }
-            List<MenuVo> menuVoList = Lists.newArrayList();
-            for (MenuEntity menu : menuList) {
-                MenuVo menuVo = new MenuVo();
-                BeanUtils.copyProperties(menu, menuVo);
-                menuVo.setChildList(childMap.get(menuVo.getId()));
-                menuVoList.add(menuVo);
-            }
-			Predicate<MenuVo> menuVoPredicate = new Predicate<MenuVo>() {
-				@Override
-				public boolean apply(MenuVo vo) {
-					return vo.getParentId() == 0L;
-				}
-			};
-			List<MenuVo> resultList = Lists.newArrayList(Iterables.filter(menuVoList, menuVoPredicate));
-            jsonResult.setSuccess(resultList);
+            List<MenuVo> menuList = menuService.getMenuTree();
+            jsonResult.setSuccess(menuList);
         } catch (Exception e) {
-            e.printStackTrace();
-            jsonResult.setReturncode(500);
-            jsonResult.setMessage(e.getMessage());
+            logger.error("获取菜单失败",e);
+            jsonResult.setFail("获取菜单失败");
         }
         return jsonResult;
     }
