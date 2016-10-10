@@ -16,9 +16,34 @@ var MenuJs = function () {
         });
     };
 
+    var saveMenu = function () {
+        $("#menu-form").ajaxSubmit({
+            url: '/admin/menu/save.do',
+            type: 'post', // 提交方式 get/post
+            dataType: "json",
+            success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
+                // 此处可对 data 作相关处理
+                if (data.returncode == 0) {
+                    toastr["success"](data.message, "保存用户");
+                    $("#add-modal").modal('hide');
+                    submitForm();
+                } else {
+                    toastr["error"](data.message, "保存用户");
+                }
+            }
+        });
+    };
+
     return {
         init: function () {
             init();
+            $("#addBtn").click(function () {
+                $(".modal-title").text('新增菜单');
+                $("#add-modal").modal('show');
+            });
+        },
+        saveMenu: function () {
+            saveMenu();
         }
     }
 }();

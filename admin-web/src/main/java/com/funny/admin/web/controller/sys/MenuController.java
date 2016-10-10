@@ -91,4 +91,18 @@ public class MenuController extends BaseController {
         return jsonResult;
     }
 
+    @RequestMapping(value = "/saveMenu")
+    @ResponseBody
+    public JsonResult saveMenu(MenuEntity menuEntity) {
+        JsonResult jsonResult = new JsonResult();
+        try {
+            menuService.addMenu(menuEntity);
+            jsonResult.setSuccess();
+        } catch (Exception e) {
+            logger.error("获取菜单失败",e);
+            jsonResult.setFail("获取菜单失败");
+        }
+        return jsonResult;
+    }
+
 }
