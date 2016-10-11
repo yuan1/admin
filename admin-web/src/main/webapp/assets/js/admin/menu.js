@@ -40,6 +40,28 @@ var MenuJs = function () {
             $("#addBtn").click(function () {
                 $(".modal-title").text('新增菜单');
                 $("#add-modal").modal('show');
+                $.ajax({
+                    type: "get",
+                    url: '/admin/menu/getIconList.do',
+                    dataType: 'json',
+                    async: false,
+                    success: function (data) {
+                        if (data.returncode == 0) {
+                            var htmlstr = "";
+                            $.each(data.result, function (i, item) {
+                                htmlstr+='<a class="btn" title="'+item.className+'" onclick="selectIcon('+item.id+');">' +
+                                    '<i class="fa '+item.className+'" style="font-size: 2em"></i></a>';
+                            });
+                            $("#grid-icon").html(htmlstr);
+                        } else {
+                            alert(data.message);
+                        }
+                    }
+                });
+
+
+
+
             });
         },
         saveMenu: function () {
@@ -47,6 +69,11 @@ var MenuJs = function () {
         }
     }
 }();
+function selectIcon(className) {
+    alert(className);
+}
+
+
 function loadTree() {
     $.ajax({
         type: "get",

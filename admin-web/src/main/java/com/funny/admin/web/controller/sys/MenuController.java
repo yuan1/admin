@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.funny.admin.common.domain.sys.condition.MenuCondition;
 import com.funny.admin.common.domain.sys.condition.UserCondition;
 import com.funny.admin.common.domain.sys.entity.ConfigItemEntity;
+import com.funny.admin.common.domain.sys.entity.IconEntity;
 import com.funny.admin.common.domain.sys.enums.UserStatusEnum;
+import com.funny.admin.service.sys.IconService;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -33,6 +35,34 @@ public class MenuController extends BaseController {
     private final static Logger logger = LoggerFactory.getLogger(ConfigController.class);
     @Autowired
     private MenuService menuService;
+    @Autowired
+    private IconService iconService;
+
+    @RequestMapping(value = "/getIconHtml")
+    @ResponseBody
+    public ModelAndView getIconHtml() {
+        ModelAndView modelAndView= new ModelAndView("menu/icon");
+        try {
+            List<IconEntity> faIcons= iconService.findIcons(1);
+            modelAndView.addObject("faIcons",faIcons);
+        } catch (Exception e) {
+            logger.error("获取菜单图标失败",e);
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/getIconList")
+    @ResponseBody
+    public JsonResult getIconList() {
+        JsonResult jsonResult = new JsonResult();
+        try {
+            jsonResult.setSuccess(iconService.findIcons(1));
+        } catch (Exception e) {
+            logger.error("获取菜单图标失败",e);
+            jsonResult.setFail("获取菜单图标失败");
+        }
+        return jsonResult;
+    }
 
     @RequestMapping(value = "/getMenuParentById")
     @ResponseBody

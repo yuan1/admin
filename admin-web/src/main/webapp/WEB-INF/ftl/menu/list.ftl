@@ -5,7 +5,7 @@
     <link type="text/css" rel="stylesheet"
           href="${basePath}assets/plugins/jstree/dist/themes/default/style.min.css"/>
     <script type="text/javascript" src="${basePath}assets/plugins/jstree/dist/jstree.min.js"></script>
-    <script type="text/javascript" src="${basePath}assets/js/admin/menu.js?v=12"></script>
+    <script type="text/javascript" src="${basePath}assets/js/admin/menu.js?v=112"></script>
 </head>
 <body style="overflow: hidden">
 
@@ -86,13 +86,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-3 control-label">图标</label>
+                            <label class="col-md-2 control-label">图标</label>
 
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <input type="mobile" class="form-control input-inline input-medium"
-                                           autocomplete="off" name="menuOrder" id="menuOrder">
-                                </div>
+                            <div class="col-md-10">
+                                <ul id='grid-icon'></ul>
                             </div>
                         </div>
                     </div>
