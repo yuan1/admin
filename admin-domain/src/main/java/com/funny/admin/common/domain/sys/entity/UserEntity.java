@@ -34,11 +34,6 @@ public class UserEntity extends BaseEntity {
     */
     private Integer userStatus;
 
-    private String salt;
-    public String getCredentialsSalt() {
-        return userName + salt;
-    }
-
     public void setUserName(String userName) {
         this.userName = userName == null ? null : userName.trim();
     }

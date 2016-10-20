@@ -61,7 +61,7 @@ var UserJS = function () {
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
+                confirmButtonText: "确认",
                 closeOnConfirm: true
             },
             function () {

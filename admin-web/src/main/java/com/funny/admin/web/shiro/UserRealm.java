@@ -29,8 +29,8 @@ public class UserRealm extends AuthorizingRealm {
         String username = (String)principals.getPrimaryPrincipal();
 
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(userService.findRoles(username));
-        authorizationInfo.setStringPermissions(userService.findPermissions(username));
+        //authorizationInfo.setRoles(userService.findRoles(username));
+        //authorizationInfo.setStringPermissions(userService.findPermissions(username));
 
         return authorizationInfo;
     }
@@ -54,7 +54,7 @@ public class UserRealm extends AuthorizingRealm {
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user.getUserName(), //用户名
                 user.getUserPwd(), //密码
-                ByteSource.Util.bytes(user.getCredentialsSalt()),//salt=username+salt
+                ByteSource.Util.bytes(user.getEmail()),//salt=username+salt
                 getName()  //realm name
         );
         return authenticationInfo;

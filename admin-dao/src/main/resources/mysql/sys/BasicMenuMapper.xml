@@ -61,23 +61,23 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <delete id="deleteById" parameterType="java.lang.Long" >
-    update admin_menu
-    set yn = 0
+  <update id="updateById" parameterType="com.funny.admin.common.domain.sys.entity.MenuEntity" >
+    update admin_menu set
+        menu_name = #{menuName,jdbcType=VARCHAR},
+        menu_url = #{menuUrl,jdbcType=VARCHAR},
+        parent_id = #{parentId,jdbcType=VARCHAR},
+        menu_order = #{menuOrder,jdbcType=INTEGER},
+        menu_icon = #{menuIcon,jdbcType=VARCHAR},
+        menu_type = #{menuType,jdbcType=INTEGER},
+        yn = #{yn,jdbcType=INTEGER},
+        update_by = #{updateBy,jdbcType=BIGINT},
+        update_time = now()
     where id = #{id,jdbcType=BIGINT}
-  </delete>
+  </update>
   <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from admin_menu
     where id = #{id,jdbcType=BIGINT}
-  </select>
-  <select id="count" resultType="java.lang.Long" >
-    select count(*) from admin_menu where yn=1
-  </select>
-  <select id="findAll" resultMap="BaseResultMap" >
-    select 
-    <include refid="Base_Column_List" />
-    from admin_menu where yn=1
   </select>
 </mapper>

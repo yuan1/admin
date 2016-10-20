@@ -6,6 +6,7 @@ import com.funny.admin.common.domain.sys.condition.UserCondition;
 import com.funny.admin.common.domain.sys.entity.ConfigItemEntity;
 import com.funny.admin.common.domain.sys.entity.IconEntity;
 import com.funny.admin.common.domain.sys.enums.UserStatusEnum;
+import com.funny.admin.common.utils.CachedBeanCopier;
 import com.funny.admin.service.sys.IconService;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
@@ -70,10 +71,10 @@ public class MenuController extends BaseController {
         JsonResult<MenuVo> jsonResult = new JsonResult<MenuVo>();
         MenuVo menuVo = new MenuVo();
         try {
-            MenuEntity menu = menuService.getMenuById(id);
-            BeanUtils.copyProperties(menu, menuVo);
+            MenuEntity menu = menuService.findById(id);
+            CachedBeanCopier.copy(menu, menuVo);
             if (menu.getParentId() != null && menu.getParentId() != 999999999L) {
-                MenuEntity parentEntity = menuService.getMenuById(menu.getParentId());
+                MenuEntity parentEntity = menuService.findById(menu.getParentId());
                 MenuVo parent = new MenuVo();
                 BeanUtils.copyProperties(parentEntity, parent);
                 menuVo.setParentMenu(parent);
@@ -126,7 +127,7 @@ public class MenuController extends BaseController {
     public JsonResult saveMenu(MenuEntity menuEntity) {
         JsonResult jsonResult = new JsonResult();
         try {
-            menuService.addMenu(menuEntity);
+            menuService.add(menuEntity);
             jsonResult.setSuccess();
         } catch (Exception e) {
             logger.error("获取菜单失败",e);

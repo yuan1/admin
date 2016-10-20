@@ -6,6 +6,7 @@ import com.funny.admin.common.domain.sys.condition.UserCondition;
 import com.funny.admin.service.sys.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,45 +19,36 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public int addUser(UserEntity user) {
-        return userMapper.insert(user);
+    public UserEntity findByUsername(String name) {
+        UserCondition userCondition = new UserCondition();
+        userCondition.setUserName(name);
+        List<UserEntity> userEntityList = userMapper.findByCondition(userCondition);
+        if (CollectionUtils.isEmpty(userEntityList)) {
+            return null;
+        }
+        return userEntityList.get(0);
     }
 
     @Override
-    public int updateUser(UserEntity user) {
-        return userMapper.updateByIdSelected(user);
+    public int add(UserEntity userEntity) {
+        return userMapper.insert(userEntity);
     }
 
     @Override
-    public UserEntity getUserById(Long id) {
+    public int update(UserEntity userEntity) {
+        return userMapper.updateByIdSelected(userEntity);
+    }
+
+    @Override
+    public UserEntity findById(Long id) {
         return userMapper.findById(id);
     }
 
     @Override
-    public int deleteUser(Long id) {
-        return userMapper.deleteById(id);
-    }
-
-    @Override
-    public PageInfo<UserEntity> getPageUserList(UserCondition condition) {
-        PageHelper.startPage(condition.getPageNo(), condition.getPageSize());
+    public PageInfo<UserEntity> getPageList(UserCondition userCondition) {
         PageHelper.orderBy("id desc");
-        List<UserEntity> users = userMapper.getPageUserList(condition);
-        return new PageInfo<UserEntity>(users);
-    }
-
-    @Override
-    public Set<String> findRoles(String name) {
-        return null;
-    }
-
-    @Override
-    public Set<String> findPermissions(String username) {
-        return null;
-    }
-
-    @Override
-    public UserEntity findByUsername(String name) {
-        return null;
+        PageHelper.startPage(userCondition.getPageNo(),userCondition.getPageSize());
+        List<UserEntity> userEntityList = userMapper.findByCondition(userCondition);
+        return new PageInfo<UserEntity>(userEntityList);
     }
 }

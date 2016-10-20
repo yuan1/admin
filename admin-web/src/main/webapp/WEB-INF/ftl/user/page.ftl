@@ -20,7 +20,7 @@
                     <td style="text-align: center">${user.realName}</td>
                     <td style="text-align: center">${user.mobile}</td>
                     <td style="text-align: center">${user.email}</td>
-                    <td style="text-align: center">${user.userStatus}</td>
+                    <td style="text-align: center">${user.userStatusText}</td>
                     <td style="text-align: center">${user.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                     <td style="text-align: center">
                         <a class="btn btn-circle btn-primary" onclick="UserJS.toUpdate('${user.id}')"><i class="icon-edit"></i>修改</a>

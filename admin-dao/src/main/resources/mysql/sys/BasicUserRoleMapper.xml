@@ -41,23 +41,21 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <delete id="deleteById" parameterType="java.lang.Long">
-    update admin_user_role
-    set yn = 0
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
+
+    <update id="updateById" parameterType="com.funny.admin.common.domain.sys.entity.UserRoleEntity">
+        update admin_user_role set
+                user_id = #{userId,jdbcType=BIGINT},
+                role_id = #{roleId,jdbcType=BIGINT},
+                update_by = #{updateBy,jdbcType=BIGINT},
+                yn = #{yn,jdbcType=INTEGER}
+                update_time = now()
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
     <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>
         from admin_user_role
         where id = #{id,jdbcType=BIGINT}
-    </select>
-    <select id="count" resultType="java.lang.Long">
-    select count(*) from admin_user_role where yn=1
-  </select>
-    <select id="findAll" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from admin_user_role where yn=1
     </select>
 </mapper>

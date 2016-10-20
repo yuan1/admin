@@ -58,11 +58,19 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <delete id="deleteById" parameterType="java.lang.Long" >
-    update admin_config_item
-    set yn = 0
+  <update id="updateById" parameterType="com.funny.admin.common.domain.sys.entity.ConfigItemEntity" >
+    update admin_config_item set
+        config_id = #{configId,jdbcType=BIGINT},
+        item_name = #{itemName,jdbcType=VARCHAR},
+        item_value = #{itemValue,jdbcType=VARCHAR},
+        item_id = #{itemId,jdbcType=INTEGER},
+        order_num = #{orderNum,jdbcType=INTEGER},
+        update_by = #{updateBy,jdbcType=BIGINT},
+        yn = #{yn,jdbcType=INTEGER},
+        update_time = now()
     where id = #{id,jdbcType=BIGINT}
-  </delete>
+  </update>
+
   <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />

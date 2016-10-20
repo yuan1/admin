@@ -1,5 +1,8 @@
 package com.funny.admin.common.domain;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -7,12 +10,32 @@ import java.util.Date;
  * Created by fangli@autohome.com.cn on 2016/6/29.
  */
 public class BaseEntity implements Serializable{
-    private Long id;
-    private Long createBy;
-    private Date createTime;
-    private Long updateBy;
-    private Date updateTime;
-    private Integer yn;
+    /**
+     * 主键id
+     */
+    protected Long id;
+    /**
+     * 创建人
+     */
+    protected Long createBy;
+    /**
+     * 创建时间
+     */
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    protected Date createTime;
+    /**
+     * 更新人
+     */
+    protected Long updateBy;
+    /**
+     * 更新时间
+     */
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    protected Date updateTime;
+    /**
+     * 是否有效 1 有效 0 无效
+     */
+    protected Integer yn;
 
     public Long getId() {
         return id;
@@ -60,5 +83,10 @@ public class BaseEntity implements Serializable{
 
     public void setYn(Integer yn) {
         this.yn = yn;
+    }
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
     }
 }

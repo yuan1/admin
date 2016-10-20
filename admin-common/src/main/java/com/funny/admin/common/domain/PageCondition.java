@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 public class PageCondition implements Serializable{
 	protected int pageNo = 1;
-	protected int pageSize = 20;
+	protected int pageSize = 10;
 
 	public int getPageNo() {
 		return pageNo;

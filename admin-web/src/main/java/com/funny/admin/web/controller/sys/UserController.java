@@ -6,10 +6,13 @@ import com.funny.admin.common.domain.sys.condition.UserCondition;
 import com.funny.admin.common.domain.sys.enums.UserStatusEnum;
 import com.funny.admin.common.domain.sys.vo.UserVo;
 import com.funny.admin.common.result.ReturnCode;
+import com.funny.admin.common.utils.CachedBeanCopier;
 import com.funny.admin.service.sys.UserService;
 import com.funny.admin.common.result.JsonResult;
 import com.github.pagehelper.PageInfo;
 import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,7 @@ import com.funny.admin.web.controller.BaseController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/user/")
@@ -41,16 +45,18 @@ public class UserController extends BaseController {
     @RequestMapping(value = "userPageList")
     public ModelAndView userPageList(UserCondition condition) {
         ModelAndView modelAndView = new ModelAndView("user/page");
-        condition.setPageSize(10);
         try {
-            PageInfo<UserEntity> pageInfo = null;
-            try {
-                pageInfo = userService.getPageUserList(condition);
-            } catch (Exception e) {
-                logger.error("查询用户列表失败,param={}", JSON.toJSONString(condition), e);
-            }
+            PageInfo<UserEntity> pageInfo = userService.getPageList(condition);
             modelAndView.addObject("pageInfo", pageInfo);
-            modelAndView.addObject("userList", pageInfo.getList());
+            if(CollectionUtils.isNotEmpty(pageInfo.getList())){
+                List<UserVo> userVoList = Lists.newArrayListWithExpectedSize(pageInfo.getList().size());
+                for(UserEntity userEntity:pageInfo.getList()){
+                    UserVo userVo = new UserVo();
+                    CachedBeanCopier.copy(userEntity,userVo);
+                    userVoList.add(userVo);
+                }
+                modelAndView.addObject("userList", userVoList);
+            }
         } catch (Exception e) {
             logger.error("获取用户列表，内部发生异常", e);
         }
@@ -63,7 +69,7 @@ public class UserController extends BaseController {
         JsonResult<UserEntity> jsonResult = new JsonResult();
         UserEntity user = null;
         try {
-            user = userService.getUserById(id);
+            user = userService.findById(id);
             jsonResult.setSuccess(user);
         } catch (Exception e) {
             jsonResult.setFail("查询用户失败");
@@ -80,16 +86,15 @@ public class UserController extends BaseController {
             return jsonResult;
         }
         try {
-            if (user.getId() != null) {
-                user.setUpdateBy(1L);
-                user.setUpdateTime(new Date());
-                userService.updateUser(user);
+            UserEntity userEntity = new UserEntity();
+            CachedBeanCopier.copy(user, userEntity);
+            if (userEntity.getId() != null) {
+                userEntity.setUpdateBy(getCurrentLoginUserId());
+                userService.update(userEntity);
             } else {
-                user.setCreateBy(1L);
-                user.setCreateTime(new Date());
-                user.setUserStatus(1);
-                user.setYn(1);
-                userService.addUser(user);
+                userEntity.setCreateBy(getCurrentLoginUserId());
+                userEntity.setUserStatus(UserStatusEnum.NORMAL.getValue());
+                userService.add(userEntity);
             }
             jsonResult.setSuccess();
         } catch (Exception e) {
@@ -104,7 +109,10 @@ public class UserController extends BaseController {
     public JsonResult deleteUser(Long id) {
         JsonResult jsonResult = new JsonResult();
         try {
-            userService.deleteUser(id);
+            UserEntity userEntity = new UserEntity();
+            userEntity.setUpdateBy(getCurrentLoginUserId());
+            userEntity.setId(id);
+            userService.update(userEntity);
             jsonResult.setSuccess();
         } catch (Exception e) {
             logger.error("删除用户失败,param={}", id, e);

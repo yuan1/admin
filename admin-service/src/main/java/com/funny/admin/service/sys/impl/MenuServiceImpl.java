@@ -4,7 +4,9 @@ import com.funny.admin.common.dao.sys.MenuMapper;
 import com.funny.admin.common.domain.sys.condition.MenuCondition;
 import com.funny.admin.common.domain.sys.entity.MenuEntity;
 import com.funny.admin.common.domain.sys.vo.MenuVo;
+import com.funny.admin.common.utils.CachedBeanCopier;
 import com.funny.admin.service.sys.MenuService;
+import com.github.pagehelper.PageInfo;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -23,32 +25,12 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public List<MenuEntity> selectMenuListByCondition(MenuCondition condition) {
-        return menuMapper.selectMenuListByCondition(condition);
-    }
-
-    @Override
-    public MenuEntity getMenuById(Long id) {
-        return menuMapper.findById(id);
-    }
-
-    @Override
-    public int addMenu(MenuEntity menu) {
-        return menuMapper.insert(menu);
-    }
-
-    @Override
-    public int updateMenu(MenuEntity menu) {
-        return menuMapper.updateByIdSelected(menu);
-    }
-
-    @Override
-    public int deleteMenuById(Long id) {
-        return menuMapper.deleteById(id);
+        return menuMapper.findByCondition(condition);
     }
 
     @Override
     public List<MenuVo> getMenuTree() {
-        List<MenuEntity> menuList = menuMapper.selectMenuListByCondition(new MenuCondition());
+        List<MenuEntity> menuList = menuMapper.findByCondition(new MenuCondition());
         Map<Long, MenuEntity> menuEntityMap = Maps.newHashMapWithExpectedSize(menuList.size());
         Map<Long, List<MenuVo>> childMap = Maps.newHashMapWithExpectedSize(menuList.size());
 
@@ -63,14 +45,14 @@ public class MenuServiceImpl implements MenuService {
                 entityList = childMap.get(menu.getParentId());
             }
             MenuVo menuVo = new MenuVo();
-            BeanUtils.copyProperties(menu, menuVo);
+            CachedBeanCopier.copy(menu, menuVo);
             entityList.add(menuVo);
             childMap.put(menu.getParentId(), entityList);
         }
         List<MenuVo> menuVoList = Lists.newArrayList();
         for (MenuEntity menu : menuList) {
             MenuVo menuVo = new MenuVo();
-            BeanUtils.copyProperties(menu, menuVo);
+            CachedBeanCopier.copy(menu, menuVo);
             menuVo.setChildList(childMap.get(menuVo.getId()));
             menuVoList.add(menuVo);
         }
@@ -82,5 +64,26 @@ public class MenuServiceImpl implements MenuService {
         };
         List<MenuVo> resultList = Lists.newArrayList(Iterables.filter(menuVoList, menuVoPredicate));
         return resultList;
+    }
+
+    @Override
+    public int add(MenuEntity menuEntity) {
+        return menuMapper.insert(menuEntity);
+    }
+
+    @Override
+    public int update(MenuEntity menuEntity) {
+        return menuMapper.updateByIdSelected(menuEntity);
+    }
+
+    @Override
+    public MenuEntity findById(Long id) {
+        return menuMapper.findById(id);
+    }
+
+    @Override
+    public PageInfo<MenuEntity> getPageList(MenuCondition menuCondition) {
+        List<MenuEntity> menuEntityList = menuMapper.findByCondition(menuCondition);
+        return new PageInfo<MenuEntity>(menuEntityList);
     }
 }
