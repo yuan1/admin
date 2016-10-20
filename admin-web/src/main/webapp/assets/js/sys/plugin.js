@@ -47,10 +47,10 @@ var AlertJS = function () {
         success: function (title) {
             swal(title, '', "success");
         },
-        confirm: function (title, text, callback) {
+        confirm: function (title, callback) {
             swal({
                 title: title,
-                text: text,
+                text: '',
                 type: "warning",
                 showCancelButton: true,
                 cancelButtonText: '取消',

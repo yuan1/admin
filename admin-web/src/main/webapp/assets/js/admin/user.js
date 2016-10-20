@@ -19,7 +19,7 @@ var UserJS = function () {
     };
 
     var toRemove = function (id) {
-        AlertJS.confirm('确定要删除这个用户吗', '确定要删除这个用户吗', function () {
+        AlertJS.confirm('确定要删除这个用户吗?', function () {
             $.ajax({
                 type: "post",
                 url: '/admin/user/delete.do?id=' + id,
