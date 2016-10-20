@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.funny.admin.common.dao.sys.ConfigMapper" >
-  <select id="findConfigByCondition" resultMap="BaseResultMap"
+  <select id="findByCondition" resultMap="BaseResultMap"
           parameterType="com.funny.admin.common.domain.sys.condition.ConfigItemCondition" >
     select
     <include refid="Base_Column_List" />
@@ -12,6 +12,5 @@
     <if test=" configId !=null">
       and id = #{configId}
     </if>
-
   </select>
 </mapper>

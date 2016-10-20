@@ -1,9 +1,9 @@
 package com.funny.admin.common.dao;
 
+import java.util.List;
+
 import com.funny.admin.common.domain.BaseEntity;
 import com.funny.admin.common.domain.PageCondition;
-
-import java.util.List;
 
 /**
  * Created by fangli@autohome.com.cn on 2016/6/29.

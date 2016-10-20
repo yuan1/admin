@@ -64,18 +64,15 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping("/getUserById")
-    @ResponseBody
-    public JsonResult<UserEntity> getUserById(Long id) {
-        JsonResult<UserEntity> jsonResult = new JsonResult();
-        UserEntity user = null;
+    public ModelAndView getUserById(Long id) {
+        ModelAndView modelAndView = new ModelAndView("user/edit");
         try {
-            user = userService.findById(id);
-            jsonResult.setSuccess(user);
+            UserEntity user = userService.findById(id);
+            modelAndView.addObject("user", user);
         } catch (Exception e) {
-            jsonResult.setFail("查询用户失败");
             logger.error("查询用户失败,param={}", id, e);
         }
-        return jsonResult;
+        return modelAndView;
     }
 
     @RequestMapping("/save")
@@ -112,6 +109,7 @@ public class UserController extends BaseController {
             UserEntity userEntity = new UserEntity();
             userEntity.setUpdateBy(getCurrentLoginUserId());
             userEntity.setId(id);
+            userEntity.setYn(0);
             userService.update(userEntity);
             jsonResult.setSuccess();
         } catch (Exception e) {

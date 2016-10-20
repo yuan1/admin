@@ -40,23 +40,32 @@ var ConfigJS = function () {
     };
 
     var removeConfigItem = function () {
-        $("#js-remove-item-btn").click(function () {
-            $("#js-remove-item-form").ajaxSubmit({
-                url: '/admin/config/submitRemoveItem.do',
-                type: 'post', // 提交方式 get/post
-                dataType: "json",
-                success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
-                    // 此处可对 data 作相关处理
-                    if (data.returncode == 0) {
-                        toastr["success"](data.message, "删除配置项");
-                        $("#ajax-modal").modal("hide");
-                        submitItemFrom();
-                    } else {
-                        toastr["error"](data.message, "删除配置项");
+        swal({
+                title: "确定要删除这个配置项吗?",
+                text: "删除之后不可恢复!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确认",
+                closeOnConfirm: true
+            },
+            function () {
+                $.ajax({
+                    type: "post",
+                    url: '/admin/config/submitRemoveItem.do?id=' + id,
+                    dataType: 'json',
+                    async: false,
+                    success: function (data) {
+                        if (data.returncode == 0) {
+                            swal("成功!", data.message, "success");
+                            submitItemFrom();
+                        }else{
+                            swal("失败!", data.message, "warning");
+                        }
                     }
-                }
-            });
-        });
+                });
+            }
+        );
     };
     var init = function () {
         loadTree();

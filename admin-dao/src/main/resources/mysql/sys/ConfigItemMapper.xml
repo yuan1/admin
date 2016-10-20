@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.funny.admin.common.dao.sys.ConfigItemMapper" >
-  <select id="findConfigItemByCondition" resultMap="BaseResultMap"
+  <select id="findByCondition" resultMap="BaseResultMap"
           parameterType="com.funny.admin.common.domain.sys.condition.ConfigItemCondition" >
     select <include refid="Base_Column_List" /> from admin_config_item where yn =1
     <if test=" configId !=null">
@@ -14,7 +14,6 @@
       and id != #{nid}
     </if>
   </select>
-
 
   <select id="selectMaxItemId" resultType="int"
           parameterType="long" >

@@ -59,20 +59,5 @@
 <script type="text/javascript" src="${basePath}assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="${basePath}assets/plugins/select2/select2.min.js"></script>
 <script type="text/javascript" src="${basePath}assets/plugins/bootstrap-toastr/toastr.min.js"></script>
+<script type="text/javascript" src="${basePath}assets/js/sys/plugin.js"></script>
 <!-- END PAGE LEVEL PLUGINS -->
-<script type="text/javascript">
-    toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "positionClass": "toast-bottom-right",
-        "onclick": null,
-        "showDuration": "1000",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    };
-</script>

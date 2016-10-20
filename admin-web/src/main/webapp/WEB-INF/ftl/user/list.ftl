@@ -2,7 +2,7 @@
 <html lang="zh_CN">
 <head>
 <#include "../layout/common.ftl">
-    <script type="text/javascript" src="${basePath}assets/js/admin/user.js?v=2016018112"></script>
+    <script type="text/javascript" src="${basePath}assets/js/admin/user.js?v=20160181111"></script>
 </head>
 <body style="overflow: hidden">
 
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="portlet-body form">
-                <form class="form-horizontal" action="#" id="user-search-form">
+                <form class="form-horizontal" action="/admin/user/userPageList.do" id="user-search-form">
                     <input type="hidden" id="js-bootpag-num" name="pageNo" value="1"/>
 
                     <div class="row">
@@ -26,8 +26,7 @@
 
                                 <div class="col-md-8">
                                     <input type="text" class="form-control input-inline" id="s_user_name"
-                                           name="userName" <#if condition.userName?exists>
-                                           value="${condition.userName}" </#if>>
+                                           name="userName">
                                 </div>
                             </div>
                         </div>
@@ -37,8 +36,7 @@
 
                                 <div class="col-md-8">
                                     <input type="text" class="form-control input-inline" id="s_real_name"
-                                           name="realName"<#if condition.realName?exists>
-                                           value="${condition.realName}" </#if>>
+                                           name="realName">
                                 </div>
                             </div>
                         </div>
@@ -48,8 +46,7 @@
 
                                 <div class="col-md-8">
                                     <input type="text" class="form-control input-inline" id="s_mobile"
-                                           name="mobile" <#if condition.mobile?exists>
-                                           value="${condition.mobile}" </#if>>
+                                           name="mobile">
                                 </div>
                             </div>
                         </div>
@@ -61,7 +58,7 @@
 
                                 <div class="col-md-8">
                                     <input type="text" class="form-control input-inline" id="s_email"
-                                           name="email" <#if condition.email?exists> value="${condition.mobile}" </#if>>
+                                           name="email">
                                 </div>
                             </div>
                         </div>
@@ -100,7 +97,7 @@
                     <span class="caption-subject font-green">用户列表</span>
                 </div>
                 <div class="actions">
-                    <a class="btn btn-circle blue" id="addBtn">
+                    <a class="btn btn-circle blue" onclick="ModalJS.open('ajax-modal','/admin/user/getUserById.do');">
                         <i class="fa fa-plus"></i>新增
                     </a>
                 </div>
@@ -111,82 +108,7 @@
     </div>
 </div>
 
-
-<form method="post" id="js-item-form" class="form-horizontal">
-    <input type="hidden" id="js-item-num" name="pageNo" value="1"/>
-</form>
-
 <div class="modal fade" id="ajax-modal" data-width="550"></div>
-
-
-<div id="add-modal" class="modal fade" tabindex="-1" aria-hidden="true">
-    <div class="modal-header">
-        <h4 class="modal-title">新增用户</h4>
-    </div>
-    <div class="modal-body">
-        <div>
-            <form class="form-horizontal" role="form" action="#" id="user-form">
-                <input type="hidden" id="id" name="id">
-
-                <div class="form-body">
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">用户名</label>
-
-                        <div class="col-md-9">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="text" class="form-control input-inline input-medium"
-                                       autocomplete="off"
-                                       placeholder="用户名" name="userName" id="userName">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">姓名</label>
-
-                        <div class="col-md-9">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="text" class="form-control input-inline input-medium"
-                                       autocomplete="off"
-                                       placeholder="姓名" name="realName" id="realName">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">手机号</label>
-
-                        <div class="col-md-9">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
-                                <input type="mobile" class="form-control input-inline input-medium"
-                                       autocomplete="off"
-                                       placeholder="手机号" name="mobile" id="mobile">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Email</label>
-
-                        <div class="col-md-9">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                <input type="email" class="form-control input-inline input-medium"
-                                       autocomplete="off"
-                                       placeholder="Email Address" name="email" id="email">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" data-dismiss="modal" class="btn dark btn-outline">取消</button>
-        <button type="button" class="btn green" onclick="UserJS.submitSave();">保存</button>
-    </div>
-</div>
 
 <script>
     UserJS.init();

@@ -9,4 +9,6 @@ import com.funny.admin.common.domain.sys.condition.ConfigItemCondition;
 
 public interface ConfigMapper extends BaseMapper<ConfigEntity> {
     List<ConfigEntity> findConfigByCondition(ConfigItemCondition configItemCondition);
+
+    ConfigEntity findConfigByCode(String configCode);
 }

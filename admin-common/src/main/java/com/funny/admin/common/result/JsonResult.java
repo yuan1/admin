@@ -48,7 +48,7 @@ public class JsonResult<T> {
 
     public void setSuccess() {
         this.returncode = 0;
-        this.message = "成功";
+        this.message = "操作成功!";
     }
 
     public void setFail(String message) {

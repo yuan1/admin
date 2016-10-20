@@ -1,9 +1,11 @@
 package com.funny.admin.common.domain.sys.condition;
 
+import com.funny.admin.common.domain.PageCondition;
+
 /**
  * Created by funny on 16/9/8.
  */
-public class ConfigItemCondition{
+public class ConfigItemCondition extends PageCondition {
     /**
      * 配置编码
      */

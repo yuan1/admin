@@ -1,21 +1,6 @@
 var UserJS = function () {
     var pageAjax = function (totalPage, pageNum) {
-        $('#js-bootpag').bootpag({
-            total: totalPage,
-            page: pageNum,
-            maxVisible: 7,
-            leaps: true,
-            firstLastUse: true,
-            first: '首页',
-            last: '尾页',
-            wrapClass: 'pagination',
-            activeClass: 'active',
-            disabledClass: 'disabled',
-            nextClass: 'next',
-            prevClass: 'prev',
-            lastClass: 'last',
-            firstClass: 'first'
-        }).on("page", function (event, num) {
+        PageJS.page('js-bootpag', totalPage, pageNum, function (event, num) {
             $("#js-bootpag-num").val(num);
             submitForm();
             $("#js-bootpag-num").val("1");
@@ -33,52 +18,26 @@ var UserJS = function () {
         });
     };
 
-    var toUpdate = function (id) {
-        $.ajax({
-            type: "post",
-            url: '/admin/user/getUserById.do?id=' + id,
-            dataType: 'json',
-            async: false,
-            success: function (data) {
-                if (data.returncode == 0) {
-                    $(".modal-title").text('修改用户');
-                    $("#add-modal").modal('show');
-                    $("#id").val(data.result.id);
-                    $("#userName").val(data.result.userName);
-                    $("#realName").val(data.result.realName);
-                    $("#mobile").val(data.result.mobile);
-                    $("#email").val(data.result.email);
-                }
-            }
-        });
-    };
-
-
     var toRemove = function (id) {
-        swal({
-                title: "确定要删除这个用户吗?",
-                text: "删除之后不可恢复!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "确认",
-                closeOnConfirm: true
-            },
-            function () {
-                $.ajax({
-                    type: "post",
-                    url: '/admin/user/delete.do?id=' + id,
-                    dataType: 'json',
-                    async: false,
-                    success: function (data) {
-                        if (data.returncode == 0) {
-                            toastr["success"]('删除成功', "删除用户");
-                            submitForm();
-                        }
+        AlertJS.confirm('确定要删除这个用户吗', '确定要删除这个用户吗', function () {
+            $.ajax({
+                type: "post",
+                url: '/admin/user/delete.do?id=' + id,
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    if (data.returncode == 0) {
+                        AlertJS.success(data.message);
+                        submitForm();
+                    } else {
+                        AlertJS.error(data.message);
                     }
-                });
-            }
-        );
+                },
+                error: function () {
+                    AlertJS.error('网络超时,请稍后再试试!');
+                }
+            });
+        });
     };
 
     var submitSave = function () {
@@ -89,12 +48,15 @@ var UserJS = function () {
             success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
                 // 此处可对 data 作相关处理
                 if (data.returncode == 0) {
-                    toastr["success"](data.message, "保存用户");
-                    $("#add-modal").modal('hide');
+                    toastr.success(data.message);
+                    $("#ajax-modal").modal('hide');
                     submitForm();
                 } else {
-                    toastr["error"](data.message, "保存用户");
+                    AlertJS.error(data.message);
                 }
+            },
+            error: function () {
+                AlertJS.error('网络超时,请稍后再试试!');
             }
         });
     };
@@ -102,11 +64,6 @@ var UserJS = function () {
     var init = function () {
         $("#searchBtn").click(function () {
             submitForm();
-        });
-        $("#addBtn").click(function () {
-            $(".modal-title").text('新增用户');
-            $("#add-modal").modal('show');
-            $("#user-form")[0].reset();
         });
         submitForm();
     };
@@ -116,9 +73,6 @@ var UserJS = function () {
         },
         initPage: function (totalPage, pageNum) {
             pageAjax(totalPage, pageNum);
-        },
-        toUpdate: function (id) {
-            toUpdate(id);
         },
         toRemove: function (id) {
             toRemove(id);
