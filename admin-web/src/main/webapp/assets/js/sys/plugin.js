@@ -3,7 +3,7 @@ var ModalJS = function () {
         open: function (id, url) {
             var dialogModal = $("#" + id);
             dialogModal.load(url, "", function () {
-                dialogModal.modal()
+                dialogModal.modal();
             });
         }
     }
