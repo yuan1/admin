@@ -1,9 +1,9 @@
 package com.funny.admin.service.sys.impl;
 
-import com.funny.admin.common.dao.sys.MenuMapper;
-import com.funny.admin.common.domain.sys.condition.MenuCondition;
-import com.funny.admin.common.domain.sys.entity.MenuEntity;
-import com.funny.admin.common.domain.sys.vo.MenuVo;
+import com.funny.admin.common.dao.admin.MenuMapper;
+import com.funny.admin.common.domain.admin.condition.MenuCondition;
+import com.funny.admin.common.domain.admin.entity.MenuEntity;
+import com.funny.admin.common.domain.admin.vo.MenuVo;
 import com.funny.admin.common.utils.CachedBeanCopier;
 import com.funny.admin.service.sys.MenuService;
 import com.github.pagehelper.PageInfo;
@@ -11,7 +11,6 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

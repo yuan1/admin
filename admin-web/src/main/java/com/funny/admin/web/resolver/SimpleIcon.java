@@ -6,11 +6,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 
-import com.funny.admin.common.dao.sys.IconMapper;
-import com.funny.admin.common.domain.sys.entity.IconEntity;
+import com.funny.admin.common.dao.admin.IconMapper;
+import com.funny.admin.common.domain.admin.entity.IconEntity;
 import org.apache.commons.io.FileUtils;
 
-import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.funny.admin.common.dao.sys.ConfigItemMapper;
-import com.funny.admin.common.domain.sys.condition.ConfigItemCondition;
-import com.funny.admin.common.domain.sys.entity.ConfigItemEntity;
+import com.funny.admin.common.dao.admin.ConfigItemMapper;
+import com.funny.admin.common.domain.admin.condition.ConfigItemCondition;
+import com.funny.admin.common.domain.admin.entity.ConfigItemEntity;
 import com.funny.admin.service.sys.ConfigItemService;
 import com.github.pagehelper.PageInfo;
 

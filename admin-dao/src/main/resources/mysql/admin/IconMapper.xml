@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.funny.admin.common.dao.admin.IconMapper" >
+  
+  <resultMap id="iconResultMap" type="com.funny.admin.common.domain.admin.entity.IconEntity">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="icon_type" property="iconType" jdbcType="INTEGER" />
+    <result column="class_name" property="className" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="findIcons" resultMap="iconResultMap" parameterType="int">
+      select id, icon_type, class_name from icon where icon_type = #{iconType}
+  </select>
+  
+  <insert id="insertIcon" parameterType="com.funny.admin.common.domain.admin.entity.IconEntity" >
+    insert into icon (id, icon_type, class_name)
+    values (#{id,jdbcType=BIGINT}, #{iconType,jdbcType=INTEGER}, #{className,jdbcType=VARCHAR})
+  </insert>
+</mapper>

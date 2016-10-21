@@ -1,6 +1,6 @@
 package com.funny.admin.service.sys;
 
-import com.funny.admin.common.domain.sys.entity.IconEntity;
+import com.funny.admin.common.domain.admin.entity.IconEntity;
 
 import java.util.List;
 

@@ -1,5 +1,4 @@
 <meta charset="utf-8"/>
-<title></title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -9,8 +8,6 @@
 <meta http-equiv="cache-control" content="no-cache">
 <!-- Prevent caching at the proxy server -->
 <meta http-equiv="expires" content="0">
-<meta content="" name="description"/>
-<meta content="" name="author"/>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
 <link href="${basePath}assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>

@@ -1,28 +1,19 @@
 package com.funny.admin.web.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import com.funny.admin.common.domain.sys.condition.MenuCondition;
-import com.funny.admin.common.domain.sys.vo.MenuVo;
+import com.funny.admin.common.domain.admin.vo.MenuVo;
 import com.funny.admin.service.sys.UserService;
-import com.funny.admin.web.controller.sys.ConfigController;
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.funny.admin.common.domain.sys.entity.MenuEntity;
 import com.funny.admin.service.sys.MenuService;
 import com.funny.admin.common.result.JsonResult;
 

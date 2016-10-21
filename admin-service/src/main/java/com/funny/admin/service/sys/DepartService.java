@@ -2,8 +2,8 @@ package com.funny.admin.service.sys;
 
 import java.util.Set;
 
-import com.funny.admin.common.domain.sys.condition.UserCondition;
-import com.funny.admin.common.domain.sys.entity.UserEntity;
+import com.funny.admin.common.domain.admin.condition.UserCondition;
+import com.funny.admin.common.domain.admin.entity.UserEntity;
 import com.github.pagehelper.PageInfo;
 
 public interface DepartService {

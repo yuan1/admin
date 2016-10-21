@@ -5,8 +5,8 @@ import java.util.concurrent.ConcurrentMap;
 
 import javax.annotation.Resource;
 
-import com.funny.admin.common.dao.sys.ParameterMapper;
-import com.funny.admin.common.domain.sys.entity.ParameterEntity;
+import com.funny.admin.common.dao.admin.ParameterMapper;
+import com.funny.admin.common.domain.admin.entity.ParameterEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;

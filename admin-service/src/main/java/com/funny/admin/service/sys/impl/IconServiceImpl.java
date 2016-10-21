@@ -1,7 +1,7 @@
 package com.funny.admin.service.sys.impl;
 
-import com.funny.admin.common.dao.sys.IconMapper;
-import com.funny.admin.common.domain.sys.entity.IconEntity;
+import com.funny.admin.common.dao.admin.IconMapper;
+import com.funny.admin.common.domain.admin.entity.IconEntity;
 import com.funny.admin.service.sys.IconService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.funny.admin.service.sys;
 
-import com.funny.admin.common.domain.sys.condition.ConfigItemCondition;
-import com.funny.admin.common.domain.sys.entity.ConfigEntity;
+import com.funny.admin.common.domain.admin.condition.ConfigItemCondition;
+import com.funny.admin.common.domain.admin.entity.ConfigEntity;
 import com.funny.admin.common.service.BaseService;
 
 import java.util.List;
