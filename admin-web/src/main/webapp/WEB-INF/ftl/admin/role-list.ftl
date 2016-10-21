@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="zh_CN">
-<head>
-<#include "../layout/common.ftl">
-    <script type="text/javascript" src="${basePath}assets/js/admin/user.js?v=20160181111"></script>
-</head>
-<body style="overflow: hidden">
-
+<#import "../marco/page.ftl" as p>
+<@p.content title="角色管理" >
 <div class="page-content">
     <div class="col-md-12">
         <div class="portlet light">
@@ -16,64 +10,16 @@
                 </div>
             </div>
             <div class="portlet-body form">
-                <form class="form-horizontal" action="/admin/user/userPageList.do" id="user-search-form">
+                <form class="form-horizontal" action="/admin/role/rolePageList.do" id="role-search-form">
                     <input type="hidden" id="js-bootpag-num" name="pageNo" value="1"/>
 
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label">用户名</label>
+                                <label class="col-md-4 control-label">角色名</label>
 
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-inline" id="s_user_name"
-                                           name="userName">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">姓名</label>
-
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control input-inline" id="s_real_name"
-                                           name="realName">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">手机号</label>
-
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control input-inline" id="s_mobile"
-                                           name="mobile">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">邮箱</label>
-
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control input-inline" id="s_email"
-                                           name="email">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">状态</label>
-
-                                <div class="col-md-8">
-                                    <select class="bs-select select2 form-control input-inline" name="userType" id="s_user_type"
-                                            data-live-search="true">
-                                        <option value="">全部</option>
-                                    <#list statusList as status>
-                                        <option value=">${status.value}">${status.desc}</option>
-                                    </#list>
-                                    </select>
+                                    <input type="text" class="form-control input-inline" name="roleName">
                                 </div>
                             </div>
                         </div>
@@ -94,10 +40,10 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="icon-grid font-green"></i>
-                    <span class="caption-subject font-green">用户列表</span>
+                    <span class="caption-subject font-green">角色列表</span>
                 </div>
                 <div class="actions">
-                    <a class="btn btn-circle blue" onclick="ModalJS.open('ajax-modal','/admin/user/getUserById.do');">
+                    <a class="btn btn-circle blue" onclick="ModalJS.open('ajax-modal','/admin/role/getRoleById.do');">
                         <i class="fa fa-plus"></i>新增
                     </a>
                 </div>
@@ -110,8 +56,8 @@
 
 <div class="modal fade" id="ajax-modal" data-width="550"></div>
 
+<script type="text/javascript" src="${basePath}assets/js/admin/role.js?v=20160181111"></script>
 <script>
-    UserJS.init();
+    RoleJS.init();
 </script>
-</body>
-</html>
+</@p.content>

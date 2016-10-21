@@ -91,7 +91,7 @@
                     <span class="caption-subject font-green">用户列表</span>
                 </div>
                 <div class="actions">
-                    <a class="btn btn-circle blue" onclick="ModalJS.open('ajax-modal','/admin/user/getUserById.do');">
+                    <a class="btn btn-circle blue" onclick="ModalJS.open('ajax-modal','/admin/user/getById.do');">
                         <i class="fa fa-plus"></i>新增
                     </a>
                 </div>
@@ -109,9 +109,3 @@
     UserJS.init();
 </script>
 </@p.content>
-
-
-
-
-
-

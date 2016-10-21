@@ -23,7 +23,7 @@
                     <td style="text-align: center">${user.userStatusText}</td>
                     <td style="text-align: center">${user.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                     <td style="text-align: center">
-                        <a class="btn btn-circle btn-primary" onclick="ModalJS.open('ajax-modal','/admin/user/getUserById.do?id='+${user.id});">
+                        <a class="btn btn-circle btn-primary" onclick="ModalJS.open('ajax-modal','/admin/user/getById.do?id='+${user.id});">
                             <i class="icon-edit"></i>修改</a>
                         <a class="btn btn-circle btn-danger"  onclick="UserJS.toRemove('${user.id}')"><i class="icon-remove"></i>删除</a>
                     </td>

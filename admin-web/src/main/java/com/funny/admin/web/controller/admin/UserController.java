@@ -57,8 +57,8 @@ public class UserController extends BaseController {
         return modelAndView;
     }
 
-    @RequestMapping("/getUserById")
-    public ModelAndView getUserById(Long id) throws Exception {
+    @RequestMapping("/getById")
+    public ModelAndView getById(Long id) throws Exception {
         ModelAndView modelAndView = new ModelAndView("/admin/user-edit");
         UserEntity user = userService.findById(id);
         modelAndView.addObject("user", user);

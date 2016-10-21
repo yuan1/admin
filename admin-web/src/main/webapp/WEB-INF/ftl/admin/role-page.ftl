@@ -2,36 +2,30 @@
     <thead>
     <tr>
         <th style="text-align: center">id</th>
-        <th style="text-align: center">用户名</th>
-        <th style="text-align: center">姓名</th>
-        <th style="text-align: center">手机号</th>
-        <th style="text-align: center">邮箱</th>
-        <th style="text-align: center">状态</th>
+        <th style="text-align: center">角色名</th>
         <th style="text-align: center">创建时间</th>
+        <th style="text-align: center">修改时间</th>
         <th style="text-align: center">操作</th>
     </tr>
     </thead>
     <tbody>
-        <#if userList?exists && userList?size&gt;0 >
-            <#list userList as user>
+        <#if roleList?exists && roleList?size&gt;0 >
+            <#list roleList as role>
                 <tr>
-                    <td style="text-align: center">${user.id}</td>
-                    <td style="text-align: center">${user.userName}</td>
-                    <td style="text-align: center">${user.realName}</td>
-                    <td style="text-align: center">${user.mobile}</td>
-                    <td style="text-align: center">${user.email}</td>
-                    <td style="text-align: center">${user.userStatusText}</td>
-                    <td style="text-align: center">${user.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+                    <td style="text-align: center">${role.id}</td>
+                    <td style="text-align: center">${role.roleName}</td>
+                    <td style="text-align: center">${role.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+                    <td style="text-align: center">${role.updateTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                     <td style="text-align: center">
-                        <a class="btn btn-circle btn-primary" onclick="ModalJS.open('ajax-modal','/admin/user/getUserById.do?id='+${user.id});">
+                        <a class="btn btn-circle btn-primary" onclick="ModalJS.open('ajax-modal','/admin/role/getById.do?id='+${role.id});">
                             <i class="icon-edit"></i>修改</a>
-                        <a class="btn btn-circle btn-danger"  onclick="UserJS.toRemove('${user.id}')"><i class="icon-remove"></i>删除</a>
+                        <a class="btn btn-circle btn-danger"  onclick="RoleJS.toRemove('${role.id}')"><i class="icon-remove"></i>删除</a>
                     </td>
                 </tr>
             </#list>
         <#else>
             <tr>
-                <td colspan="8" style="text-align: center">暂无数据</td>
+                <td colspan="5" style="text-align: center">暂无数据</td>
             </tr>
         </#if>
 
@@ -45,6 +39,6 @@
     </div>
     <div class="col-md-6 pull-right" id="js-bootpag" style="text-align: right"></div>
     <script type="text/javascript">
-        UserJS.initPage('${pageInfo.pages}', '${pageInfo.pageNum}');
+        RoleJS.initPage('${pageInfo.pages}', '${pageInfo.pageNum}');
     </script>
 </div>
