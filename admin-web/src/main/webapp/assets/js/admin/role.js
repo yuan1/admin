@@ -19,7 +19,7 @@ var RoleJS = function () {
     };
 
     var toRemove = function (id) {
-        AlertJS.confirm('确定要删除这个用户吗?', function () {
+        AlertJS.confirm('确定要删除这个角色吗?', function () {
             $.ajax({
                 type: "post",
                 url: '/admin/role/delete.do?id=' + id,

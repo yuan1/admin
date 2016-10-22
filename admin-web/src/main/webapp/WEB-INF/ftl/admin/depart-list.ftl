@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-md-4">
                             <a class="btn btn-circle blue" id="searchBtn"><i class="fa fa-search"></i>查询</a>
-                            <button type="reset" class="btn btn-circle grey-cascade" id="typereset">
+                            <button type="reset" class="btn btn-circle grey-cascade">
                                 <i class="fa fa-times">重置</i>
                             </button>
                         </div>

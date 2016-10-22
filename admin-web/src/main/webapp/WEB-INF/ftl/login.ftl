@@ -4,7 +4,7 @@
     <title>擎天柱登录</title>
     <!--公共页-->
     <#include "layout/common.ftl">
-    <link href="${basePath}assets/css/login.css" rel="stylesheet" type="text/css"/>
+    <link href="${basePath}/assets/css/login.css" rel="stylesheet" type="text/css"/>
 </head>
 <body class="login">
 <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -14,14 +14,14 @@
 <!-- BEGIN LOGO -->
 <div class="logo">
     <a href="#">
-        <img src="assets/img/logo-big.png" alt=""/>
+        <img src="/assets/img/logo-big.png" alt=""/>
     </a>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
 <div class="content">
     <!-- BEGIN LOGIN FORM -->
-    <form class="login-form" action="/index.do" method="post">
+    <form class="login-form" action="/index.html" method="post">
         <h3 class="form-title">擎天柱admin后台管理系统</h3>
 
         <div class="alert alert-danger display-hide">
@@ -48,7 +48,7 @@
     </form>
     <!-- END LOGIN FORM -->
     <!-- BEGIN FORGOT PASSWORD FORM -->
-    <form class="forget-form" action="index.html" method="post">
+    <form class="forget-form" action="index.do" method="post">
         <h3>找回密码</h3>
 
         <p>
@@ -72,13 +72,13 @@
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
-<script src="${basePath}assets/plugins/respond.min.js"></script>
-<script src="${basePath}assets/plugins/excanvas.min.js"></script>
+<script src="${basePath}/assets/plugins/respond.min.js" type="text/javascript"></script>
+<script src="${basePath}/assets/plugins/excanvas.min.js" type="text/javascript"></script>
 <![endif]-->
-<script src="${basePath}assets/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/js/sys/login.js" type="text/javascript"></script>
+<script src="${basePath}/assets/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="${basePath}/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="${basePath}/assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="${basePath}/assets/js/sys/login.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
     jQuery(document).ready(function () {

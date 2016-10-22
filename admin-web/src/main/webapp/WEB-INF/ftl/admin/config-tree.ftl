@@ -50,9 +50,9 @@
 
 <div class="modal fade" id="ajax-modal" data-width="550"></div>
 <link type="text/css" rel="stylesheet"
-      href="${basePath}assets/plugins/jstree/dist/themes/default/style.min.css"/>
-<script type="text/javascript" src="${basePath}assets/plugins/jstree/dist/jstree.min.js"></script>
-<script type="text/javascript" src="${basePath}assets/js/admin/config.js?v=2016082222"></script>
+      href="${basePath}/assets/plugins/jstree/dist/themes/default/style.min.css"/>
+<script type="text/javascript" src="${basePath}/assets/plugins/jstree/dist/jstree.min.js"></script>
+<script type="text/javascript" src="${basePath}/assets/js/admin/config.js?v=2016082222"></script>
 
 <script>
     ConfigJS.init();

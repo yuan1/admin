@@ -8,7 +8,7 @@
 
             <div class="form-body">
                 <div class="form-group">
-                    <label class="col-md-3 control-label">用户名</label>
+                    <label class="col-md-3 control-label">角色名</label>
 
                     <div class="col-md-9">
                         <input type="text" class="form-control input-inline input-medium" autocomplete="off"

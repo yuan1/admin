@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-md-4">
                             <a class="btn btn-circle blue" id="searchBtn"><i class="fa fa-search"></i>查询</a>
-                            <button type="reset" class="btn btn-circle grey-cascade" id="typereset">
+                            <button type="reset" class="btn btn-circle grey-cascade">
                                 <i class="fa fa-times">重置</i>
                             </button>
                         </div>
@@ -43,7 +43,7 @@
                     <span class="caption-subject font-green">角色列表</span>
                 </div>
                 <div class="actions">
-                    <a class="btn btn-circle blue" onclick="ModalJS.open('ajax-modal','/admin/role/getRoleById.do');">
+                    <a class="btn btn-circle blue" onclick="ModalJS.open('ajax-modal','/admin/role/getById.do');">
                         <i class="fa fa-plus"></i>新增
                     </a>
                 </div>
@@ -56,7 +56,7 @@
 
 <div class="modal fade" id="ajax-modal" data-width="550"></div>
 
-<script type="text/javascript" src="${basePath}assets/js/admin/role.js?v=20160181111"></script>
+<script type="text/javascript" src="${basePath}/assets/js/admin/role.js?v=20160181111"></script>
 <script>
     RoleJS.init();
 </script>

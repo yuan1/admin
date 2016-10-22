@@ -3,9 +3,9 @@
 <head>
 <#include "../layout/common.ftl">
     <link type="text/css" rel="stylesheet"
-          href="${basePath}assets/plugins/jstree/dist/themes/default/style.min.css"/>
-    <script type="text/javascript" src="${basePath}assets/plugins/jstree/dist/jstree.min.js"></script>
-    <script type="text/javascript" src="${basePath}assets/js/admin/menu.js?v=112"></script>
+          href="${basePath}/assets/plugins/jstree/dist/themes/default/style.min.css"/>
+    <script type="text/javascript" src="${basePath}/assets/plugins/jstree/dist/jstree.min.js"></script>
+    <script type="text/javascript" src="${basePath}/assets/js/admin/menu.js?v=112"></script>
 </head>
 <body style="overflow: hidden">
 

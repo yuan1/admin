@@ -37,14 +37,13 @@ public class RoleController extends BaseController {
     private RoleService roleService;
 
     @RequestMapping("/list")
-    public ModelAndView getUserList(UserCondition condition) throws Exception {
+    public ModelAndView getUserList() throws Exception {
         ModelAndView modelAndView = new ModelAndView("/admin/role-list");
-        modelAndView.addObject("condition", condition);
         return modelAndView;
     }
 
-    @RequestMapping(value = "userPageList")
-    public ModelAndView userPageList(RoleCondition condition) throws Exception {
+    @RequestMapping(value = "rolePageList")
+    public ModelAndView rolePageList(RoleCondition condition) throws Exception {
         ModelAndView modelAndView = new ModelAndView("/admin/role-page");
         PageInfo<RoleEntity> pageInfo = roleService.getPageList(condition);
         modelAndView.addObject("pageInfo", pageInfo);
@@ -56,7 +55,7 @@ public class RoleController extends BaseController {
 
     @RequestMapping("/getById")
     public ModelAndView getUserById(Long id) throws Exception {
-        ModelAndView modelAndView = new ModelAndView("/admin/user-edit");
+        ModelAndView modelAndView = new ModelAndView("/admin/role-edit");
         RoleEntity roleEntity = roleService.findById(id);
         modelAndView.addObject("role", roleEntity);
         return modelAndView;

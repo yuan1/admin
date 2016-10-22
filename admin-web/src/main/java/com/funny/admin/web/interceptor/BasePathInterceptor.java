@@ -18,7 +18,6 @@ public class BasePathInterceptor extends HandlerInterceptorAdapter {
         stringBuffer.append(":");
         stringBuffer.append(request.getServerPort());
         stringBuffer.append(request.getContextPath());
-        stringBuffer.append("/");
         request.setAttribute("basePath", stringBuffer.toString());
         return true;
     }

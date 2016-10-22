@@ -52,26 +52,26 @@
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
-<script src="${basePath}assets/plugins/respond.min.js"></script>
-<script src="${basePath}assets/plugins/excanvas.min.js"></script>
+<script src="${basePath}/assets/plugins/respond.min.js" type="text/javascript"></script>
+<script src="${basePath}/assets/plugins/excanvas.min.js" type="text/javascript"></script>
 <![endif]-->
-<script src="${basePath}assets/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+<script src="${basePath}/assets/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="${basePath}/assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
 <!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-<script src="${basePath}assets/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-<script src="${basePath}assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<script src="${basePath}/assets/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+<script src="${basePath}/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="${basePath}/assets/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="${basePath}/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="${basePath}/assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="${basePath}/assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="${basePath}/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="${basePath}/assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="${basePath}assets/js/sys/metronic.js" type="text/javascript"></script>
-<script src="${basePath}assets/js/sys/layout.js" type="text/javascript"></script>
-<script src="${basePath}assets/js/sys/quick-sidebar.js" type="text/javascript"></script>
+<script src="${basePath}/assets/js/sys/metronic.js" type="text/javascript"></script>
+<script src="${basePath}/assets/js/sys/layout.js" type="text/javascript"></script>
+<script src="${basePath}/assets/js/sys/quick-sidebar.js" type="text/javascript"></script>
 
 
 <script type="text/javascript">
@@ -85,10 +85,9 @@
 
     function createMenu() {
         $.ajax({
-            type: "get",
+            type: "post",
             url: '/createMenuTree.do',
             dataType: 'json',
-            cache: false,
             success: function (data) {
                 if (data.returncode == 0) {
                     var mentstr = "";

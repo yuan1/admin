@@ -73,7 +73,7 @@
                         </div>
                         <div class="col-md-4">
                             <a class="btn btn-circle blue" id="searchBtn"><i class="fa fa-search"></i>查询</a>
-                            <button type="reset" class="btn btn-circle grey-cascade" id="typereset">
+                            <button type="reset" class="btn btn-circle grey-cascade">
                                 <i class="fa fa-times">重置</i>
                             </button>
                         </div>
@@ -104,7 +104,7 @@
 
 <div class="modal fade" id="ajax-modal" data-width="550"></div>
 
-<script type="text/javascript" src="${basePath}assets/js/admin/user.js?v=20160181111"></script>
+<script type="text/javascript" src="${basePath}/assets/js/admin/user.js?v=20160181111"></script>
 <script>
     UserJS.init();
 </script>

@@ -7,13 +7,13 @@
 	http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-    <!-- 扫描所有的业务排除所有Mapper -->
-    <context:component-scan base-package="com.funny">
+    <!-- 扫描所有的业务排除所有controller -->
+    <context:component-scan base-package="com.funny.admin">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
     <mvc:annotation-driven>
-        <mvc:message-converters>
+        <mvc:message-converters register-defaults="true">
             <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
@@ -33,6 +33,9 @@
             <bean class="com.funny.admin.web.interceptor.BasePathInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
+
+    <bean class="com.funny.admin.web.resolver.ExceptionResolver" />
+
 
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
