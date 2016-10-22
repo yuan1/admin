@@ -36,48 +36,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int addRoles(Long operId,Long id, String roleIds) {
+    public int addRoles(Long operId, Long id, String roleIds) {
         int num = 0;
         List<UserRoleEntity> userRoleEntityList = userRoleMapper.findUserRoleByUserId(id);
-        if (CollectionUtils.isEmpty(userRoleEntityList)) {
-            for (String roleId : roleIds.split(",")) {
-                UserRoleEntity userRoleEntity = new UserRoleEntity();
-                userRoleEntity.setRoleId(Long.valueOf(roleId));
-                userRoleEntity.setUserId(id);
-                userRoleEntity.setCreateBy(operId);
-                num += userRoleMapper.insert(userRoleEntity);
-            }
-        } else {
-            Map<String, UserRoleEntity> userRoleEntityMap = Maps.newHashMapWithExpectedSize(userRoleEntityList.size());
-            for (UserRoleEntity userRoleEntity : userRoleEntityList) {
-                userRoleEntityMap.put(userRoleEntity.getUserId() + userRoleEntity.getRoleId() + "", userRoleEntity);
-            }
-            List<Long> addList = Lists.newArrayList();
-            Map<Long, String> roleEntityMap = Maps.newHashMap();
-            for (String roleId : roleIds.split(",")) {
-                roleEntityMap.put(Long.valueOf(roleId), roleId);
-                if (userRoleEntityMap.get(id + roleId) == null) {
-                    addList.add(Long.valueOf(roleId));
-                }
-            }
-            List<UserRoleEntity> removeList = Lists.newArrayList();
-            for (UserRoleEntity userRoleEntity : userRoleEntityList) {
-                if (roleEntityMap.get(userRoleEntity.getRoleId()) == null) {
-                    removeList.add(userRoleEntity);
-                }
-            }
-            for(Long roleId:addList){
-                UserRoleEntity userRoleEntity = new UserRoleEntity();
-                userRoleEntity.setRoleId(roleId);
-                userRoleEntity.setUserId(id);
-                userRoleEntity.setCreateBy(operId);
-                num +=userRoleMapper.insert(userRoleEntity);
-            }
-            for(UserRoleEntity userRoleEntity:removeList){
-                userRoleEntity.setYn(0);
-                userRoleEntity.setUpdateBy(operId);
-                num +=userRoleMapper.updateByIdSelected(userRoleEntity);
-            }
+        if (CollectionUtils.isNotEmpty(userRoleEntityList)) {
+            num += userRoleMapper.deleteByUserId(id, operId);
+        }
+        for (String roleId : roleIds.split(",")) {
+            UserRoleEntity userRoleEntity = new UserRoleEntity();
+            userRoleEntity.setRoleId(Long.valueOf(roleId));
+            userRoleEntity.setUserId(id);
+            userRoleEntity.setCreateBy(operId);
+            num += userRoleMapper.insert(userRoleEntity);
         }
         return num;
     }

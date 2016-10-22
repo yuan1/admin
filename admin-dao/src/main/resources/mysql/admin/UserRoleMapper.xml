@@ -14,4 +14,13 @@
         from admin_user_role
         where yn = 1 and user_id = #{userId,jdbcType=BIGINT}
     </select>
+
+    <update id="deleteByUserId" parameterType="java.lang.Long">
+        update admin_user_role set
+        update_by = #{updateBy,jdbcType=BIGINT},
+        yn = 0,
+        update_time = now()
+        where user_id = #{userId,jdbcType=BIGINT}
+    </update>
+
 </mapper>
