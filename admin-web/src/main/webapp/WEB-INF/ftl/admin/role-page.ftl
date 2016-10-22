@@ -19,7 +19,9 @@
                     <td style="text-align: center">
                         <a class="btn btn-circle btn-primary" onclick="ModalJS.open('ajax-modal','/admin/role/getById.do?id='+${role.id});">
                             <i class="icon-edit"></i>修改</a>
+
                         <a class="btn btn-circle btn-danger"  onclick="RoleJS.toRemove('${role.id}')"><i class="icon-remove"></i>删除</a>
+
                     </td>
                 </tr>
             </#list>

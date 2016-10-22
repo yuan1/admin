@@ -40,6 +40,33 @@ var UserJS = function () {
         });
     };
 
+    var saveRoles = function () {
+        $("#role-form").ajaxSubmit({
+            url: '/admin/user/saveRoles.do',
+            type: 'post', // 提交方式 get/post
+            dataType: "json",
+            success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
+                // 此处可对 data 作相关处理
+                if (data.returncode == 0) {
+                    toastr.success(data.message);
+                    $("#ajax-modal").modal('hide');
+                    submitForm();
+                } else {
+                    AlertJS.error(data.message);
+                }
+            },
+            error: function () {
+                AlertJS.error('网络超时,请稍后再试试!');
+            }
+        });
+    };
+
+    var initSelectRole = function () {
+        $('#multiRoleIds').multiSelect({
+            selectableHeader: '<div class="custom-header" style="background: mediumspringgreen;text-align:center">全部角色</div>',
+            selectionHeader: '<div class="custom-header" style="background: mediumspringgreen;text-align:center">已选角色</div>'
+        });
+    };
     var submitSave = function () {
         $("#user-form").ajaxSubmit({
             url: '/admin/user/save.do',
@@ -76,6 +103,12 @@ var UserJS = function () {
         },
         toRemove: function (id) {
             toRemove(id);
+        },
+        initSelectRole:function () {
+            initSelectRole();
+        },
+        saveRoles: function () {
+            saveRoles();
         },
         submitSave: function () {
             submitSave();

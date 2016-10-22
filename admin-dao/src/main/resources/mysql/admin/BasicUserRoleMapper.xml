@@ -35,7 +35,7 @@
                 update_by = #{updateBy,jdbcType=BIGINT},
             </if>
             <if test="yn != null">
-                yn = #{yn,jdbcType=INTEGER}
+                yn = #{yn,jdbcType=INTEGER},
             </if>
             update_time = now(),
         </set>
@@ -47,7 +47,7 @@
                 user_id = #{userId,jdbcType=BIGINT},
                 role_id = #{roleId,jdbcType=BIGINT},
                 update_by = #{updateBy,jdbcType=BIGINT},
-                yn = #{yn,jdbcType=INTEGER}
+                yn = #{yn,jdbcType=INTEGER},
                 update_time = now()
         where id = #{id,jdbcType=BIGINT}
     </update>

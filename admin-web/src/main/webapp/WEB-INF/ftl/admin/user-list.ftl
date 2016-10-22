@@ -104,6 +104,8 @@
 
 <div class="modal fade" id="ajax-modal" data-width="550"></div>
 
+<link rel="stylesheet" type="text/css" href="${basePath}/assets/plugins/jquery-multi-select/css/multi-select.css">
+<script type="text/javascript" src="${basePath}/assets/plugins/jquery-multi-select/js/jquery.multi-select.js"></script>
 <script type="text/javascript" src="${basePath}/assets/js/admin/user.js?v=20160181111"></script>
 <script>
     UserJS.init();

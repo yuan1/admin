@@ -41,4 +41,9 @@ public class RoleServiceImpl implements RoleService {
         return new PageInfo<>(roleEntityList);
 
     }
+
+    @Override
+    public List<RoleEntity> findRoleList(RoleCondition roleCondition) {
+        return roleMapper.findByCondition(roleCondition);
+    }
 }

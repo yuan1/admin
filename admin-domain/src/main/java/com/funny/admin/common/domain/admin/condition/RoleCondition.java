@@ -8,11 +8,21 @@ import com.funny.admin.common.domain.PageCondition;
 public class RoleCondition extends PageCondition {
     private String roleName;
 
+    private Long userId;
+
     public String getRoleName() {
         return roleName;
     }
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

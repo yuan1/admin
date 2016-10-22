@@ -10,11 +10,21 @@ public class RoleEntity extends BaseEntity {
     */
     private String roleName;
 
+    private boolean checked = false;
+
     public void setRoleName(String roleName) {
         this.roleName = roleName == null ? null : roleName.trim();
     }
 
     public String getRoleName() {
         return roleName;
+    }
+
+    public boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }
