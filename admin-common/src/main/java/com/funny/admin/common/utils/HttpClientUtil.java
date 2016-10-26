@@ -7,319 +7,190 @@
 */
 package com.funny.admin.common.utils;
 
-import com.alibaba.fastjson.JSON;
-import org.apache.http.*;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.HttpRequestRetryHandler;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.conn.scheme.Scheme;
-import org.apache.http.conn.ssl.SSLSocketFactory;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.CoreProtocolPNames;
-import org.apache.http.protocol.ExecutionContext;
-import org.apache.http.protocol.HttpContext;
-import org.apache.http.util.EntityUtils;
-import org.springframework.util.StringUtils;
-
-import javax.net.ssl.SSLHandshakeException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.InterruptedIOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.security.*;
-import java.security.cert.CertificateException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLHandshakeException;
+
+import com.alibaba.fastjson.JSON;
+import org.apache.http.*;
+import org.apache.http.client.HttpRequestRetryHandler;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.config.Registry;
+import org.apache.http.config.RegistryBuilder;
+import org.apache.http.conn.ConnectTimeoutException;
+import org.apache.http.conn.routing.HttpRoute;
+import org.apache.http.conn.socket.ConnectionSocketFactory;
+import org.apache.http.conn.socket.LayeredConnectionSocketFactory;
+import org.apache.http.conn.socket.PlainConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HttpContext;
+import org.apache.http.util.EntityUtils;
 
 /**
  * Apache Httpclient 4.0 工具包装类
  *
- * @author shezy
+ * @author fangli
  */
-@SuppressWarnings("all")
 public class HttpClientUtil {
+    static final int timeOut = 10 * 1000;
+
     public static final String CHARSET_UTF8 = "UTF-8";
-    public static final String CHARSET_GBK = "GBK";
     private static final String SSL_DEFAULT_SCHEME = "https";
     private static final int SSL_DEFAULT_PORT = 443;
+    //设置连接超时时间
+    Integer CONNECTION_TIMEOUT = 2 * 1000; //设置请求超时2秒钟 根据业务调整
+    Integer SO_TIMEOUT = 2 * 1000; //设置等待数据超时时间2秒钟 根据业务调整
+    Long CONN_MANAGER_TIMEOUT = 500L; //该值就是连接不够用的时候等待超时时间，一定要设置，而且不能太大 ()
 
-    // 异常自动恢复处理, 使用HttpRequestRetryHandler接口实现请求的异常恢复
-    private static HttpRequestRetryHandler requestRetryHandler = new HttpRequestRetryHandler() {
-        // 自定义的恢复策略
-        public boolean retryRequest(IOException exception, int executionCount, HttpContext context) {
-            // 设置恢复策略，在发生异常时候将自动重试3次
-            if (executionCount >= 3) {
-                // Do not retry if over max retry count
+    private static CloseableHttpClient httpClient = null;
+
+    private final static Object syncLock = new Object();
+
+    public static void config(HttpRequestBase httpRequestBase) {
+        // 设置Header等
+        // httpRequestBase.setHeader("User-Agent", "Mozilla/5.0");
+        // httpRequestBase
+        // .setHeader("Accept",
+        // "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+        // httpRequestBase.setHeader("Accept-Language",
+        // "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3");// "en-US,en;q=0.5");
+        // httpRequestBase.setHeader("Accept-Charset",
+        // "ISO-8859-1,utf-8,gbk,gb2312;q=0.7,*;q=0.7");
+
+        // 配置请求的超时设置
+        RequestConfig requestConfig = RequestConfig.custom().setConnectionRequestTimeout(timeOut)
+                .setConnectTimeout(timeOut).setSocketTimeout(timeOut).build();
+        httpRequestBase.setConfig(requestConfig);
+    }
+
+    /**
+     * 获取HttpClient对象
+     *
+     * @return
+     * @author SHANHY
+     * @create 2015年12月18日
+     */
+    public static CloseableHttpClient getHttpClient(String url) {
+        String hostname = url.split("/")[2];
+        int port = 80;
+        if (hostname.contains(":")) {
+            String[] arr = hostname.split(":");
+            hostname = arr[0];
+            port = Integer.parseInt(arr[1]);
+        }
+        if (httpClient == null) {
+            synchronized (syncLock) {
+                if (httpClient == null) {
+                    httpClient = createHttpClient(200, 40, 100, hostname, port);
+                }
+            }
+        }
+        return httpClient;
+    }
+
+    /**
+     * 创建HttpClient对象
+     * 此处解释下MaxtTotal和DefaultMaxPerRoute的区别：
+     *1、MaxtTotal是整个池子的大小；
+     *2、DefaultMaxPerRoute是根据连接到的主机对MaxTotal的一个细分；比如：
+     *MaxtTotal=400 DefaultMaxPerRoute=200
+     *而我只连接到http://sishuok.com时，到这个主机的并发最多只有200；而不是400；
+     *而我连接到http://sishuok.com 和 http://qq.com时，到每个主机的并发最多只有200；即加起来是400（但不能超过400）；所以起作用的设置是DefaultMaxPerRoute。
+     *
+     * @return
+     * @author SHANHY
+     * @create 2015年12月18日
+     */
+    public static CloseableHttpClient createHttpClient(int maxTotal, int maxPerRoute, int maxRoute, String hostname,
+            int port) {
+        ConnectionSocketFactory plainsf = PlainConnectionSocketFactory.getSocketFactory();
+        LayeredConnectionSocketFactory sslsf = SSLConnectionSocketFactory.getSocketFactory();
+        Registry<ConnectionSocketFactory> registry = RegistryBuilder.<ConnectionSocketFactory> create()
+                .register("http", plainsf).register("https", sslsf).build();
+        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager(registry);
+        // 将最大连接数增加
+
+        cm.setMaxTotal(maxTotal);
+        // 将每个路由基础的连接增加
+        cm.setDefaultMaxPerRoute(maxPerRoute);
+        HttpHost httpHost = new HttpHost(hostname, port);
+        // 将目标主机的最大连接数增加
+        cm.setMaxPerRoute(new HttpRoute(httpHost), maxRoute);
+
+        // 请求重试处理
+        HttpRequestRetryHandler httpRequestRetryHandler = new HttpRequestRetryHandler() {
+            public boolean retryRequest(IOException exception, int executionCount, HttpContext context) {
+                if (executionCount >= 5) {// 如果已经重试了5次，就放弃
+                    return false;
+                }
+                if (exception instanceof NoHttpResponseException) {// 如果服务器丢掉了连接，那么就重试
+                    return true;
+                }
+                if (exception instanceof SSLHandshakeException) {// 不要重试SSL握手异常
+                    return false;
+                }
+                if (exception instanceof InterruptedIOException) {// 超时
+                    return false;
+                }
+                if (exception instanceof UnknownHostException) {// 目标服务器不可达
+                    return false;
+                }
+                if (exception instanceof ConnectTimeoutException) {// 连接被拒绝
+                    return false;
+                }
+                if (exception instanceof SSLException) {// SSL握手异常
+                    return false;
+                }
+
+                HttpClientContext clientContext = HttpClientContext.adapt(context);
+                HttpRequest request = clientContext.getRequest();
+                // 如果请求是幂等的，就再次尝试
+                if (!(request instanceof HttpEntityEnclosingRequest)) {
+                    return true;
+                }
                 return false;
             }
-            if (exception instanceof NoHttpResponseException) {
-                // Retry if the server dropped connection on us
-                return true;
-            }
-            if (exception instanceof SSLHandshakeException) {
-                // Do not retry on SSL handshake exception
-                return false;
-            }
-            HttpRequest request = (HttpRequest) context.getAttribute(ExecutionContext.HTTP_REQUEST);
-            boolean idempotent = (request instanceof HttpEntityEnclosingRequest);
-            if (!idempotent) {
-                // Retry if the request is considered idempotent
-                return true;
-            }
-            return false;
-        }
-    };
-    // 使用ResponseHandler接口处理响应，HttpClient使用ResponseHandler会自动管理连接的释放，解决了对连接的释放管理
-    private static ResponseHandler responseHandler = new ResponseHandler() {
-        // 自定义响应处理
-        public String handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
-            HttpEntity entity = response.getEntity();
-            if (entity != null) {
-                String charset = EntityUtils.getContentCharSet(entity) == null ? CHARSET_GBK
-                        : EntityUtils.getContentCharSet(entity);
-                return new String(EntityUtils.toByteArray(entity), charset);
-            } else {
-                return null;
-            }
-        }
-    };
+        };
 
-    /**
-     * Get方式提交,URL中包含查询参数, 格式：http://www.g.cn?search=p&name=s.....
-     *
-     * @param url 提交地址
-     * @return 响应消息
-     */
-    public static String get(String url) {
-        return get(url, null, null);
+        CloseableHttpClient httpClient =
+                HttpClients.custom().setConnectionManager(cm).setRetryHandler(httpRequestRetryHandler).build();
+
+        return httpClient;
     }
 
-    /**
-     * Get方式提交,URL中不包含查询参数, 格式：http://www.g.cn
-     *
-     * @param url 提交地址
-     * @param params 查询参数集, 键/值对
-     * @return 响应消息
-     */
-    public static String get(String url, Map params) {
-        return get(url, params, null);
-    }
-
-    /**
-     * Get方式提交,URL中不包含查询参数, 格式：http://www.g.cn
-     *
-     * @param url 提交地址
-     * @param params 查询参数集, 键/值对
-     * @param charset 参数提交编码集
-     * @return 响应消息
-     */
-    public static String get(String url, Map params, String charset) {
-        if (StringUtils.isEmpty(url)) {
-            return null;
+    private static void setPostParams(HttpPost httpost, Map<String, Object> params) {
+        List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+        Set<String> keySet = params.keySet();
+        for (String key : keySet) {
+            nvps.add(new BasicNameValuePair(key, params.get(key).toString()));
         }
-        List qparams = getParamsList(params);
-        if (qparams != null && qparams.size() > 0) {
-            charset = (charset == null ? CHARSET_GBK : charset);
-            String formatParams = URLEncodedUtils.format(qparams, charset);
-            url = (url.indexOf("?")) < 0 ? (url + "?" + formatParams)
-                    : (url.substring(0, url.indexOf("?") + 1) + formatParams);
-        }
-        DefaultHttpClient httpclient = getDefaultHttpClient(charset);
-        System.out.println(url);
-        HttpGet hg = new HttpGet(url);
-        // 发送请求，得到响应
-        String responseStr = null;
-
         try {
-            responseStr = JSON.toJSONString(httpclient.execute(hg, responseHandler));
-        } catch (ClientProtocolException e) {
-            throw new RuntimeException("客户端连接协议错误", e);
-        } catch (IOException e) {
-            throw new RuntimeException("IO操作异常", e);
-        } finally {
-            abortConnection(hg, httpclient);
-        }
-        return responseStr;
-    }
-
-    /**
-     * Post方式提交,URL中不包含提交参数, 格式：http://www.g.cn
-     *
-     * @param url 提交地址
-     * @param params 提交参数集, 键/值对
-     * @return 响应消息
-     */
-    public static String post(String url, Map params) {
-        return post(url, params, null);
-    }
-
-    /**
-     * Post方式提交,URL中不包含提交参数, 格式：http://www.g.cn
-     *
-     * @param url 提交地址
-     * @param params 提交参数集, 键/值对
-     * @param charset 参数提交编码集
-     * @return 响应消息
-     */
-    public static String post(String url, Map params, String charset) {
-        if (StringUtils.isEmpty(url)) {
-            return null;
-        }
-        // 创建HttpClient实例
-        DefaultHttpClient httpclient = getDefaultHttpClient(charset);
-        UrlEncodedFormEntity formEntity = null;
-        try {
-            if (StringUtils.isEmpty(charset)) {
-                formEntity = new UrlEncodedFormEntity(getParamsList(params));
-            } else {
-                formEntity = new UrlEncodedFormEntity(getParamsList(params), charset);
-            }
+            httpost.setEntity(new UrlEncodedFormEntity(nvps, CHARSET_UTF8));
         } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("不支持的编码集", e);
+            e.printStackTrace();
         }
-        HttpPost hp = new HttpPost(url);
-        hp.setEntity(formEntity);
-        // 发送请求，得到响应
-        String responseStr = null;
-        try {
-            responseStr = JSON.toJSONString(httpclient.execute(hp, responseHandler));
-        } catch (ClientProtocolException e) {
-            throw new RuntimeException("客户端连接协议错误", e);
-        } catch (IOException e) {
-            throw new RuntimeException("IO操作异常", e);
-        } finally {
-            abortConnection(hp, httpclient);
-        }
-        return responseStr;
-    }
-
-    /**
-     * Post方式提交,忽略URL中包含的参数,解决SSL双向数字证书认证
-     *
-     * @param url 提交地址
-     * @param params 提交参数集, 键/值对
-     * @param charset 参数编码集
-     * @param keystoreUrl 密钥存储库路径
-     * @param keystorePassword 密钥存储库访问密码
-     * @param truststoreUrl 信任存储库绝路径
-     * @param truststorePassword 信任存储库访问密码, 可为null
-     * @return 响应消息
-     * @throws NetServiceException
-     */
-    public static String post(String url, Map params, String charset, final URL keystoreUrl,
-            final String keystorePassword, final URL truststoreUrl, final String truststorePassword) {
-        if (StringUtils.isEmpty(url)) {
-            return null;
-        }
-        DefaultHttpClient httpclient = getDefaultHttpClient(charset);
-        UrlEncodedFormEntity formEntity = null;
-        try {
-            if (StringUtils.isEmpty(charset)) {
-                formEntity = new UrlEncodedFormEntity(getParamsList(params));
-            } else {
-                formEntity = new UrlEncodedFormEntity(getParamsList(params), charset);
-            }
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("不支持的编码集", e);
-        }
-        HttpPost hp = null;
-        String responseStr = null;
-        try {
-            KeyStore keyStore = createKeyStore(keystoreUrl, keystorePassword);
-            KeyStore trustStore = createKeyStore(truststoreUrl, keystorePassword);
-            SSLSocketFactory socketFactory = new SSLSocketFactory(keyStore, keystorePassword, trustStore);
-            Scheme scheme = new Scheme(SSL_DEFAULT_SCHEME, socketFactory, SSL_DEFAULT_PORT);
-            httpclient.getConnectionManager().getSchemeRegistry().register(scheme);
-            hp = new HttpPost(url);
-            hp.setEntity(formEntity);
-            responseStr = JSON.toJSONString(httpclient.execute(hp, responseHandler));
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("指定的加密算法不可用", e);
-        } catch (KeyStoreException e) {
-            throw new RuntimeException("keytore解析异常", e);
-        } catch (CertificateException e) {
-            throw new RuntimeException("信任证书过期或解析异常", e);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("keystore文件不存在", e);
-        } catch (IOException e) {
-            throw new RuntimeException("I/O操作失败或中断 ", e);
-        } catch (UnrecoverableKeyException e) {
-            throw new RuntimeException("keystore中的密钥无法恢复异常", e);
-        } catch (KeyManagementException e) {
-            throw new RuntimeException("处理密钥管理的操作异常", e);
-        } finally {
-            abortConnection(hp, httpclient);
-        }
-        return responseStr;
-    }
-
-    /**
-     * 获取DefaultHttpClient实例
-     *
-     * @param charset 参数编码集, 可空
-     * @return DefaultHttpClient 对象
-     */
-    private static DefaultHttpClient getDefaultHttpClient(final String charset) {
-        DefaultHttpClient httpclient = new DefaultHttpClient();
-        httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
-        // 模拟浏览器，解决一些服务器程序只允许浏览器访问的问题
-        httpclient.getParams().setParameter(CoreProtocolPNames.USER_AGENT,
-                "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)");
-        httpclient.getParams().setParameter(CoreProtocolPNames.USE_EXPECT_CONTINUE, Boolean.FALSE);
-        httpclient.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET,
-                charset == null ? CHARSET_GBK : charset);
-        httpclient.setHttpRequestRetryHandler(requestRetryHandler);
-        return httpclient;
-    }
-
-    /**
-     * 释放HttpClient连接
-     *
-     * @param hrb 请求对象
-     * @param httpclient client对象
-     */
-    private static void abortConnection(final HttpRequestBase hrb, final HttpClient httpclient) {
-        if (hrb != null) {
-            hrb.abort();
-        }
-        if (httpclient != null) {
-            httpclient.getConnectionManager().shutdown();
-        }
-    }
-
-    /**
-     * 从给定的路径中加载此 KeyStore
-     *
-     * @param url keystore URL路径
-     * @param password keystore访问密钥
-     * @return keystore 对象
-     */
-    private static KeyStore createKeyStore(final URL url, final String password)
-            throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
-        if (url == null) {
-            throw new IllegalArgumentException("Keystore url may not be null");
-        }
-        KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
-        InputStream is = null;
-        try {
-            is = url.openStream();
-            keystore.load(is, password != null ? password.toCharArray() : null);
-        } finally {
-            if (is != null) {
-                is.close();
-                is = null;
-            }
-        }
-        return keystore;
     }
 
     /**
@@ -337,5 +208,93 @@ public class HttpClientUtil {
             params.add(new BasicNameValuePair(map.getKey(), map.getValue()));
         }
         return params;
+    }
+
+    private static String handleReponse(CloseableHttpResponse response) throws IOException {
+        HttpEntity entity = response.getEntity();
+        String result = EntityUtils.toString(entity,CHARSET_UTF8);
+        // 关闭流
+        EntityUtils.consume(entity);
+        return result;
+    }
+    /**
+     * GET请求URL获取内容
+     *
+     * @param url
+     * @return
+     * @author SHANHY
+     * @throws IOException
+     * @create 2015年12月18日
+     */
+    public static String post(String url, Map<String, Object> params) throws IOException {
+        HttpPost httppost = new HttpPost(url);
+        config(httppost);
+        setPostParams(httppost, params);
+        CloseableHttpResponse response = null;
+        try {
+            response = getHttpClient(url).execute(httppost, HttpClientContext.create());
+            return handleReponse(response);
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            try {
+                if (response != null)
+                    response.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * GET请求URL获取内容
+     *
+     * @param url
+     * @return
+     * @author SHANHY
+     * @create 2015年12月18日
+     */
+    public static String get(String url,Map params) throws IOException {
+        List qparams = getParamsList(params);
+        if (qparams != null && qparams.size() > 0) {
+            String formatParams = URLEncodedUtils.format(qparams, CHARSET_UTF8);
+            url = (url.indexOf("?")) < 0 ? (url + "?" + formatParams)
+                    : (url.substring(0, url.indexOf("?") + 1) + formatParams);
+        }
+        return get(url);
+    }
+
+    /**
+     * GET请求URL获取内容
+     *
+     * @param url
+     * @return
+     * @author SHANHY
+     * @create 2015年12月18日
+     */
+    public static String get(String url) {
+        HttpGet httpget = new HttpGet(url);
+        config(httpget);
+        CloseableHttpResponse response = null;
+        try {
+            response = getHttpClient(url).execute(httpget, HttpClientContext.create());
+            return handleReponse(response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (response != null)
+                    response.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        String result = get("http://ems.mall.autohome.com.cn/m/offline/getProvinceAll.jtml");
+
+        System.out.println(result);
     }
 }
