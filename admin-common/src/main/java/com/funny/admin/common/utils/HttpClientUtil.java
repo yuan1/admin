@@ -10,6 +10,8 @@ package com.funny.admin.common.utils;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,7 @@ import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLHandshakeException;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
 import org.apache.http.*;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.config.RequestConfig;
@@ -49,23 +52,18 @@ import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
 /**
- * Apache Httpclient 4.0 工具包装类
- *
+ * Apache Httpclient 4.4 工具包装类
+ * 
  * @author fangli
  */
 public class HttpClientUtil {
-    static final int timeOut = 10 * 1000;
-
-    public static final String CHARSET_UTF8 = "UTF-8";
-    private static final String SSL_DEFAULT_SCHEME = "https";
-    private static final int SSL_DEFAULT_PORT = 443;
-    //设置连接超时时间
-    Integer CONNECTION_TIMEOUT = 2 * 1000; //设置请求超时2秒钟 根据业务调整
-    Integer SO_TIMEOUT = 2 * 1000; //设置等待数据超时时间2秒钟 根据业务调整
-    Long CONN_MANAGER_TIMEOUT = 500L; //该值就是连接不够用的时候等待超时时间，一定要设置，而且不能太大 ()
-
+    public static final String UTF8 = "UTF-8";
+    // 设置连接超时时间
+    public static int CONNECTION_TIMEOUT = 3 * 1000; // 设置请求超时2秒钟 根据业务调整
+    public static int maxTotal = 200;
+    public static int maxPerRoute = 40;
+    public static int maxRoute = 100;
     private static CloseableHttpClient httpClient = null;
-
     private final static Object syncLock = new Object();
 
     public static void config(HttpRequestBase httpRequestBase) {
@@ -78,32 +76,25 @@ public class HttpClientUtil {
         // "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3");// "en-US,en;q=0.5");
         // httpRequestBase.setHeader("Accept-Charset",
         // "ISO-8859-1,utf-8,gbk,gb2312;q=0.7,*;q=0.7");
-
         // 配置请求的超时设置
-        RequestConfig requestConfig = RequestConfig.custom().setConnectionRequestTimeout(timeOut)
-                .setConnectTimeout(timeOut).setSocketTimeout(timeOut).build();
+        RequestConfig requestConfig = RequestConfig.custom().setConnectionRequestTimeout(CONNECTION_TIMEOUT)
+                .setConnectTimeout(CONNECTION_TIMEOUT).setSocketTimeout(CONNECTION_TIMEOUT).build();
         httpRequestBase.setConfig(requestConfig);
     }
 
     /**
      * 获取HttpClient对象
-     *
+     * 
+     * @param url
      * @return
-     * @author SHANHY
-     * @create 2015年12月18日
+     * @throws MalformedURLException
      */
-    public static CloseableHttpClient getHttpClient(String url) {
-        String hostname = url.split("/")[2];
-        int port = 80;
-        if (hostname.contains(":")) {
-            String[] arr = hostname.split(":");
-            hostname = arr[0];
-            port = Integer.parseInt(arr[1]);
-        }
+    public static CloseableHttpClient getHttpClient(String url) throws MalformedURLException {
+        URL purl = new URL(url);
         if (httpClient == null) {
             synchronized (syncLock) {
                 if (httpClient == null) {
-                    httpClient = createHttpClient(200, 40, 100, hostname, port);
+                    httpClient = createHttpClient(maxTotal, maxPerRoute, maxRoute, purl.getHost(), purl.getPort());
                 }
             }
         }
@@ -111,17 +102,17 @@ public class HttpClientUtil {
     }
 
     /**
-     * 创建HttpClient对象
-     * 此处解释下MaxtTotal和DefaultMaxPerRoute的区别：
-     *1、MaxtTotal是整个池子的大小；
-     *2、DefaultMaxPerRoute是根据连接到的主机对MaxTotal的一个细分；比如：
-     *MaxtTotal=400 DefaultMaxPerRoute=200
-     *而我只连接到http://sishuok.com时，到这个主机的并发最多只有200；而不是400；
-     *而我连接到http://sishuok.com 和 http://qq.com时，到每个主机的并发最多只有200；即加起来是400（但不能超过400）；所以起作用的设置是DefaultMaxPerRoute。
-     *
+     * 创建HttpClient对象 此处解释下MaxtTotal和DefaultMaxPerRoute的区别： 1、MaxtTotal是整个池子的大小；
+     * 2、DefaultMaxPerRoute是根据连接到的主机对MaxTotal的一个细分；比如： MaxtTotal=400 DefaultMaxPerRoute=200
+     * 而我只连接到http://sishuok.com时，到这个主机的并发最多只有200；而不是400； 而我连接到http://sishuok.com 和
+     * http://qq.com时，到每个主机的并发最多只有200；即加起来是400（但不能超过400）；所以起作用的设置是DefaultMaxPerRoute。
+     * 
+     * @param maxTotal
+     * @param maxPerRoute
+     * @param maxRoute
+     * @param hostname
+     * @param port
      * @return
-     * @author SHANHY
-     * @create 2015年12月18日
      */
     public static CloseableHttpClient createHttpClient(int maxTotal, int maxPerRoute, int maxRoute, String hostname,
             int port) {
@@ -180,22 +171,22 @@ public class HttpClientUtil {
         return httpClient;
     }
 
-    private static void setPostParams(HttpPost httpost, Map<String, Object> params) {
-        List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+    private static void setPostParams(HttpPost httpost, Map<String, String> params)
+            throws UnsupportedEncodingException {
+        if (params == null || params.size() == 0) {
+            return;
+        }
+        List<NameValuePair> nvps = Lists.newArrayList();
         Set<String> keySet = params.keySet();
         for (String key : keySet) {
-            nvps.add(new BasicNameValuePair(key, params.get(key).toString()));
+            nvps.add(new BasicNameValuePair(key, params.get(key)));
         }
-        try {
-            httpost.setEntity(new UrlEncodedFormEntity(nvps, CHARSET_UTF8));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        httpost.setEntity(new UrlEncodedFormEntity(nvps, UTF8));
     }
 
     /**
      * 将传入的键/值对参数转换为NameValuePair参数集
-     *
+     * 
      * @param paramsMap 参数集, 键/值对
      * @return NameValuePair参数集
      */
@@ -210,23 +201,30 @@ public class HttpClientUtil {
         return params;
     }
 
+    /**
+     * 处理请求的后的response
+     * 
+     * @param response
+     * @return
+     * @throws IOException
+     */
     private static String handleReponse(CloseableHttpResponse response) throws IOException {
         HttpEntity entity = response.getEntity();
-        String result = EntityUtils.toString(entity,CHARSET_UTF8);
+        String result = EntityUtils.toString(entity, UTF8);
         // 关闭流
         EntityUtils.consume(entity);
         return result;
     }
+
     /**
-     * GET请求URL获取内容
-     *
+     * post 请求
+     * 
      * @param url
+     * @param params
      * @return
-     * @author SHANHY
      * @throws IOException
-     * @create 2015年12月18日
      */
-    public static String post(String url, Map<String, Object> params) throws IOException {
+    public static String post(String url, Map<String, String> params) throws IOException {
         HttpPost httppost = new HttpPost(url);
         config(httppost);
         setPostParams(httppost, params);
@@ -248,16 +246,16 @@ public class HttpClientUtil {
 
     /**
      * GET请求URL获取内容
-     *
+     * 
      * @param url
+     * @param params
      * @return
-     * @author SHANHY
-     * @create 2015年12月18日
+     * @throws IOException
      */
-    public static String get(String url,Map params) throws IOException {
+    public static String get(String url, Map params) throws IOException {
         List qparams = getParamsList(params);
         if (qparams != null && qparams.size() > 0) {
-            String formatParams = URLEncodedUtils.format(qparams, CHARSET_UTF8);
+            String formatParams = URLEncodedUtils.format(qparams, UTF8);
             url = (url.indexOf("?")) < 0 ? (url + "?" + formatParams)
                     : (url.substring(0, url.indexOf("?") + 1) + formatParams);
         }
@@ -266,11 +264,9 @@ public class HttpClientUtil {
 
     /**
      * GET请求URL获取内容
-     *
+     * 
      * @param url
      * @return
-     * @author SHANHY
-     * @create 2015年12月18日
      */
     public static String get(String url) {
         HttpGet httpget = new HttpGet(url);
