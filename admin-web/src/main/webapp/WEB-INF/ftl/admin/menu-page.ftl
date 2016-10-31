@@ -4,7 +4,6 @@
         <th style="text-align: center">id</th>
         <th style="text-align: center">菜单名称</th>
         <th style="text-align: center">菜单URL</th>
-        <th style="text-align: center">菜单图标</th>
         <th style="text-align: center">菜单类型</th>
         <th style="text-align: center">排序</th>
         <th style="text-align: center">创建时间</th>
@@ -18,13 +17,13 @@
                     <td style="text-align: center">${menu.id}</td>
                     <td style="text-align: center">${menu.menuName}</td>
                     <td style="text-align: center">${menu.menuUrl}</td>
-                    <td style="text-align: center">${menu.menuIcon}</td>
                     <td style="text-align: center">${menu.menuType}</td>
                     <td style="text-align: center">${menu.menuOrder}</td>
                     <td style="text-align: center">${menu.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                     <td style="text-align: center">
-                        <a class="btn btn-circle btn-primary" onclick="UserJS.toUpdate('${menu.id}')"><i class="icon-edit"></i>修改</a>
-                        <a class="btn btn-circle btn-danger"  onclick="UserJS.toRemove('${menu.id}')"><i class="icon-remove"></i>删除</a>
+                        <a class="btn btn-circle btn-primary" onclick="ModalJS.open('ajax-modal','/admin/menu/getById.do?id='+${menu.id});">
+                            <i class="icon-edit"></i>修改</a>
+                        <a class="btn btn-circle btn-danger"  onclick="MenuJs.toRemove('${menu.id}')"><i class="icon-remove"></i>删除</a>
                     </td>
                 </tr>
             </#list>

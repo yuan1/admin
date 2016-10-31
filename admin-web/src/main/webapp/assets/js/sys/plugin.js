@@ -1,3 +1,5 @@
+$.fn.modal.Constructor.prototype.enforceFocus = function() {};
+
 var ModalJS = function () {
     return {
         open: function (id, url) {

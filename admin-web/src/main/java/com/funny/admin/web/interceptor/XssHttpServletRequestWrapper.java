@@ -1,13 +1,9 @@
 package com.funny.admin.web.interceptor;
 
 
-import java.io.StringReader;
-import java.io.StringWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.util.HtmlUtils;
 
 /**
@@ -80,6 +76,6 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
     }
 
     public static String escapeSql(String str) {
-        return str == null?null: StringUtils.replace(str, "\'", "\'\'");
+        return str == null?null: str.replace("\'", "\'\'");
     }
 }

@@ -41,10 +41,9 @@ public class UserController extends BaseController {
     private RoleService roleService;
 
     @RequestMapping("/list")
-    public ModelAndView getUserList(UserCondition condition) throws Exception {
+    public ModelAndView getUserList() throws Exception {
         ModelAndView modelAndView = new ModelAndView("/admin/user-list");
         modelAndView.addObject("statusList", UserStatusEnum.values());
-        modelAndView.addObject("condition", condition);
         return modelAndView;
     }
 

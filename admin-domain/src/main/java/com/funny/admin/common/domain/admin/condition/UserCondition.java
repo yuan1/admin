@@ -10,6 +10,7 @@ public class UserCondition extends PageCondition {
     private String realName;
     private String mobile;
     private String email;
+    private Integer userStatus;
 
     public String getUserName() {
         return userName;
@@ -41,5 +42,13 @@ public class UserCondition extends PageCondition {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(Integer userStatus) {
+        this.userStatus = userStatus;
     }
 }

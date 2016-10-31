@@ -19,8 +19,7 @@
                                 <label class="col-md-4 control-label">用户名</label>
 
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-inline" id="s_user_name"
-                                           name="userName">
+                                    <input type="text" class="form-control input-inline" name="userName">
                                 </div>
                             </div>
                         </div>
@@ -29,8 +28,7 @@
                                 <label class="col-md-4 control-label">姓名</label>
 
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-inline" id="s_real_name"
-                                           name="realName">
+                                    <input type="text" class="form-control input-inline" name="realName">
                                 </div>
                             </div>
                         </div>
@@ -39,8 +37,7 @@
                                 <label class="col-md-4 control-label">手机号</label>
 
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-inline" id="s_mobile"
-                                           name="mobile">
+                                    <input type="text" class="form-control input-inline" name="mobile">
                                 </div>
                             </div>
                         </div>
@@ -51,8 +48,7 @@
                                 <label class="col-md-4 control-label">邮箱</label>
 
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-inline" id="s_email"
-                                           name="email">
+                                    <input type="text" class="form-control input-inline" name="email">
                                 </div>
                             </div>
                         </div>
@@ -61,18 +57,17 @@
                                 <label class="col-md-4 control-label">状态</label>
 
                                 <div class="col-md-8">
-                                    <select class="bs-select select2 form-control input-inline" name="userType" id="s_user_type"
-                                            data-live-search="true">
+                                    <select class="selectpicker" name="userStatus" >
                                         <option value="">全部</option>
                                         <#list statusList as status>
-                                            <option value=">${status.value}">${status.desc}</option>
+                                            <option value="${status.value}">${status.desc}</option>
                                         </#list>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <a class="btn btn-circle blue" id="searchBtn"><i class="fa fa-search"></i>查询</a>
+                            <a class="btn btn-circle btn-sm blue" id="searchBtn"><i class="fa fa-search"></i>查询</a>
                             <button type="reset" class="btn btn-circle grey-cascade">
                                 <i class="fa fa-times">重置</i>
                             </button>
