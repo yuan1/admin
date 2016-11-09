@@ -3,6 +3,7 @@ package com.funny.admin.web.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.funny.admin.common.domain.admin.vo.MenuVo;
@@ -80,8 +81,9 @@ public class LoginController {
      */
     @RequestMapping(value = "/createMenuTree")
     @ResponseBody
-    public JsonResult createMenuTree() {
+    public JsonResult createMenuTree(HttpServletRequest request) {
         JsonResult jsonResult = new JsonResult();
+        Long userId = 1L;
         try {
             List<MenuVo> menuList = menuService.getMenuTree();
             jsonResult.setSuccess(menuList);

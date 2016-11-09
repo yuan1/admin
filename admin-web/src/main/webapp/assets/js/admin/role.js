@@ -67,6 +67,76 @@ var RoleJS = function () {
         });
         submitForm();
     };
+
+    var initMenuTree = function () {
+        $.ajax({
+            type: "get",
+            url: '/admin/menu/getMenuList.do',
+            dataType: 'json',
+            async: false,
+            cache: false,
+            success: function (data) {
+                if (data.returncode == 0) {
+                    var menuArray = new Array();
+                    $.each(data.result, function (i, item) {
+                        var data = {'id': item.id, 'text': item.menuName};
+                        if (item.childList != null && item.childList.length > 0) {
+                            var childArray = new Array();
+                            $.each(item.childList, function (c, ct) {
+                                var child = {'id': ct.id, 'text': ct.menuName};
+                                childArray.push(child);
+                            });
+                            data.children = childArray;
+                        }
+                        menuArray.push(data);
+                    });
+                    var treeItem = {
+                        id: 1, text: '全部', children: menuArray,
+                        icon: 'fa fa-home green', state: {opened: true, disabled: false, selected: true}
+                    };
+                    $('#menu-tree').jstree({
+                        "core": {
+                            'multiple': false,
+                            "data": treeItem
+                        },
+                        "checkbox": {
+                            "keep_selected_style": false,
+                        },
+                        "plugins": ["checkbox"]
+                    });
+                    $('#menu-tree').jstree(true).settings.core.data = treeItem;
+                    $('#menu-tree').jstree(true).refresh();
+                } else {
+                    alert(data.message);
+                }
+            }
+        });
+    }
+
+    var saveRoleMenus = function () {
+        var selectedMenus = $("#menu-tree").jstree().get_checked();
+        var param = {
+            menuIds: selectedMenus,
+            roleId: $("#id").val()
+        }
+        $.ajax({
+            type: "post",
+            url: '/admin/role/addRoleMenu.do',
+            dataType: 'json',
+            data : param,
+            async: false,
+            cache: false,
+            success: function (data) {
+                if (data.returncode == 0) {
+                    toastr.success(data.message);
+                    $("#ajax-modal").modal('hide');
+                } else {
+                    alert(data.message);
+                }
+            }
+        });
+    }
+
     return {
         init: function () {
             init();
@@ -79,6 +149,12 @@ var RoleJS = function () {
         },
         submitSave: function () {
             submitSave();
+        },
+        initMenuTree: function () {
+            initMenuTree();
+        },
+        saveRoleMenus: function () {
+            saveRoleMenus();
         }
     }
 }();

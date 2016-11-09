@@ -1,5 +1,6 @@
 package com.funny.admin.service.sys.impl;
 
+import com.funny.admin.common.AdminConstants;
 import com.funny.admin.common.dao.admin.MenuMapper;
 import com.funny.admin.common.domain.admin.condition.MenuCondition;
 import com.funny.admin.common.domain.admin.entity.MenuEntity;
@@ -58,7 +59,7 @@ public class MenuServiceImpl implements MenuService {
         Predicate<MenuVo> menuVoPredicate = new Predicate<MenuVo>() {
             @Override
             public boolean apply(MenuVo vo) {
-                return vo.getParentId() == 999999999L;
+                return vo.getParentId() == AdminConstants.PARENT_MENU;
             }
         };
         List<MenuVo> resultList = Lists.newArrayList(Iterables.filter(menuVoList, menuVoPredicate));

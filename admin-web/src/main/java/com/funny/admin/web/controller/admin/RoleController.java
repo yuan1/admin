@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.funny.admin.common.domain.admin.condition.RoleCondition;
 import com.funny.admin.common.domain.admin.condition.UserCondition;
 import com.funny.admin.common.domain.admin.entity.RoleEntity;
+import com.funny.admin.common.domain.admin.entity.RoleMenuEntity;
 import com.funny.admin.common.domain.admin.entity.UserEntity;
+import com.funny.admin.common.domain.admin.entity.UserRoleEntity;
 import com.funny.admin.common.domain.admin.enums.UserStatusEnum;
 import com.funny.admin.common.domain.admin.vo.UserVo;
 import com.funny.admin.common.result.JsonResult;
@@ -15,6 +17,7 @@ import com.funny.admin.web.controller.BaseController;
 import com.github.pagehelper.PageInfo;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,10 +29,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-
+import java.util.Map;
 
 @Controller
-@RequestMapping(value="/admin/role")
+@RequestMapping(value = "/admin/role")
 public class RoleController extends BaseController {
     private final static Logger logger = LoggerFactory.getLogger(RoleController.class);
 
@@ -112,5 +115,47 @@ public class RoleController extends BaseController {
         return jsonResult;
     }
 
+    @RequestMapping("/toAddMenu")
+    public ModelAndView getRoleList(Long id) throws Exception {
+        ModelAndView modelAndView = new ModelAndView("/admin/role-menu");
 
+        modelAndView.addObject("id", id);
+        return modelAndView;
+    }
+    @RequestMapping("/menuSelectList")
+    @ResponseBody
+    public JsonResult menuSelectList(Long roleId) {
+        JsonResult jsonResult = new JsonResult();
+        List<RoleMenuEntity> roleMenuEntities = roleService.findRoleMenuList(roleId);
+        jsonResult.setSuccess(roleMenuEntities);
+        return jsonResult;
+    }
+
+
+    @RequestMapping("/addRoleMenu")
+    @ResponseBody
+    public JsonResult addRoleMenu(String menuIds, Long roleId) {
+        JsonResult jsonResult = new JsonResult();
+        if (roleId == null) {
+            jsonResult.setFail("roleId不能为空!");
+            return jsonResult;
+        }
+        if (Strings.isNullOrEmpty(menuIds)) {
+            jsonResult.setFail("请选择菜单!");
+            return jsonResult;
+        }
+        try {
+            RoleEntity roleEntity = roleService.findById(roleId);
+            if (roleEntity == null) {
+                jsonResult.setFail("该角色不存在!");
+                return jsonResult;
+            }
+            roleService.addRoleMenu(roleId, getCurrentLoginUserId(), menuIds);
+            jsonResult.setSuccess();
+        } catch (Exception e) {
+            logger.error("保存角色权限失败,roleId={},menuIds={}",roleId+menuIds,e);
+            jsonResult.setFail("保存角色权限失败");
+        }
+        return jsonResult;
+    }
 }

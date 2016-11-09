@@ -1,6 +1,7 @@
 package com.funny.admin.web.controller.admin;
 
 import com.alibaba.fastjson.JSON;
+import com.funny.admin.common.AdminConstants;
 import com.funny.admin.common.domain.admin.condition.MenuCondition;
 import com.funny.admin.common.domain.admin.condition.UserCondition;
 import com.funny.admin.common.domain.admin.entity.IconEntity;
@@ -71,10 +72,10 @@ public class MenuController extends BaseController {
         try {
             MenuEntity menu = menuService.findById(id);
             CachedBeanCopier.copy(menu, menuVo);
-            if (menu.getParentId() != null && menu.getParentId() != 999999999L) {
+            if (menu.getParentId() != null && !menu.getParentId().equals(AdminConstants.PARENT_MENU)) {
                 MenuEntity parentEntity = menuService.findById(menu.getParentId());
                 MenuVo parent = new MenuVo();
-                BeanUtils.copyProperties(parentEntity, parent);
+                CachedBeanCopier.copy(parentEntity, parent);
                 menuVo.setParentMenu(parent);
             }
             jsonResult.setSuccess();
@@ -136,7 +137,7 @@ public class MenuController extends BaseController {
             MenuEntity parentMenu = new MenuEntity();
             parentMenu.setId(parentId);
             modelAndView.addObject("parentMenu", parentMenu);
-            if (parentId != 999999999L) {
+            if (!parentId.equals(AdminConstants.PARENT_MENU)) {
                 MenuEntity menu = menuService.findById(parentId);
                 MenuCondition menuCondition = new MenuCondition();
                 menuCondition.setParentId(menu.getParentId());
@@ -178,8 +179,9 @@ public class MenuController extends BaseController {
                 menuService.update(menuEntity);
             } else {
                 menuEntity.setCreateBy(getCurrentLoginUserId());
-                if(menuEntity.getParentId()==null){
-                    menuEntity.setParentId(999999999L);
+                if (menuEntity.getParentId() == null) {
+                    menuEntity.setParentId(AdminConstants.PARENT_MENU);
+                    menuEntity.setMenuType(1);
                 }
                 menuService.add(menuEntity);
             }

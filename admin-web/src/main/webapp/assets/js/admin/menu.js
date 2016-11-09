@@ -80,7 +80,7 @@ var MenuJs = function () {
                         menuArray.push(data);
                     });
                     var treeItem = {
-                        id: 999999999, text: '菜单列表', children: menuArray,
+                        id: 1, text: '菜单列表', children: menuArray,
                         icon:'fa fa-home green',state: {opened: true, disabled: false, selected: true}
                     };
                     $('#tree-config').jstree({

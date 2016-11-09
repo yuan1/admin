@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="OFF">
 	<properties>
-		<property name="LOG_HOME">/data/logs</property>
+		<property name="LOG_HOME">${log.path}</property>
 	</properties>
 	<appenders>
 		<Console name="Console" target="SYSTEM_OUT">
@@ -39,7 +39,7 @@
 			<appender-ref ref="errorFile"/>
 		</root>
 
-		<logger name="com.funny" level="${log.level}" additivity="true">
+		<logger name="com.funny.admin" level="${log.level}" additivity="true">
 			<appender-ref ref="Console"/>
 			<appender-ref ref="file"/>
 			<appender-ref ref="errorFile"/>

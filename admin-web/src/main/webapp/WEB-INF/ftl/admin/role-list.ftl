@@ -1,5 +1,10 @@
 <#import "../marco/page.ftl" as p>
 <@p.content title="角色管理" >
+<link type="text/css" rel="stylesheet"
+      href="${basePath}/assets/plugins/jstree/dist/themes/default/style.min.css"/>
+<script type="text/javascript" src="${basePath}/assets/plugins/jstree/dist/jstree.min.js"></script>
+<script type="text/javascript" src="${basePath}/assets/js/admin/role.js?v=20160181"></script>
+
 <div class="page-content">
     <div class="col-md-12">
         <div class="portlet light">
@@ -54,9 +59,8 @@
     </div>
 </div>
 
-<div class="modal fade" id="ajax-modal" data-width="550"></div>
+<div class="modal fade" id="ajax-modal" data-width="450"></div>
 
-<script type="text/javascript" src="${basePath}/assets/js/admin/role.js?v=20160181111"></script>
 <script>
     RoleJS.init();
 </script>

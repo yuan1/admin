@@ -22,6 +22,8 @@
 
                         <a class="btn btn-circle btn-danger"  onclick="RoleJS.toRemove('${role.id}')"><i class="icon-remove"></i>删除</a>
 
+                        <a class="btn btn-circle btn-info" onclick="ModalJS.open('ajax-modal','/admin/role/toAddMenu.do?id='+${role.id});">
+                            <i class="icon-edit"></i>分配菜单</a>
                     </td>
                 </tr>
             </#list>

@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.funny.admin.common.dao.admin.RoleMenuMapper" >
+
+    <select id="findByCondition" resultMap="BaseResultMap"
+            parameterType="com.funny.admin.common.domain.admin.condition.RoleCondition">
+        select
+        <include refid="Base_Column_List"/>
+        from admin_role_menu where yn=1
+        <include refid="role_where_sql"/>
+    </select>
+
+    <sql id="role_where_sql">
+        <if test="roleId != null">
+            and role_id = #{roleId}
+        </if>
+    </sql>
+
+
+    <update id="deleteByRoleId" parameterType="com.funny.admin.common.domain.admin.entity.RoleMenuEntity" >
+        update admin_role_menu
+        set yn = 0,
+        update_by = #{updateBy,jdbcType=BIGINT},
+        update_time = now()
+        where role_id = #{roleId,jdbcType=BIGINT}
+    </update>
   
 </mapper>
