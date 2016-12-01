@@ -35,13 +35,13 @@
 	<loggers>
 		<root level="${log.level}">
 			<appender-ref ref="Console"/>
-			<appender-ref ref="file"/>
-			<appender-ref ref="errorFile"/>
 		</root>
 
-		<logger name="com.funny.admin" level="${log.level}" additivity="true">
-			<appender-ref ref="Console"/>
+		<logger name="com.funny.admin" level="INFO" additivity="true">
 			<appender-ref ref="file"/>
+		</logger>
+
+		<logger name="com.funny.admin" level="ERROR" additivity="true">
 			<appender-ref ref="errorFile"/>
 		</logger>
 	</loggers>
